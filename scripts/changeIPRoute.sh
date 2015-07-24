@@ -1,16 +1,6 @@
 #!/bin/bash
 
-
-sudo service lightdm restart
-
-
-#x11vnc -bg -o %HOME/.x11vnc.log.%VNCDISPLAY -auth /var/run/lightdm/root/:0 -forever
-
-x11vnc -bg -geometry 1024x768 -o %HOME/.x11vnc.log.%VNCDISPLAY -auth /var/run/lightdm/root/:0 -forever
-
-
-
-#sudo service lightdm restart
+sudo ip route change to default dev wlan2 via 192.168.180.1
 
 echo press enter
 
