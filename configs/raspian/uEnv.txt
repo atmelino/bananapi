@@ -1,0 +1,6 @@
+aload_script=fatload $device $partition 0x43000000 script.bin;
+aload_kernel=fatload $device $partition 0x48000000 uImage;bootm 0x48000000
+uenvcmd=run aload_script aload_kernel
+bootargs=console=ttyS0,115200 console=tty0 consoleblank=0 disp.screen0_output_mode=EDID:1280x720p60 hdmi.audio=EDID:0 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait
+
+
