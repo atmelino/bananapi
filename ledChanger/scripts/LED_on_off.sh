@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# find name of LED
-#ls -1 /sys/class/leds
-# find out what triggers LED currently
-#cat /sys/class/leds/beaglebone::usr0/trigger
+# find out possible commands
+#cat /sys/class/leds/green\:ph24\:led1/trigger
+# expected:
+#none battery-charging-or-full battery-charging battery-full battery-charging-blink-full-solid 
+#ac-online usb-online mmc0 timer heartbeat backlight [gpio] cpu0 cpu1 default-on
 
-echo 1 > /sys/class/leds/beaglebone:green:usr3/brightness
+
+echo none > /sys/class/leds/green\:ph24\:led1/trigger
 
 
 sleep 4
 
 
-echo 0 > /sys/class/leds/beaglebone:green:usr3/brightness
-
+echo default-on > /sys/class/leds/green\:ph24\:led1/trigger
 
 
 echo press enter
