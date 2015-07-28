@@ -24,9 +24,14 @@ Did you run the script to change the permissions on the LED folders so PHP can w
 		<div style="width: 100px; float: left;">
 			<p>LED's:</p>
 			<button type="button"
-				onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,1);">ON</button>
+				onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'default-on');">ON</button>
 			<button type="button"
-				onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,0);">OFF</button>
+				onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'none');">OFF</button>
+			<button type="button"
+				onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'heartbeat');">heartbeat</button>
+
+
+
 		</div>
 	</div>
 	<div id='messagesDiv'>

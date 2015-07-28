@@ -1,48 +1,38 @@
 <?php
 
-// print "LED0";
-// print "LED1";
-// print "LED2";
-// print "LED3";
-
-
 
 if ( isset($_GET['onOff']))
 {
 	$onOff = $_GET['onOff'];
 
 
-	if ( $onOff=='1'){
+	if ( $onOff=='default-on'){
 		print "on";
-		shell_exec('echo 1 > /sys/class/leds/beaglebone:green:usr0/brightness');
-		shell_exec('echo 1 > /sys/class/leds/beaglebone:green:usr1/brightness');
-		shell_exec('echo 1 > /sys/class/leds/beaglebone:green:usr2/brightness');
-		shell_exec('echo 1 > /sys/class/leds/beaglebone:green:usr3/brightness');
+		shell_exec('echo default-on > /sys/class/leds/green\:ph24\:led1/trigger');
 	}
-	else {
+	if ( $onOff=='none'){
 		print "off";
-		shell_exec('echo 0 > /sys/class/leds/beaglebone:green:usr0/brightness');
-		shell_exec('echo 0 > /sys/class/leds/beaglebone:green:usr1/brightness');
-		shell_exec('echo 0 > /sys/class/leds/beaglebone:green:usr2/brightness');
-		shell_exec('echo 0 > /sys/class/leds/beaglebone:green:usr3/brightness');
+		shell_exec('echo none > /sys/class/leds/green\:ph24\:led1/trigger');
 	}
+
+	if ( $onOff=='heartbeat'){
+		print "heartbeat";
+		shell_exec('echo heartbeat > /sys/class/leds/green\:ph24\:led1/trigger');
+	}
+
+
+
+//	else {
+	//	print "off";
+		//shell_exec('echo none > /sys/class/leds/green\:ph24\:led1/trigger');
+	//}
 
 }
-
-
-// print "LED0";
-// print "LED1";
-// print "LED2";
-// print "LED3";
-
 
 
 // 	print "led and onOff set";
 
 // 	$led = $_GET['led'];
 
-// 	//exec( "/www/cgi-bin/ledctl $led $onOff" );
-// 	//shell_exec("echo \"1\" > /sys/class/gpio/gpio30/value");
-// 	shell_exec('echo 1 > /sys/class/leds/beaglebone:green:usr3/brightness');
 
 ?>

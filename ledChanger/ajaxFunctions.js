@@ -21,10 +21,7 @@ function ajax_getLEDChange(callback, onOff) {
 
 	ajaxLEDChangeRequest.onreadystatechange = callback;
 	var requeststring;
-	if (onOff == "0")
-		requeststring = "ledChanger.php?led=2&onOff=0";
-	else
-		requeststring = "ledChanger.php?led=2&onOff=1";
+		requeststring = "ledChanger.php?led=2&onOff="+onOff;
 
 	printlnMessage('messages', requeststring);
 	ajaxLEDChangeRequest.open("GET", encodeURI(requeststring), true);
