@@ -19,5 +19,3 @@ echo "call python end";
 
 ?>
 
-
-
