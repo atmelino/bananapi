@@ -2,17 +2,12 @@
 
 echo "call python test <br>";
 
-
-$python = `python BMP180_test.py`;
+$python = `python hello.py`;
 
 echo $python;
 echo "<br>";
 
-
 echo "call python end";
-
- 
-
 
 
 ?>
