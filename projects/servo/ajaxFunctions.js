@@ -1,16 +1,16 @@
 // ------------------- LED ---------------------------
-function ajax_getLEDChange(callback, onOff) {
-	printlnMessage('messages', "ajax_getLEDChange() called");
+function ajax_setPosition(callback, angle) {
+	printlnMessage('messages', "ajax_setPosition() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
-		ajaxLEDChangeRequest = new XMLHttpRequest();
+		ajaxServoPositionRequest = new XMLHttpRequest();
 	} catch (e) {
 		// Internet Explorer Browsers
 		try {
-			ajaxLEDChangeRequest = new ActiveXObject("Msxml2.XMLHTTP");
+			ajaxServoPositionRequest = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
 			try {
-				ajaxLEDChangeRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				ajaxServoPositionRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e) {
 				// Something went wrong
 				alert("Your browser broke!");
@@ -19,21 +19,21 @@ function ajax_getLEDChange(callback, onOff) {
 		}
 	}
 
-	ajaxLEDChangeRequest.onreadystatechange = callback;
+	ajaxServoPositionRequest.onreadystatechange = callback;
 	var requeststring;
-		requeststring = "ledChanger.php?led=2&onOff="+onOff;
+		requeststring = "servoFunctions.php?led=2&angle="+angle;
 
 	printlnMessage('messages', requeststring);
-	ajaxLEDChangeRequest.open("GET", encodeURI(requeststring), true);
-	ajaxLEDChangeRequest.send(null);
+	ajaxServoPositionRequest.open("GET", encodeURI(requeststring), true);
+	ajaxServoPositionRequest.send(null);
 }
 
 // Create a function that will receive data sent from the server
-function ajaxCalled_getLEDChange() {
-	if (ajaxLEDChangeRequest.readyState == 4) {
-		LEDChangeAjax = ajaxLEDChangeRequest.responseText;
-		printlnMessage('messages', LEDChangeAjax);
-		// LEDChangeJSON = JSON.parse(LEDChangeAjax);
-		// printlnMessage('messages',LEDChangeJSON.username);
+function ajaxCalled_setPosition() {
+	if (ajaxServoPositionRequest.readyState == 4) {
+		servoPositionAjax = ajaxServoPositionRequest.responseText;
+		printlnMessage('messages', servoPositionAjax);
+		// servoPositionJSON = JSON.parse(servoPositionAjax);
+		// printlnMessage('messages',servoPositionJSON.username);
 	}
 }
