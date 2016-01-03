@@ -32,7 +32,7 @@ class Adafruit_I2C(object):
   @staticmethod
   def getPiI2CBusNumber():
     # Gets the I2C bus number /dev/i2c#
-    return 1 if Adafruit_I2C.getPiRevision() > 1 else 0
+    return 1 if Adafruit_I2C.getPiRevision() > 1 else 2
 
   def __init__(self, address, busnum=-1, debug=False):
     self.address = address
