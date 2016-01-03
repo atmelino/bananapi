@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Banana Pi LED Changer</title>
+
+<script type="text/JavaScript" src="ajaxFunctions.js"></script>
+<script type="text/JavaScript" src="functions.js"></script>
+
+<style type="text/css">
+/* p { 	display: table-cell; } */
+button {
+	width: 150px;
+	height: 80px;
+	margin: 2px auto;
+}
+}
+</style>
+</head>
+<body>
+	Did you run the script to change the permissions on the LED folders so
+	PHP can write to them?
+	<div>
+		<div>
+			<p>
+				<img src="bPro_LED.png" alt="bPro_LED.png" height="100">
+
+				LED's:
+				<button type="button"
+					onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'default-on');">ON</button>
+				<button type="button"
+					onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'none');">OFF</button>
+				<button type="button"
+					onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'heartbeat');">heartbeat</button>
+
+			</p>
+
+		</div>
+	</div>
+	<div id='messagesDiv'>
+		<textarea id="messages" cols=80; rows=20;></textarea>
+	</div>
+</body>
+</html>

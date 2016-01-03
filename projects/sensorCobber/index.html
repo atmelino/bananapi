@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Banana Pi Sensor Cobber</title>
+
+<script type="text/JavaScript" src="ajaxFunctions.js"></script>
+<script type="text/JavaScript" src="functions.js"></script>
+
+<style type="text/css">
+button {
+	width: 150px;
+	height: 80px;
+	margin: 2px auto;
+}
+</style>
+</head>
+<body>
+	<div>
+		<div >
+			<p>
+				<img src="bPro_sensor.jpg" alt="bPro_sensor" height="100">
+
+				Sensors:
+				<button type="button"
+					onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'default-on');">get
+					temperature</button>
+				<button type="button"
+					onclick="ajax_getLEDChange(ajaxCalled_getLEDChange,'default-on');">get
+					pressure</button>
+			</p>
+		</div>
+	</div>
+	<div id='messagesDiv'>
+		<textarea id="messages" cols=80; rows=20;></textarea>
+	</div>
+</body>
+</html>
