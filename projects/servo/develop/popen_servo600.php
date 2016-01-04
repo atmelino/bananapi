@@ -3,11 +3,11 @@
 
 error_reporting(E_ALL);
 
-echo "popen() set servo to 300 <br>\n";
+echo "popen() set servo to 600 <br>\n";
 
 //$cmd = "/usr/bin/python hello.py";
 
-$cmd = "/usr/bin/python ./Servo_pos300.py 2>&1";
+$cmd = "/usr/bin/python ./Servo_pos600.py 2>&1";
 
 
 $handle = popen($cmd, 'r');

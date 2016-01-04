@@ -15,6 +15,7 @@ indent_mode=2
 [project]
 name=bpi_geany
 base_path=/media/data/public_html/bananapi/projects
+description=
 
 [long line marker]
 long_line_behaviour=1
@@ -23,6 +24,8 @@ long_line_column=72
 [files]
 current_page=0
 FILE_NAME_0=1064;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2FServo_stop.py;0;4
+FILE_NAME_1=893;HTML;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2Findex.html;0;4
+FILE_NAME_2=0;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2FledChanger.php;0;4
 
 [VTE]
 last_dir=/home/bananapi
