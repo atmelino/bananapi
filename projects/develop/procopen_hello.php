@@ -12,7 +12,9 @@ echo "proc_open() test <br>";
 $cwd = './' ;
 
 // open process reprint.pl and pass it an argument
-$process = proc_open('python ./hello.py ' . $argv1, $descriptorspec, $pipes, $cwd) ;
+//$process = proc_open('python ./hello.py ' . $argv1, $descriptorspec, $pipes, $cwd) ;
+$process = proc_open('ls ' . $argv1, $descriptorspec, $pipes, $cwd) ;
+
 echo "variable process ";
 echo $process;
 
