@@ -19,10 +19,13 @@ pclose($handle);
 //process.wait()
 
 
-echo $res;
-echo $res[2];
+//echo $res;
+//echo $res[2];
 
-var_dump($res);
+//var_dump($res);
+
+$resbr = str_replace("\n", "<br>",$res);
+echo $resbr;
 
 
 ?>

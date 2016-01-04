@@ -41,21 +41,23 @@ if ( isset($_GET['angle']))
 
 
 	if ( $angle=='150'){
-		print "150";
-		
-		
-		
-		
-		shell_exec('echo default-on > /sys/class/leds/green\:ph24\:led1/trigger');
+		//print "150";				
+		$cmd = "/usr/bin/python ./Servo_pos150.py 2>&1";
+		$handle = popen($cmd, 'r');
+		$res = fread($handle, 8192);
+		pclose($handle);
 	}
-	if ( $angle=='none'){
-		print "off";
-		shell_exec('echo none > /sys/class/leds/green\:ph24\:led1/trigger');
+	if ( $angle=='300'){
+		$cmd = "/usr/bin/python ./Servo_pos300.py 2>&1";
+		$handle = popen($cmd, 'r');
+		$res = fread($handle, 8192);
+		pclose($handle);
 	}
-
-	if ( $angle=='heartbeat'){
-		print "heartbeat";
-		shell_exec('echo heartbeat > /sys/class/leds/green\:ph24\:led1/trigger');
+	if ( $angle=='600'){
+		$cmd = "/usr/bin/python ./Servo_pos600.py 2>&1";
+		$handle = popen($cmd, 'r');
+		$res = fread($handle, 8192);
+		pclose($handle);
 	}
 
 
