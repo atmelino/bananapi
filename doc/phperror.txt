@@ -1,0 +1,13 @@
+ 
+bananapi@lemaker:/media/data/public_html/bananapi/projects/servo$ php servoFunctions_noParam.php 
+run python program
+Traceback (most recent call last):
+  File "./Servo_pos300.py", line 3, in <module>
+    from Adafruit_PWM_Servo_Driver import PWM
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_PWM_Servo_Driver.py", line 11, in <module>
+    class PWM :
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_PWM_Servo_Driver.py", line 35, in PWM
+    general_call_i2c = Adafruit_I2C(0x00)
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_I2C.py", line 43, in __init__
+    self.bus = smbus.SMBus(busnum if busnum >= 0 else Adafruit_I2C.getPiI2CBusNumber())
+IOError: [Errno 13] Permission denied
