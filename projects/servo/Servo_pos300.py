@@ -7,6 +7,9 @@ import time
 # Example Code
 # ===========================================================================
 
+
+print "servo 300 start\n"
+
 # Initialise the PWM device using the default address
 #pwm = PWM(0x40)
 # Note if you'd like more debug output you can instead run:

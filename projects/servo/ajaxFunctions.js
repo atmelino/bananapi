@@ -32,6 +32,7 @@ function ajax_setPosition(callback, angle) {
 function ajaxCalled_setPosition() {
 	if (ajaxServoPositionRequest.readyState == 4) {
 		servoPositionAjax = ajaxServoPositionRequest.responseText;
+		printlnMessage('messages', 'response from PHP file:');
 		printlnMessage('messages', servoPositionAjax);
 		// servoPositionJSON = JSON.parse(servoPositionAjax);
 		// printlnMessage('messages',servoPositionJSON.username);

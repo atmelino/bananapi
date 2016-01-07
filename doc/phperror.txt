@@ -1,4 +1,43 @@
- 
+2016-6-1
+========
+Traceback (most recent call last):<br>  File "./Servo_pos300.py", line 3, in <module><br>
+ajax_setPosition() called
+servoFunctions.php?led=2&angle=300
+response from PHP file:
+popen() set servo to 300 <br>
+<br>string(755) "Traceback (most recent call last):
+  File "./Servo_pos300.py", line 3, in <module>
+    from Adafruit_PWM_Servo_Driver import PWM
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_PWM_Servo_Driver.py", line 5, in <module>
+    from Adafruit_I2C import Adafruit_I2C
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_I2C.py", line 12, in <module>
+    class Adafruit_I2C(object):
+  File "/media/data/public_html/bananapi/projects/servo/Adafruit_I2C.py", line 14, in Adafruit_I2C
+    logging.basicConfig(filename='error.log',level=logging.DEBUG)
+  File "/usr/lib/python2.7/logging/__init__.py", line 1532, in basicConfig
+    hdlr = FileHandler(filename, mode)
+  File "/usr/lib/python2.7/logging/__init__.py", line 903, in __init__
+"
+Traceback (most recent call last):<br>  File "./Servo_pos300.py", line 3, in <module><br>   
+ from Adafruit_PWM_Servo_Driver import PWM<br>  
+ File "/media/data/public_html/bananapi/projects/servo/Adafruit_PWM_Servo_Driver.py", line 5, in <module><br>    
+ from Adafruit_I2C import Adafruit_I2C<br>  
+ File "/media/data/public_html/bananapi/projects/servo/Adafruit_I2C.py", line 12, in <module><br>   
+  class Adafruit_I2C(object):<br> 
+   File "/media/data/public_html/bananapi/projects/servo/Adafruit_I2C.py", line 14, in Adafruit_I2C<br>    
+   logging.basicConfig(filename='error.log',level=logging.DEBUG)<br>  
+   File "/usr/lib/python2.7/logging/__init__.py", line 1532, in basicConfig<br>    
+   hdlr = FileHandler(filename, mode)<br>  
+   File "/usr/lib/python2.7/logging/__init__.py", line 903, in __init__<br>
+
+
+
+
+
+
+
+2016-5-1
+======== 
 bananapi@lemaker:/media/data/public_html/bananapi/projects/servo$ php servoFunctions_noParam.php 
 run python program
 Traceback (most recent call last):
