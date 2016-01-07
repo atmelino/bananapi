@@ -1,6 +1,9 @@
 #!/usr/bin/python
 import re
 import smbus
+import logging
+import time
+from time import gmtime, strftime
 
 # ===========================================================================
 # Adafruit_I2C Class
@@ -8,9 +11,24 @@ import smbus
 
 class Adafruit_I2C(object):
 
+  logging.basicConfig(filename='error.log',level=logging.DEBUG)
+  #from datetime import date,datetime
+  #today = date.today()
+  #logging.debug(today)
+
+  showtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+  #print showtime
+  logging.debug(showtime)
+
+  #logging.debug('This message should go to the log file')
+  #logging.info('So should this')
+  #logging.warning('And this, too')
+  
   @staticmethod
   def getPiRevision():
-    "Gets the version number of the Raspberry Pi board"
+	  
+    print "Gets the version number of the Raspberry Pi board"
+    #"Gets the version number of the Raspberry Pi board"
     # Revision list available at: http://elinux.org/RPi_HardwareHistory#Board_Revision_History
     try:
       with open('/proc/cpuinfo', 'r') as infile:
@@ -26,11 +44,19 @@ class Adafruit_I2C(object):
             return 2
         # Couldn't find the revision, assume revision 0 like older code for compatibility.
         return 0
-    except:
+
+    except Exception as e:
+      logging.debug(str(e))
+      #logger.exception('Failed: ' + str(e))
       return 0
+
+    #except:
+      #print "exception"
+      #return 0
 
   @staticmethod
   def getPiI2CBusNumber():
+    print "Gets the I2C bus number /dev/i2c#"
     # Gets the I2C bus number /dev/i2c#
     return 1 if Adafruit_I2C.getPiRevision() > 1 else 2
 
@@ -40,6 +66,9 @@ class Adafruit_I2C(object):
     # Alternatively, you can hard-code the bus version below:
     # self.bus = smbus.SMBus(0); # Force I2C0 (early 256MB Pi's)
     # self.bus = smbus.SMBus(1); # Force I2C1 (512MB Pi's)
+    self.bus = smbus.SMBus(2)
+    
+    
     self.bus = smbus.SMBus(busnum if busnum >= 0 else Adafruit_I2C.getPiI2CBusNumber())
     self.debug = debug
 
