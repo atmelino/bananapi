@@ -1,6 +1,6 @@
 // ------------------- LED ---------------------------
-function ajax_setPosition(callback, speed) {
-	printlnMessage('messages', "ajax_setPosition() called");
+function ajax_setSpeed(callback, speed) {
+	//printlnMessage('messages', "ajax_setSpeed() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
 		ajaxStepperPositionRequest = new XMLHttpRequest();

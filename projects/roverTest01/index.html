@@ -4,20 +4,9 @@
 
 <script src="../../lib/jquery-ui-1.10.3/jquery-1.10.2.min.js"></script>
 <script src="../../lib/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" type="text/css"
-	href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
-
-
-<link rel="stylesheet"
-	href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
-<script
-	src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
-<link rel="stylesheet"
-	href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
-<script
-	src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
-
+<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
+<script src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
 <script type="text/JavaScript" src="ajaxFunctions.js"></script>
 <script type="text/JavaScript" src="functions.js"></script>
 
@@ -69,27 +58,57 @@ h5 {
 	}
 
 	$(function() {
-		// 		$('.vertical input').spinner({
-		// 			min : -10,
-		// 			max : 10,
-		// 			alignment : 'vertical'
-		// 		}).val(0);
 
-		var spinner = $('#frontLeft  input').spinner({
+		var spinnerfl = $('#frontLeft  input').spinner({
+			min : -10,
+			max : 10,
+			alignment : 'vertical'
+		}).val(0);
+
+		var spinnerrl = $('#rearLeft  input').spinner({
+			min : -10,
+			max : 10,
+			alignment : 'vertical'
+		}).val(0);
+
+		var spinnerfr = $('#frontRight  input').spinner({
+			min : -10,
+			max : 10,
+			alignment : 'vertical'
+		}).val(0);
+
+		var spinnerrr = $('#rearRight  input').spinner({
 			min : -10,
 			max : 10,
 			alignment : 'vertical'
 		}).val(0);
 
 		$('#frontLeft').on("spinstop", function(event, ui) {
-			//var spinner = $("#frontLeft").spinner();
-			printlnMessage('messages', "front left spinner event");
-			//printlnMessage('messages', $("#frontLeft").spinner("value"));
+			wheel="fl";
+			speed = spinnerfl.spinner("value");
+			printlnMessage('messages', "front left speed "+speed);
+			ajax_setSpeed(ajaxCalled_setPosition,wheel, speed);
+		});
 
-			//printlnMessage('messages', this);
-			printlnMessage('messages', spinner.spinner("value"));
+		$('#rearLeft').on("spinstop", function(event, ui) {
+			wheel="rl";
+			speed = spinnerrl.spinner("value");
+			printlnMessage('messages', "rear left speed "+speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel,speed);
+		});
 
-			ajax_setPosition(ajaxCalled_setPosition, '300');
+		$('#frontRight').on("spinstop", function(event, ui) {
+			wheel="fr";
+			speed = spinnerfr.spinner("value");
+			printlnMessage('messages', "front right speed "+speed);
+			ajax_setSpeed(ajaxCalled_setPosition,wheel, speed);
+		});
+
+		$('#rearRight').on("spinstop", function(event, ui) {
+			wheel="rr";
+			speed = spinnerrr.spinner("value");
+			printlnMessage('messages', "rear right speed "+speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel,speed);
 		});
 
 	});
@@ -110,35 +129,21 @@ h5 {
 				<td>
 					<table border="1">
 						<tr>
-							<td><span id='frontLeft' class="vertical controls"><input /></span>
-							</td>
+							<td><span id='frontLeft' class="vertical controls"><input /></span></td>
 						</tr>
 						<tr>
-							<td>
-								<div class="vertical controls">
-									<span class="size3"><input /></span>
-								</div>
-							</td>
+							<td><span id='rearLeft' class="vertical controls"><input /></span></td>
 						</tr>
 					</table>
 				</td>
-				<td><img src="rover_top.jpg" alt="rover_top.jpg" height="300">
-				</td>
+				<td><img src="rover_top.jpg" alt="rover_top.jpg" height="300"></td>
 				<td>
 					<table border="1">
 						<tr>
-							<td>
-								<div class="vertical controls">
-									<span class="size3"><input /></span>
-								</div>
-							</td>
+							<td><span id='frontRight' class="vertical controls"><input /></span></td>
 						</tr>
 						<tr>
-							<td>
-								<div class="vertical controls">
-									<span class="size3"><input /></span>
-								</div>
-							</td>
+							<td><span id='rearRight' class="vertical controls"><input /></span></td>
 						</tr>
 					</table>
 				</td>
