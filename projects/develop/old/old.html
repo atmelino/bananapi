@@ -1,0 +1,30 @@
+
+
+		$('#tmeas_seq01 input').spinner({
+			step : 0.01,
+			numberFormat : "n",
+			min : 0.01,
+			max : 600,
+			alignment : 'horizontal',
+		}).val(100);
+
+
+
+	<label for='spinner'></label> Counting Time:
+	<span id='tmeas_seq01' class='spinnersize1'><input> </span>s
+	
+	
+			//alert("spinner event");
+	
+			$('.vertical input').on("spinstop", function(event, ui) {
+			printlnMessage('messages', "spinner event");
+			ajax_setPosition(ajaxCalled_setPosition, '300');
+		});
+	
+									<div class="vertical controls">
+									<span id='frontLeft' class="size3"><input /></span>
+								</div>
+	
+	
+	
+	

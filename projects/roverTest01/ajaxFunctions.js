@@ -1,16 +1,16 @@
 // ------------------- LED ---------------------------
-function ajax_setPosition(callback, angle) {
+function ajax_setPosition(callback, speed) {
 	printlnMessage('messages', "ajax_setPosition() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
-		ajaxServoPositionRequest = new XMLHttpRequest();
+		ajaxStepperPositionRequest = new XMLHttpRequest();
 	} catch (e) {
 		// Internet Explorer Browsers
 		try {
-			ajaxServoPositionRequest = new ActiveXObject("Msxml2.XMLHTTP");
+			ajaxStepperPositionRequest = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
 			try {
-				ajaxServoPositionRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				ajaxStepperPositionRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e) {
 				// Something went wrong
 				alert("Your browser broke!");
@@ -19,21 +19,21 @@ function ajax_setPosition(callback, angle) {
 		}
 	}
 
-	ajaxServoPositionRequest.onreadystatechange = callback;
+	ajaxStepperPositionRequest.onreadystatechange = callback;
 	var requeststring;
-		requeststring = "servoFunctions.php?led=2&angle="+angle;
+		requeststring = "stepperFunctions.php?wheel=lf&speed="+speed;
 
 	printlnMessage('messages', requeststring);
-	ajaxServoPositionRequest.open("GET", encodeURI(requeststring), true);
-	ajaxServoPositionRequest.send(null);
+	ajaxStepperPositionRequest.open("GET", encodeURI(requeststring), true);
+	ajaxStepperPositionRequest.send(null);
 }
 
 // Create a function that will receive data sent from the server
 function ajaxCalled_setPosition() {
-	if (ajaxServoPositionRequest.readyState == 4) {
-		servoPositionAjax = ajaxServoPositionRequest.responseText;
-		printlnMessage('messages', servoPositionAjax);
-		// servoPositionJSON = JSON.parse(servoPositionAjax);
-		// printlnMessage('messages',servoPositionJSON.username);
+	if (ajaxStepperPositionRequest.readyState == 4) {
+		stepperPositionAjax = ajaxStepperPositionRequest.responseText;
+		printlnMessage('messages', stepperPositionAjax);
+		// stepperPositionJSON = JSON.parse(stepperPositionAjax);
+		// printlnMessage('messages',stepperPositionJSON.username);
 	}
 }

@@ -28,10 +28,6 @@ button {
 	margin: 2px auto;
 }
 
-.vertical input {
-	width: 1.5em;
-}
-
 h5 {
 	margin-top: 5px;
 }
@@ -53,20 +49,17 @@ h5 {
 	font-size: 14pt;
 }
 
-.right input {
-	width: 3em;
-}
-
-.left input {
-	width: 3em;
-}
-
 .vertical input {
-	width: 1.5em;
+	width: 3ch;
+	height: 4em;
 }
 
-.horizontal input {
-	width: 2em;
+.spinnersize1 input {
+	font-size: 8pt;
+	display: inline-block;
+	margin: 10px;
+	/*width: 30px;*/
+	width: 6ch;
 }
 </style>
 
@@ -76,20 +69,37 @@ h5 {
 	}
 
 	$(function() {
-		$('.vertical input').spinner({
+		// 		$('.vertical input').spinner({
+		// 			min : -10,
+		// 			max : 10,
+		// 			alignment : 'vertical'
+		// 		}).val(0);
+
+		var spinner = $('#frontLeft  input').spinner({
+			min : -10,
+			max : 10,
 			alignment : 'vertical'
 		}).val(0);
+
+		$('#frontLeft').on("spinstop", function(event, ui) {
+			//var spinner = $("#frontLeft").spinner();
+			printlnMessage('messages', "front left spinner event");
+			//printlnMessage('messages', $("#frontLeft").spinner("value"));
+
+			//printlnMessage('messages', this);
+			printlnMessage('messages', spinner.spinner("value"));
+
+			ajax_setPosition(ajaxCalled_setPosition, '300');
+		});
+
 	});
 </script>
 
 
-
-
-
 </head>
 <body onload="onload_function()">
-	<div>
 
+	<div>
 		<table border="1">
 			<tr>
 				<th>speed left</th>
@@ -100,10 +110,7 @@ h5 {
 				<td>
 					<table border="1">
 						<tr>
-							<td>
-								<div class="vertical controls">
-									<span class="size3"><input /></span>
-								</div>
+							<td><span id='frontLeft' class="vertical controls"><input /></span>
 							</td>
 						</tr>
 						<tr>
@@ -115,7 +122,7 @@ h5 {
 						</tr>
 					</table>
 				</td>
-				<td><img src="rover_top.jpg" alt="rover_top.jpg" height="400">
+				<td><img src="rover_top.jpg" alt="rover_top.jpg" height="300">
 				</td>
 				<td>
 					<table border="1">
@@ -138,16 +145,6 @@ h5 {
 			</tr>
 		</table>
 
-		<div>
-			<button type="button"
-				onclick="ajax_setPosition(ajaxCalled_setPosition,'300');">
-				+</button>
-			<br>
-			<button type="button"
-				onclick="ajax_setPosition(ajaxCalled_setPosition,'600');">
-				-</button>
-
-		</div>
 	</div>
 	<div id='messagesDiv'>
 		<textarea id="messages" cols=80; rows=20;></textarea>
