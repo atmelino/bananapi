@@ -12,8 +12,8 @@
 
 <style type="text/css">
 button {
-	width: 100px;
-	height: 100px;
+	width: 50 px;
+	height: 50px;
 	margin: 2px auto;
 }
 
@@ -84,31 +84,70 @@ h5 {
 		}).val(0);
 
 		$('#frontLeft').on("spinstop", function(event, ui) {
-			wheel="fl";
+			wheel = "fl";
 			speed = spinnerfl.spinner("value");
-			printlnMessage('messages', "front left speed "+speed);
-			ajax_setSpeed(ajaxCalled_setPosition,wheel, speed);
+			printlnMessage('messages', "front left speed " + speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
 		});
 
 		$('#rearLeft').on("spinstop", function(event, ui) {
-			wheel="rl";
+			wheel = "rl";
 			speed = spinnerrl.spinner("value");
-			printlnMessage('messages', "rear left speed "+speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel,speed);
+			printlnMessage('messages', "rear left speed " + speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
 		});
 
 		$('#frontRight').on("spinstop", function(event, ui) {
-			wheel="fr";
+			wheel = "fr";
 			speed = spinnerfr.spinner("value");
-			printlnMessage('messages', "front right speed "+speed);
-			ajax_setSpeed(ajaxCalled_setPosition,wheel, speed);
+			printlnMessage('messages', "front right speed " + speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
 		});
 
 		$('#rearRight').on("spinstop", function(event, ui) {
-			wheel="rr";
+			wheel = "rr";
 			speed = spinnerrr.spinner("value");
-			printlnMessage('messages', "rear right speed "+speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel,speed);
+			printlnMessage('messages', "rear right speed " + speed);
+			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
+		});
+
+		$("#bforward").click(function() {
+			printlnMessage('messages', "forward");
+			ajax_setSpeed(ajaxCalled_setPosition, "fl", 3);
+			ajax_setSpeed(ajaxCalled_setPosition, "fr", 3);
+			ajax_setSpeed(ajaxCalled_setPosition, "rl", 3);
+			ajax_setSpeed(ajaxCalled_setPosition, "rr", 3);
+
+			spinnerfl.spinner("value", 3);
+			spinnerfr.spinner("value", 3);
+			spinnerrl.spinner("value", 3);
+			spinnerrr.spinner("value", 3);
+		});
+
+		$("#bstop").click(function() {
+			printlnMessage('messages', "stop");
+			ajax_setSpeed(ajaxCalled_setPosition, "fl", 0);
+			ajax_setSpeed(ajaxCalled_setPosition, "fr", 0);
+			ajax_setSpeed(ajaxCalled_setPosition, "rl", 0);
+			ajax_setSpeed(ajaxCalled_setPosition, "rr", 0);
+
+			spinnerfl.spinner("value", 0);
+			spinnerfr.spinner("value", 0);
+			spinnerrl.spinner("value", 0);
+			spinnerrr.spinner("value", 0);
+		});
+
+		$("#bbackward").click(function() {
+			printlnMessage('messages', "backward");
+			ajax_setSpeed(ajaxCalled_setPosition, "fl", -3);
+			ajax_setSpeed(ajaxCalled_setPosition, "fr", -3);
+			ajax_setSpeed(ajaxCalled_setPosition, "rl", -3);
+			ajax_setSpeed(ajaxCalled_setPosition, "rr", -3);
+
+			spinnerfl.spinner("value", -3);
+			spinnerfr.spinner("value", -3);
+			spinnerrl.spinner("value", -3);
+			spinnerrr.spinner("value", -3);
 		});
 
 	});
@@ -122,7 +161,11 @@ h5 {
 		<table border="1">
 			<tr>
 				<th>speed left</th>
-				<th></th>
+				<th>
+					<button id='bforward' type="button">FORWARD</button>
+					<button id='bstop' type="button">STOP</button>
+					<button id='bbackward' type="button">BACKWARD</button>
+				</th>
 				<th>speed right</th>
 			</tr>
 			<tr>
