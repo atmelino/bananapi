@@ -20,12 +20,6 @@ def turnOffMotors():
 ################################# DC motor test!
 myMotor = mh.getMotor(3)
 
-# set the speed to start, from 0 (off) to 255 (max speed)
-myMotor.setSpeed(150)
-myMotor.run(Adafruit_MotorHAT.FORWARD);
-# turn on motor
-myMotor.run(Adafruit_MotorHAT.RELEASE);
-
 print "arg1="+sys.argv[1]
 
 arg2=int(sys.argv[2])
@@ -35,13 +29,16 @@ speed=20*arg2
 print "speed=%d" % speed
 
 
-
-print "Forward! "
-myMotor.run(Adafruit_MotorHAT.FORWARD)
+if speed>0:
+  print "Forward! "
+  myMotor.run(Adafruit_MotorHAT.FORWARD)
+else:
+  print "Backward! "
+  myMotor.run(Adafruit_MotorHAT.BACKWARD)
 
 
 #myMotor.setSpeed(100)
-myMotor.setSpeed(speed)
+myMotor.setSpeed(abs(speed))
 time.sleep(1.0)
 
 #time.sleep(3)
