@@ -23,10 +23,11 @@ long_line_column=72
 
 [files]
 current_page=3
-FILE_NAME_0=271;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2FServo_pos300.py;0;4
-FILE_NAME_1=150;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2Fdevelop%2Fpopen_servo300.php;0;4
-FILE_NAME_2=1820;None;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fdoc%2Fphperror.txt;0;4
-FILE_NAME_3=1159;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2FservoFunctions.php;0;4
+FILE_NAME_0=53;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FroverTest01%2Fdevelop%2Fpopen_DCStop.php;0;4
+FILE_NAME_1=193;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FroverTest01%2Fdevelop%2Fpopen_DCTest.php;0;4
+FILE_NAME_2=601;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FroverTest01%2Fdevelop%2FDCStop.py;0;4
+FILE_NAME_3=1325;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FroverTest01%2Fdevelop%2FDCTest01.py;0;4
+FILE_NAME_4=655;HTML;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Findex.html;0;4
 
 [VTE]
 last_dir=/home/bananapi
