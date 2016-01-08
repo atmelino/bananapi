@@ -3,9 +3,9 @@
 
 error_reporting(E_ALL);
 
-echo "popen() DCTest.py <br>\n";
+echo "popen() DCStop.py <br>\n";
 
-$cmd = "/usr/bin/python ./DCTest.py 2>&1";
+$cmd = "/usr/bin/python ./DCStop.py 2>&1";
 
 $handle = popen($cmd, 'r');
 $res = fread($handle, 8192);
