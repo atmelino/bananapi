@@ -10,8 +10,7 @@ function ajax_setSpeed(callback, wheel, speed) {
 			ajaxStepperSpeedRequest = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
 			try {
-				ajaxStepperSpeedRequest = new ActiveXObject(
-						"Microsoft.XMLHTTP");
+				ajaxStepperSpeedRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e) {
 				// Something went wrong
 				alert("Your browser broke!");
@@ -22,7 +21,7 @@ function ajax_setSpeed(callback, wheel, speed) {
 
 	ajaxStepperSpeedRequest.onreadystatechange = callback;
 	var requeststring;
-	requeststring = "stepperFunctions.php?wheel="+wheel+"&speed=" + speed;
+	requeststring = "stepperFunctions.php?wheel=" + wheel + "&speed=" + speed;
 
 	printlnMessage('messages', requeststring);
 	ajaxStepperSpeedRequest.open("GET", encodeURI(requeststring), true);
@@ -32,6 +31,7 @@ function ajax_setSpeed(callback, wheel, speed) {
 // Create a function that will receive data sent from the server
 function ajaxCalled_setSpeed() {
 	if (ajaxStepperSpeedRequest.readyState == 4) {
+		printlnMessage('messages', "ajaxCalled_setSpeed()");
 		stepperSpeedAjax = ajaxStepperSpeedRequest.responseText;
 		printlnMessage('messages', stepperSpeedAjax);
 	}

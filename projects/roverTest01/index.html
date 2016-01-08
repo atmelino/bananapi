@@ -87,36 +87,36 @@ h5 {
 			wheel = "fl";
 			speed = spinnerfl.spinner("value");
 			printlnMessage('messages', "front left speed " + speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
+			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 		});
 
 		$('#rearLeft').on("spinstop", function(event, ui) {
 			wheel = "rl";
 			speed = spinnerrl.spinner("value");
 			printlnMessage('messages', "rear left speed " + speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
+			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 		});
 
 		$('#frontRight').on("spinstop", function(event, ui) {
 			wheel = "fr";
 			speed = spinnerfr.spinner("value");
 			printlnMessage('messages', "front right speed " + speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
+			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 		});
 
 		$('#rearRight').on("spinstop", function(event, ui) {
 			wheel = "rr";
 			speed = spinnerrr.spinner("value");
 			printlnMessage('messages', "rear right speed " + speed);
-			ajax_setSpeed(ajaxCalled_setPosition, wheel, speed);
+			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 		});
 
 		$("#bforward").click(function() {
 			printlnMessage('messages', "forward");
-			ajax_setSpeed(ajaxCalled_setPosition, "fl", 3);
-			ajax_setSpeed(ajaxCalled_setPosition, "fr", 3);
-			ajax_setSpeed(ajaxCalled_setPosition, "rl", 3);
-			ajax_setSpeed(ajaxCalled_setPosition, "rr", 3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 3);
 
 			spinnerfl.spinner("value", 3);
 			spinnerfr.spinner("value", 3);
@@ -126,10 +126,10 @@ h5 {
 
 		$("#bstop").click(function() {
 			printlnMessage('messages', "stop");
-			ajax_setSpeed(ajaxCalled_setPosition, "fl", 0);
-			ajax_setSpeed(ajaxCalled_setPosition, "fr", 0);
-			ajax_setSpeed(ajaxCalled_setPosition, "rl", 0);
-			ajax_setSpeed(ajaxCalled_setPosition, "rr", 0);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 0);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 0);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 0);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 0);
 
 			spinnerfl.spinner("value", 0);
 			spinnerfr.spinner("value", 0);
@@ -139,10 +139,10 @@ h5 {
 
 		$("#bbackward").click(function() {
 			printlnMessage('messages', "backward");
-			ajax_setSpeed(ajaxCalled_setPosition, "fl", -3);
-			ajax_setSpeed(ajaxCalled_setPosition, "fr", -3);
-			ajax_setSpeed(ajaxCalled_setPosition, "rl", -3);
-			ajax_setSpeed(ajaxCalled_setPosition, "rr", -3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fl", -3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "fr", -3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rl", -3);
+			ajax_setSpeed(ajaxCalled_setSpeed, "rr", -3);
 
 			spinnerfl.spinner("value", -3);
 			spinnerfr.spinner("value", -3);
