@@ -18,28 +18,36 @@ def turnOffMotors():
 #atexit.register(turnOffMotors)
 
 ################################# DC motor test!
-myMotor = mh.getMotor(3)
+myMotor1 = mh.getMotor(1)
+myMotor2 = mh.getMotor(2)
+myMotor3 = mh.getMotor(3)
+myMotor4 = mh.getMotor(4)
 
-print "arg1="+sys.argv[1]
-
+arg1=sys.argv[1]
 arg2=int(sys.argv[2])
 
-#speed=15*sys.argv[2]
+#print "arg1="+sys.argv[1]
+
+wheel=arg1
 speed=20*arg2
-print "speed=%d" % speed
+print "wheel=%s speed=%d" % (wheel, speed)
 
 
 if speed>0:
   print "Forward! "
-  myMotor.run(Adafruit_MotorHAT.FORWARD)
+  if wheel=='fl':
+    myMotor1.run(Adafruit_MotorHAT.FORWARD)
+    myMotor1.setSpeed(abs(speed))
+#  if wheel=='fr':
+    myMotor2.run(Adafruit_MotorHAT.FORWARD)
+    myMotor2.setSpeed(abs(speed))
 else:
   print "Backward! "
-  myMotor.run(Adafruit_MotorHAT.BACKWARD)
+  myMotor1.run(Adafruit_MotorHAT.BACKWARD)
 
+#time.sleep(1.0)
 
-#myMotor.setSpeed(100)
-myMotor.setSpeed(abs(speed))
-time.sleep(1.0)
+#myMotor1.setSpeed(100)
 
 #time.sleep(3)
 
@@ -47,7 +55,7 @@ time.sleep(1.0)
 
 
 #print "Release"
-#myMotor.run(Adafruit_MotorHAT.RELEASE)
+#myMotor1.run(Adafruit_MotorHAT.RELEASE)
 #time.sleep(1.0)
 
 
