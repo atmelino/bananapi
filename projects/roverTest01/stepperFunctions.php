@@ -10,7 +10,10 @@ if ( isset($_GET['speed']))
 	//echo "speed: "+$speed;
 
 	//$cmd = "/usr/bin/python ./DCSpeed.py ".$wheel." ".$speed."2>&1";
+	
+	$cmd = "/usr/bin/python ./DCTest01.py";
 	$cmd = "/usr/bin/python ./DCSpeed.py ".$wheel." ".$speed;
+
 	$handle = popen($cmd, 'r');
 	$res = fread($handle, 8192);
 	pclose($handle);

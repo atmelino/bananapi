@@ -3,7 +3,6 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 import time
 import atexit
-import sys
 
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x60)
@@ -15,7 +14,7 @@ def turnOffMotors():
 	mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
 	mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
-#atexit.register(turnOffMotors)
+atexit.register(turnOffMotors)
 
 ################################# DC motor test!
 myMotor = mh.getMotor(3)
@@ -26,40 +25,37 @@ myMotor.run(Adafruit_MotorHAT.FORWARD);
 # turn on motor
 myMotor.run(Adafruit_MotorHAT.RELEASE);
 
-print "arg1="+sys.argv[1]
-
-arg2=int(sys.argv[2])
-
-#speed=15*sys.argv[2]
-speed=20*arg2
-print "speed=%d" % speed
-
 
 
 print "Forward! "
 myMotor.run(Adafruit_MotorHAT.FORWARD)
 
+print "\tSpeed up..."
+for i in range(255):
+	myMotor.setSpeed(i)
+	time.sleep(0.01)
 
-#myMotor.setSpeed(100)
-myMotor.setSpeed(speed)
+print "\tSlow down..."
+for i in reversed(range(255)):
+	myMotor.setSpeed(i)
+	time.sleep(0.01)
+
+print "Backward! "
+myMotor.run(Adafruit_MotorHAT.BACKWARD)
+
+print "\tSpeed up..."
+for i in range(255):
+	myMotor.setSpeed(i)
+	time.sleep(0.01)
+
+print "\tSlow down..."
+for i in reversed(range(255)):
+	myMotor.setSpeed(i)
+	time.sleep(0.01)
+
+print "Release"
+myMotor.run(Adafruit_MotorHAT.RELEASE)
 time.sleep(1.0)
-
-#time.sleep(3)
-
-
-
-
-#print "Release"
-#myMotor.run(Adafruit_MotorHAT.RELEASE)
-#time.sleep(1.0)
 
 
 print "End program"
-
-
-#print "arg0="+sys.argv[0]
-#print "arg2="+sys.argv[2]
-#print "arg3="+sys.argv[3]
-
-
-
