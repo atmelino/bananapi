@@ -1,4 +1,3 @@
-// ------------------- LED ---------------------------
 function ajax_setSpeed(callback, wheel, speed) {
 	// printlnMessage('messages', "ajax_setSpeed() called");
 	try {
@@ -31,8 +30,9 @@ function ajax_setSpeed(callback, wheel, speed) {
 // Create a function that will receive data sent from the server
 function ajaxCalled_setSpeed() {
 	if (ajaxStepperSpeedRequest.readyState == 4) {
-		printlnMessage('messages', "ajaxCalled_setSpeed()");
+		//printlnMessage('messages', "ajaxCalled_setSpeed()");
 		stepperSpeedAjax = ajaxStepperSpeedRequest.responseText;
+		printlnMessage('messages', "response from python:");
 		printlnMessage('messages', stepperSpeedAjax);
 	}
 }
