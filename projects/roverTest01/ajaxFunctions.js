@@ -36,3 +36,6 @@ function ajaxCalled_setSpeed() {
 		printlnMessage('messages', stepperSpeedAjax);
 	}
 }
+
+
+

@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
 <script src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
+<script type="text/JavaScript" src="ajaxFunctionsJSON.js"></script>
 <script type="text/JavaScript" src="ajaxFunctions.js"></script>
 <script type="text/JavaScript" src="functions.js"></script>
 
@@ -53,104 +54,137 @@ h5 {
 </style>
 
 <script type="text/javascript">
+	var spinnerfl;
+	var spinnerrl;
+	var spinnerfr;
+	var spinnerrr;
+
 	function onload_function() {
 		//printlnMessage('messages', 'onload home');
 	}
 
 	$(function() {
 
-		var spinnerfl = $('#frontLeft  input').spinner({
+		spinnerfl = $('#frontLeft  input').spinner({
 			min : -10,
 			max : 10,
 			alignment : 'vertical'
 		}).val(0);
 
-		var spinnerrl = $('#rearLeft  input').spinner({
+		spinnerrl = $('#rearLeft  input').spinner({
 			min : -10,
 			max : 10,
 			alignment : 'vertical'
 		}).val(0);
 
-		var spinnerfr = $('#frontRight  input').spinner({
+		spinnerfr = $('#frontRight  input').spinner({
 			min : -10,
 			max : 10,
 			alignment : 'vertical'
 		}).val(0);
 
-		var spinnerrr = $('#rearRight  input').spinner({
+		spinnerrr = $('#rearRight  input').spinner({
 			min : -10,
 			max : 10,
 			alignment : 'vertical'
 		}).val(0);
 
 		$('#frontLeft').on("spinstop", function(event, ui) {
-			wheel = "fl";
-			speed = spinnerfl.spinner("value");
-			printlnMessage('messages', "front left speed " + speed);
-			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "fl";
+			// 			speed = spinnerfl.spinner("value");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// printlnMessage('messages', "front left speed " + speed);
+			setSpeed();
 		});
 
 		$('#rearLeft').on("spinstop", function(event, ui) {
-			wheel = "rl";
-			speed = spinnerrl.spinner("value");
-			printlnMessage('messages', "rear left speed " + speed);
-			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "rl";
+			// 			speed = spinnerrl.spinner("value");
+			// 			printlnMessage('messages', "rear left speed " + speed);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			setSpeed();
 		});
 
 		$('#frontRight').on("spinstop", function(event, ui) {
-			wheel = "fr";
-			speed = spinnerfr.spinner("value");
-			printlnMessage('messages', "front right speed " + speed);
-			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "fr";
+			// 			speed = spinnerfr.spinner("value");
+			// 			printlnMessage('messages', "front right speed " + speed);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			setSpeed();
 		});
 
 		$('#rearRight').on("spinstop", function(event, ui) {
-			wheel = "rr";
-			speed = spinnerrr.spinner("value");
-			printlnMessage('messages', "rear right speed " + speed);
-			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "rr";
+			// 			speed = spinnerrr.spinner("value");
+			// 			printlnMessage('messages', "rear right speed " + speed);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			setSpeed();
 		});
 
 		$("#bforward").click(function() {
 			printlnMessage('messages', "forward");
-			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 3);
 
 			spinnerfl.spinner("value", 3);
 			spinnerfr.spinner("value", 3);
 			spinnerrl.spinner("value", 3);
 			spinnerrr.spinner("value", 3);
+
+			setSpeed();
+
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 3);
+
 		});
 
 		$("#bstop").click(function() {
 			printlnMessage('messages', "stop");
-			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 0);
-			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 0);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 0);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 0);
 
 			spinnerfl.spinner("value", 0);
 			spinnerfr.spinner("value", 0);
 			spinnerrl.spinner("value", 0);
 			spinnerrr.spinner("value", 0);
+			setSpeed();
 		});
 
 		$("#bbackward").click(function() {
 			printlnMessage('messages', "backward");
-			ajax_setSpeed(ajaxCalled_setSpeed, "fl", -3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "fr", -3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rl", -3);
-			ajax_setSpeed(ajaxCalled_setSpeed, "rr", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", -3);
 
 			spinnerfl.spinner("value", -3);
 			spinnerfr.spinner("value", -3);
 			spinnerrl.spinner("value", -3);
 			spinnerrr.spinner("value", -3);
+			setSpeed();
 		});
 
 	});
+
+	function setSpeed() {
+
+		speedfl = spinnerfl.spinner("value");
+		speedfr = spinnerfr.spinner("value");
+		speedrl = spinnerrl.spinner("value");
+		speedrr = spinnerrr.spinner("value");
+
+		myParams = {
+			speedfl : speedfl,
+			speedfr : speedfr,
+			speedrl : speedrl,
+			speedrr : speedrr
+		};
+		//printlnMessage('messages', JSON.stringify(myParams));
+		ajax_setSpeedJSON(myParams);
+
+	}
 </script>
 
 
