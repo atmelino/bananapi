@@ -36,10 +36,10 @@ def turnOffMotors():
 #atexit.register(turnOffMotors)
 
 ################################# DC motor test!
-myMotor_rr = mh.getMotor(1)
-myMotor_lr = mh.getMotor(2)
-myMotor_fr = mh.getMotor(3)
-myMotor_fl = mh.getMotor(4)
+myMotor_rr = mh.getMotor(4)
+myMotor_lr = mh.getMotor(3)
+myMotor_fr = mh.getMotor(2)
+myMotor_fl = mh.getMotor(1)
 
 print "run motors"
 
