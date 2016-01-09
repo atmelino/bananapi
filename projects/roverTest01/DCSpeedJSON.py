@@ -36,37 +36,39 @@ def turnOffMotors():
 #atexit.register(turnOffMotors)
 
 ################################# DC motor test!
-myMotor1 = mh.getMotor(1)
-myMotor2 = mh.getMotor(2)
-myMotor3 = mh.getMotor(3)
-myMotor4 = mh.getMotor(4)
+myMotor_rr = mh.getMotor(1)
+myMotor_lr = mh.getMotor(2)
+myMotor_fr = mh.getMotor(3)
+myMotor_fl = mh.getMotor(4)
 
 print "run motors"
 
 if speedfl>0:
-  myMotor1.run(Adafruit_MotorHAT.FORWARD)
+  myMotor_rr.run(Adafruit_MotorHAT.FORWARD)
 else:
-  myMotor1.run(Adafruit_MotorHAT.BACKWARD)
+  myMotor_rr.run(Adafruit_MotorHAT.BACKWARD)
 if speedfr>0:
-  myMotor2.run(Adafruit_MotorHAT.FORWARD)
+  myMotor_lr.run(Adafruit_MotorHAT.FORWARD)
 else:
-  myMotor2.run(Adafruit_MotorHAT.BACKWARD)
+  myMotor_lr.run(Adafruit_MotorHAT.BACKWARD)
 if speedrl>0:
-  myMotor3.run(Adafruit_MotorHAT.FORWARD)
+  myMotor_fr.run(Adafruit_MotorHAT.FORWARD)
 else:
-  myMotor3.run(Adafruit_MotorHAT.BACKWARD)
+  myMotor_fr.run(Adafruit_MotorHAT.BACKWARD)
 if speedrr>0:
-  myMotor4.run(Adafruit_MotorHAT.FORWARD)
+  myMotor_fl.run(Adafruit_MotorHAT.FORWARD)
 else:
-  myMotor4.run(Adafruit_MotorHAT.BACKWARD)
+  myMotor_fl.run(Adafruit_MotorHAT.BACKWARD)
 
-myMotor1.setSpeed(abs(speedfl))
-myMotor2.setSpeed(abs(speedfr))
-myMotor3.setSpeed(abs(speedrl))
-myMotor4.setSpeed(abs(speedrr))
+myMotor_rr.setSpeed(abs(speedfl))
+myMotor_lr.setSpeed(abs(speedfr))
+myMotor_fr.setSpeed(abs(speedrl))
+myMotor_fl.setSpeed(abs(speedrr))
 time.sleep(0.01)
 
-
+if speedfl==0 and speedfr==0 and speedrl==0 and speedrr==0:
+  print "motors off"
+  turnOffMotors()
 
 
 
