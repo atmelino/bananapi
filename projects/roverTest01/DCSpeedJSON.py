@@ -61,27 +61,12 @@ else:
   myMotor4.run(Adafruit_MotorHAT.BACKWARD)
 
 myMotor1.setSpeed(abs(speedfl))
-#time.sleep(0.01)
 myMotor2.setSpeed(abs(speedfr))
-#time.sleep(0.01)
 myMotor3.setSpeed(abs(speedrl))
-#time.sleep(0.01)
 myMotor4.setSpeed(abs(speedrr))
 time.sleep(0.01)
 
 
-#myMotor1.setSpeed(0)
-#time.sleep(0.01)
-#myMotor2.setSpeed(0)
-#time.sleep(0.01)
-#myMotor3.setSpeed(0)
-#time.sleep(0.01)
-
-
-
-#print "Release"
-#myMotor3.run(Adafruit_MotorHAT.RELEASE)
-#time.sleep(1.0)
 
 
 

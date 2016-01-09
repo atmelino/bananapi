@@ -35,3 +35,20 @@ if later>0:
     myMotor1.run(Adafruit_MotorHAT.BACKWARD)
 
 
+#myMotor1.setSpeed(0)
+#time.sleep(0.01)
+#myMotor2.setSpeed(0)
+#time.sleep(0.01)
+#myMotor3.setSpeed(0)
+#time.sleep(0.01)
+
+
+
+
+
+
+
+#print "Release"
+#myMotor3.run(Adafruit_MotorHAT.RELEASE)
+#time.sleep(1.0)
+
