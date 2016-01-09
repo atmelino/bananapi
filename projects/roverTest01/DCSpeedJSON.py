@@ -4,6 +4,7 @@ import time
 import atexit
 import sys
 import json
+from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 
 myparams=sys.argv[1]
@@ -15,49 +16,74 @@ parsed_json = json.loads(myparams)
 #decoded = json.loads(myparams)
 
 if 'speedfl' in parsed_json:
-  speedfl=int(parsed_json['speedfl'])	
-  speedfr=int(parsed_json['speedfr'])	
-  speedrl=int(parsed_json['speedrl'])	
-  speedrr=int(parsed_json['speedrr'])	
-	
-  print "speed: %d %d %d %d" % (speedfl,speedfr,speedrl,speedrr)
+  speedfl=20*int(parsed_json['speedfl'])	
+  speedfr=20*int(parsed_json['speedfr'])	
+  speedrl=20*int(parsed_json['speedrl'])	
+  speedrr=20*int(parsed_json['speedrr'])
+  print "python speed: %d %d %d %d" % (speedfl,speedfr,speedrl,speedrr)
 
 
-later=0
-if later>0:
-  from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+# create a default object, no changes to I2C address or frequency
+mh = Adafruit_MotorHAT(addr=0x60)
 
-  # create a default object, no changes to I2C address or frequency
-  mh = Adafruit_MotorHAT(addr=0x60)
+# recommended for auto-disabling motors on shutdown!
+def turnOffMotors():
+	mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
+	mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
+	mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
+	mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
+
+#atexit.register(turnOffMotors)
+
+################################# DC motor test!
+myMotor1 = mh.getMotor(1)
+myMotor2 = mh.getMotor(2)
+myMotor3 = mh.getMotor(3)
+myMotor4 = mh.getMotor(4)
+
+print "run motors"
+
+if speedfl>0:
+  myMotor1.run(Adafruit_MotorHAT.FORWARD)
+else:
+  myMotor1.run(Adafruit_MotorHAT.BACKWARD)
+if speedfr>0:
+  myMotor2.run(Adafruit_MotorHAT.FORWARD)
+else:
+  myMotor2.run(Adafruit_MotorHAT.BACKWARD)
+if speedrl>0:
+  myMotor3.run(Adafruit_MotorHAT.FORWARD)
+else:
+  myMotor3.run(Adafruit_MotorHAT.BACKWARD)
+if speedrr>0:
+  myMotor4.run(Adafruit_MotorHAT.FORWARD)
+else:
+  myMotor4.run(Adafruit_MotorHAT.BACKWARD)
+
+myMotor1.setSpeed(abs(speedfl))
+#time.sleep(0.01)
+myMotor2.setSpeed(abs(speedfr))
+#time.sleep(0.01)
+myMotor3.setSpeed(abs(speedrl))
+#time.sleep(0.01)
+myMotor4.setSpeed(abs(speedrr))
+time.sleep(0.01)
 
 
-  ################################# DC motor test!
-  myMotor1 = mh.getMotor(1)
-  myMotor2 = mh.getMotor(2)
-  myMotor3 = mh.getMotor(3)
-  myMotor4 = mh.getMotor(4)
-
-  myparams=sys.argv[1]
-  arg2=int(sys.argv[2])
-
-  #print "myparams="+sys.argv[1]
-
-  wheel=myparams
-  speed=20*arg2
-  print "wheel=%s speed=%d" % (wheel, speed)
+#myMotor1.setSpeed(0)
+#time.sleep(0.01)
+#myMotor2.setSpeed(0)
+#time.sleep(0.01)
+#myMotor3.setSpeed(0)
+#time.sleep(0.01)
 
 
-  if speed>0:
-    print "Forward! "
-    if wheel=='fl':
-      myMotor1.run(Adafruit_MotorHAT.FORWARD)
-      myMotor1.setSpeed(abs(speed))
-  #  if wheel=='fr':
-      myMotor2.run(Adafruit_MotorHAT.FORWARD)
-      myMotor2.setSpeed(abs(speed))
-  else:
-    print "Backward! "
-    myMotor1.run(Adafruit_MotorHAT.BACKWARD)
+
+#print "Release"
+#myMotor3.run(Adafruit_MotorHAT.RELEASE)
+#time.sleep(1.0)
+
+
 
 print "End python program"
 
