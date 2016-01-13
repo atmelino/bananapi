@@ -10,33 +10,12 @@
 <script type="text/JavaScript" src="ajaxFunctionsJSON.js"></script>
 <script type="text/JavaScript" src="ajaxFunctions.js"></script>
 <script type="text/JavaScript" src="functions.js"></script>
-<link rel="stylesheet" href="semi-transparent-buttons.css">
 
 <style type="text/css">
-.squareButton {
-	background-color: Transparent;
-	height: 100px;
-	width: 100px;
-}
-
-.squareButtonImage {
-	height: 100px;
-	width: 100px;
-	display: block;
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 2px;
-	height: 100px;
-	width: 100px;
-	/* max-width: 200px;*/
-	background: #fff; /* fallback color for old browsers */
-	background: rgba(255, 255, 255, 0.5);
-	border-radius: 8px;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	letter-spacing: 1px;
-	transition: all 0.3s ease-out;
+button {
+	width: 50 px;
+	height: 50px;
+	margin: 2px auto;
 }
 
 h5 {
@@ -46,6 +25,18 @@ h5 {
 .controls {
 	display: inline-block;
 	margin: 10px;
+}
+
+.size1 input {
+	font-size: 8pt;
+}
+
+.size2 input {
+	font-size: 10pt;
+}
+
+.size3 input {
+	font-size: 14pt;
 }
 
 .vertical input {
@@ -132,16 +123,28 @@ h5 {
 
 		$("#bforward").click(function() {
 			printlnMessage('messages', "forward");
+
 			spinnerfl.spinner("value", 3);
 			spinnerfr.spinner("value", 3);
 			spinnerrl.spinner("value", 3);
 			spinnerrr.spinner("value", 3);
 
 			setSpeed();
+
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 3);
+
 		});
 
 		$("#bstop").click(function() {
 			printlnMessage('messages', "stop");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 0);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 0);
+
 			spinnerfl.spinner("value", 0);
 			spinnerfr.spinner("value", 0);
 			spinnerrl.spinner("value", 0);
@@ -151,6 +154,11 @@ h5 {
 
 		$("#bbackward").click(function() {
 			printlnMessage('messages', "backward");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fl", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "fr", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", -3);
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", -3);
+
 			spinnerfl.spinner("value", -3);
 			spinnerfr.spinner("value", -3);
 			spinnerrl.spinner("value", -3);
@@ -186,6 +194,15 @@ h5 {
 	<div>
 		<table border="1">
 			<tr>
+				<th>speed left</th>
+				<th>
+					<button id='bforward' type="button">FORWARD</button>
+					<button id='bstop' type="button">STOP</button>
+					<button id='bbackward' type="button">BACKWARD</button>
+				</th>
+				<th>speed right</th>
+			</tr>
+			<tr>
 				<td>
 					<table border="1">
 						<tr>
@@ -196,22 +213,7 @@ h5 {
 						</tr>
 					</table>
 				</td>
-				<td>
-					<table cellspacing="0" cellpadding="0" border="0" background="rover_top.jpg">
-
-						<tr>
-							<td>
-								<button class="semi-transparent-button with-border" id='bforward' ><img class="squareButtonImage" src="turnLeft.gif" /></button>
-							</td>
-							<td>
-								<button class="semi-transparent-button with-border" id='bstop'>Button</button>
-							</td>
-							<td>
-								<button class="semi-transparent-button with-border" id='bbackward'>Button</button>
-							</td>
-						</tr>
-					</table>
-				</td>
+				<td><img src="rover_top.jpg" alt="rover_top.jpg" height="300"></td>
 				<td>
 					<table border="1">
 						<tr>
