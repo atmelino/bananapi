@@ -25,7 +25,7 @@
 	height: 100px;
 	width: 100px;
 	opacity: 0.4;
-	filter: alpha(opacity =       40);
+	filter: alpha(opacity =         40);
 	margin: 0 auto;
 	padding: 2px;
 	border-radius: 8px;
@@ -91,51 +91,35 @@ h5 {
 		}).val(0);
 
 		$('#frontLeft').on("spinstop", function(event, ui) {
-			// 			wheel = "fl";
-			// 			speed = spinnerfl.spinner("value");
-			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 			// printlnMessage('messages', "front left speed " + speed);
 			setSpeed();
 		});
 
 		$('#rearLeft').on("spinstop", function(event, ui) {
-			// 			wheel = "rl";
-			// 			speed = spinnerrl.spinner("value");
 			// 			printlnMessage('messages', "rear left speed " + speed);
-			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 			setSpeed();
 		});
 
 		$('#frontRight').on("spinstop", function(event, ui) {
-			// 			wheel = "fr";
-			// 			speed = spinnerfr.spinner("value");
 			// 			printlnMessage('messages', "front right speed " + speed);
-			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 			setSpeed();
 		});
 
 		$('#rearRight').on("spinstop", function(event, ui) {
-			// 			wheel = "rr";
-			// 			speed = spinnerrr.spinner("value");
 			// 			printlnMessage('messages', "rear right speed " + speed);
-			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
 			setSpeed();
 		});
 
 		$("#bleftforward").click(function() {
-			printlnMessage('messages', "forward");
-
+			printlnMessage('messages', "left forward");
 			speedfl = spinnerfl.spinner("value");
 			speedfr = spinnerfr.spinner("value");
 			speedrl = spinnerrl.spinner("value");
 			speedrr = spinnerrr.spinner("value");
-
-			
-			spinnerfl.spinner("value", speedfl-1);
-			spinnerfr.spinner("value", speedfr+1);
-			spinnerrl.spinner("value", speedrl-1);
-			spinnerrr.spinner("value", speedrr+1);
-
+			spinnerfl.spinner("value", speedfl - 1);
+			spinnerfr.spinner("value", speedfr + 1);
+			spinnerrl.spinner("value", speedrl - 1);
+			spinnerrr.spinner("value", speedrr + 1);
 			setSpeed();
 		});
 
@@ -145,7 +129,19 @@ h5 {
 			spinnerfr.spinner("value", 3);
 			spinnerrl.spinner("value", 3);
 			spinnerrr.spinner("value", 3);
+			setSpeed();
+		});
 
+		$("#brightforward").click(function() {
+			printlnMessage('messages', "right forward");
+			speedfl = spinnerfl.spinner("value");
+			speedfr = spinnerfr.spinner("value");
+			speedrl = spinnerrl.spinner("value");
+			speedrr = spinnerrr.spinner("value");
+			spinnerfl.spinner("value", speedfl + 1);
+			spinnerfr.spinner("value", speedfr - 1);
+			spinnerrl.spinner("value", speedrl + 1);
+			spinnerrr.spinner("value", speedrr - 1);
 			setSpeed();
 		});
 
@@ -158,12 +154,38 @@ h5 {
 			setSpeed();
 		});
 
+		$("#bleftbackward").click(function() {
+			printlnMessage('messages', "left backward");
+			speedfl = spinnerfl.spinner("value");
+			speedfr = spinnerfr.spinner("value");
+			speedrl = spinnerrl.spinner("value");
+			speedrr = spinnerrr.spinner("value");
+			spinnerfl.spinner("value", speedfl - 1);
+			spinnerfr.spinner("value", speedfr + 1);
+			spinnerrl.spinner("value", speedrl - 1);
+			spinnerrr.spinner("value", speedrr + 1);
+			setSpeed();
+		});
+
 		$("#bbackward").click(function() {
 			printlnMessage('messages', "backward");
 			spinnerfl.spinner("value", -3);
 			spinnerfr.spinner("value", -3);
 			spinnerrl.spinner("value", -3);
 			spinnerrr.spinner("value", -3);
+			setSpeed();
+		});
+
+		$("#brightbackward").click(function() {
+			printlnMessage('messages', "right backward");
+			speedfl = spinnerfl.spinner("value");
+			speedfr = spinnerfr.spinner("value");
+			speedrl = spinnerrl.spinner("value");
+			speedrr = spinnerrr.spinner("value");
+			spinnerfl.spinner("value", speedfl + 1);
+			spinnerfr.spinner("value", speedfr - 1);
+			spinnerrl.spinner("value", speedrl + 1);
+			spinnerrr.spinner("value", speedrr - 1);
 			setSpeed();
 		});
 

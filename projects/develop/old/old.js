@@ -14,3 +14,16 @@
 			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rl", 3);
 			// 			ajax_setSpeed(ajaxCalled_setSpeed, "rr", 3);
 
+			// 			wheel = "fl";
+			// 			speed = spinnerfl.spinner("value");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "rl";
+			// 			speed = spinnerrl.spinner("value");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "fr";
+			// 			speed = spinnerfr.spinner("value");
+
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
+			// 			wheel = "rr";
+			// 			speed = spinnerrr.spinner("value");
+			// 			ajax_setSpeed(ajaxCalled_setSpeed, wheel, speed);
