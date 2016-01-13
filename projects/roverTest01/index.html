@@ -20,23 +20,15 @@
 }
 
 .squareButtonImage {
-	height: 100px;
-	width: 100px;
 	display: block;
 	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 2px;
 	height: 100px;
 	width: 100px;
-	/* max-width: 200px;*/
-	background: #fff; /* fallback color for old browsers */
-	background: rgba(255, 255, 255, 0.5);
+	opacity: 0.4;
+	filter: alpha(opacity =                 40);
+	margin: 0 auto;
+	padding: 2px;
 	border-radius: 8px;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	letter-spacing: 1px;
-	transition: all 0.3s ease-out;
 }
 
 h5 {
@@ -198,16 +190,48 @@ h5 {
 				</td>
 				<td>
 					<table cellspacing="0" cellpadding="0" border="0" background="rover_top.jpg">
-
 						<tr>
 							<td>
-								<button class="semi-transparent-button with-border" id='bforward' ><img class="squareButtonImage" src="turnLeft.gif" /></button>
+								<button class="semi-transparent-button with-border" id='bleftforward'>
+									<img src="turnLeftForward.gif" class="squareButtonImage" />
+								</button>
 							</td>
 							<td>
-								<button class="semi-transparent-button with-border" id='bstop'>Button</button>
+								<button class="semi-transparent-button with-border" id='bforward'></button>
 							</td>
 							<td>
-								<button class="semi-transparent-button with-border" id='bbackward'>Button</button>
+								<button class="semi-transparent-button with-border" id='brightforward'>
+									<img src="turnRightForward.gif" class="squareButtonImage" />
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button class="semi-transparent-button with-border" id='bempty'>
+								</button>
+							</td>
+							<td>
+								<button class="semi-transparent-button with-border" id='bstop'>
+									<img src="stop-sign.png" class="squareButtonImage" />
+								</button>
+							</td>
+							<td>
+								<button class="semi-transparent-button with-border" id='bempty'></button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button class="semi-transparent-button with-border" id='bleftbackward'>
+									<img src="turnLeftBackward.gif" class="squareButtonImage" />
+								</button>
+							</td>
+							<td>
+								<button class="semi-transparent-button with-border" id='bbackward'></button>
+							</td>
+							<td>
+								<button class="semi-transparent-button with-border" id='brightbackward'>
+									<img src="turnRightBackward.gif" class="squareButtonImage" />
+								</button>
 							</td>
 						</tr>
 					</table>
