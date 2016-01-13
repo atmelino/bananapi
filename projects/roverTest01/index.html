@@ -25,7 +25,7 @@
 	height: 100px;
 	width: 100px;
 	opacity: 0.4;
-	filter: alpha(opacity =                 40);
+	filter: alpha(opacity =       40);
 	margin: 0 auto;
 	padding: 2px;
 	border-radius: 8px;
@@ -122,6 +122,23 @@ h5 {
 			setSpeed();
 		});
 
+		$("#bleftforward").click(function() {
+			printlnMessage('messages', "forward");
+
+			speedfl = spinnerfl.spinner("value");
+			speedfr = spinnerfr.spinner("value");
+			speedrl = spinnerrl.spinner("value");
+			speedrr = spinnerrr.spinner("value");
+
+			
+			spinnerfl.spinner("value", speedfl-1);
+			spinnerfr.spinner("value", speedfr+1);
+			spinnerrl.spinner("value", speedrl-1);
+			spinnerrr.spinner("value", speedrr+1);
+
+			setSpeed();
+		});
+
 		$("#bforward").click(function() {
 			printlnMessage('messages', "forward");
 			spinnerfl.spinner("value", 3);
@@ -197,7 +214,9 @@ h5 {
 								</button>
 							</td>
 							<td>
-								<button class="semi-transparent-button with-border" id='bforward'></button>
+								<button class="semi-transparent-button with-border" id='bforward'>
+									<img src="forward.gif" class="squareButtonImage" />
+								</button>
 							</td>
 							<td>
 								<button class="semi-transparent-button with-border" id='brightforward'>
@@ -207,8 +226,7 @@ h5 {
 						</tr>
 						<tr>
 							<td>
-								<button class="semi-transparent-button with-border" id='bempty'>
-								</button>
+								<button class="semi-transparent-button with-border" id='bempty'></button>
 							</td>
 							<td>
 								<button class="semi-transparent-button with-border" id='bstop'>
@@ -226,7 +244,9 @@ h5 {
 								</button>
 							</td>
 							<td>
-								<button class="semi-transparent-button with-border" id='bbackward'></button>
+								<button class="semi-transparent-button with-border" id='bbackward'>
+									<img src="backward.gif" class="squareButtonImage" />
+								</button>
 							</td>
 							<td>
 								<button class="semi-transparent-button with-border" id='brightbackward'>
