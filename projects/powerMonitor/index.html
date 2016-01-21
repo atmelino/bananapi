@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Rover Test 01</title>
+
+<script src="../../lib/jquery-ui-1.10.3/jquery-1.10.2.min.js"></script>
+<script src="../../lib/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
+<script src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
+<script type="text/JavaScript" src="ajaxFunctionsJSON.js"></script>
+<script type="text/JavaScript" src="functions.js"></script>
+
+<style type="text/css">
+.squareButton {
+	background-color: Transparent;
+	height: 100px;
+	width: 100px;
+}
+
+.squareButtonImage {
+	display: block;
+	box-sizing: border-box;
+	height: 100px;
+	width: 100px;
+	opacity: 0.4;
+	filter: alpha(opacity =           40);
+	margin: 0 auto;
+	padding: 2px;
+	border-radius: 8px;
+}
+
+h5 {
+	margin-top: 5px;
+}
+
+.controls {
+	display: inline-block;
+	margin: 10px;
+}
+
+.vertical input {
+	width: 3ch;
+	height: 4em;
+}
+
+.spinnersize1 input {
+	font-size: 8pt;
+	display: inline-block;
+	margin: 10px;
+	/*width: 30px;*/
+	width: 6ch;
+}
+</style>
+
+<script type="text/javascript">
+	function onload_function() {
+		//printlnMessage('messages', 'onload home');
+	}
+
+	$(function() {
+		$("#getValues").click(function() {
+			printlnMessage('messages', "get values");
+			myParams = {
+					param1 : 1,
+					param2 : 2
+				};
+				//printlnMessage('messages', JSON.stringify(myParams));
+				ajax_getValues(myParams);
+		});
+
+	});
+</script>
+
+
+</head>
+<body onload="onload_function()">
+
+	<div>
+		<button id='getValues'>Get Values</button>
+
+
+	</div>
+	<div id='messagesDiv'>
+		<textarea id="messages" cols=80; rows=20;></textarea>
+	</div>
+</body>
+</html>
