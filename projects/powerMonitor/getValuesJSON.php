@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 
 $json=$_GET['json'];
-echo "PHP: ".$json."\n";
+//echo "PHP: ".$json."\n";
 
 
 //$decoded = json_decode($_GET['json']);
@@ -27,7 +27,7 @@ pclose($handle);
 //var_dump($res);
 echo $res;
 
-echo 'end PHP program';
+//echo 'end PHP program';
 
 
 

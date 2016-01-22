@@ -16,13 +16,13 @@ import SDL_Pi_INA3221
 
 # Main Program
 
-print ""
-print "Test SDL_Pi_INA3221 Version 1.0 - SwitchDoc Labs"
-print ""
-print "Sample uses 0x40 and SunAirPlus board INA3221"
-print " Will work with the INA3221 SwitchDoc Labs Breakout Board"
-print "Program Started at:"+ time.strftime("%Y-%m-%d %H:%M:%S")
-print ""
+#print ""
+#print "Test SDL_Pi_INA3221 Version 1.0 - SwitchDoc Labs"
+#print ""
+#print "Sample uses 0x40 and SunAirPlus board INA3221"
+#print " Will work with the INA3221 SwitchDoc Labs Breakout Board"
+#print "Program Started at:"+ time.strftime("%Y-%m-%d %H:%M:%S")
+#print ""
 
 filename = time.strftime("%Y-%m-%d%H:%M:%SRTCTest") + ".txt"
 starttime = datetime.datetime.utcnow()
@@ -37,7 +37,7 @@ OUTPUT_CHANNEL       = 3
 
 
 
-print "------------------------------"
+#print "------------------------------"
 shuntvoltage1 = 0
 busvoltage1   = 0
 current_mA1   = 0
@@ -84,10 +84,10 @@ shuntvoltage3 = ina3221.getShuntVoltage_mV(OUTPUT_CHANNEL)
 current_mA3 = ina3221.getCurrent_mA(OUTPUT_CHANNEL)
 loadvoltage3 = busvoltage3 + (shuntvoltage3 / 1000)
 
-print "Output Bus Voltage 3:  %3.2f V " % busvoltage3
-print "Output Shunt Voltage 3: %3.2f mV " % shuntvoltage3
-print "Output Load Voltage 3:  %3.2f V" % loadvoltage3
-print "Output Current 3:  %3.2f mA" % current_mA3
+#print "Output Bus Voltage 3:  %3.2f V " % busvoltage3
+#print "Output Shunt Voltage 3: %3.2f mV " % shuntvoltage3
+#print "Output Load Voltage 3:  %3.2f V" % loadvoltage3
+#print "Output Current 3:  %3.2f mA" % current_mA3
 #print
 	
 print "%3.2f V  %3.2f mV  %3.2f V  %3.2f mA" % (busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3)

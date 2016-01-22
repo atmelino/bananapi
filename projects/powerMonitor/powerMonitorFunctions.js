@@ -1,8 +1,8 @@
 function getValuesTimerFunc() {
-	printMessage('messages', sprintf("timer event %02d ", (counter++)));
+	//printMessage('messages', sprintf("timer event %02d ", (counter++)));
 	getValues();
 	period_ms=period*1000;
-	printlnMessage('messages', "period_ma " + period_ms);
+	//printlnMessage('messages', "period_ma " + period_ms);
 
 	
 	getValuesTimer = setTimeout('getValuesTimerFunc()', period*1000); // refresh every

@@ -23,7 +23,7 @@ function ajax_getValues(myParams) {
 	// printlnMessage('messages', JSON.stringify(myParams));
 	var requeststring;
 	requeststring = "getValuesJSON.php?json=" + JSON.stringify(myParams);
-	printlnMessage('messages', requeststring);
+	//printlnMessage('messages', requeststring);
 	ajaxGetValuesRequestJSON.open("GET", encodeURI(requeststring), true);
 	ajaxGetValuesRequestJSON.send(null);
 
@@ -34,7 +34,7 @@ function ajaxCalled_getValues() {
 	if (ajaxGetValuesRequestJSON.readyState == 4) {
 		//printlnMessage('messages', "ajaxCalled_getValues()");
 		getValuesAjaxJSON = ajaxGetValuesRequestJSON.responseText;
-		printlnMessage('messages', "response from PHP and python:");
+		//printlnMessage('messages', "response from PHP and python:");
 		printlnMessage('messages', getValuesAjaxJSON);
 	}
 }
