@@ -7,3 +7,5 @@ var arrowRight = '&#9654;';
 var arrowDown = '&#x25BC;';
 
 var counter = 0;
+
+var period=2;
