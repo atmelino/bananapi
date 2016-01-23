@@ -40,8 +40,14 @@
 
 	function getValues() {
 		//printlnMessage('messages', "get values");
+
+		if (document.getElementById('simulation').checked)
+			simulation = 1;
+		else
+			simulation = 0;
+
 		myParams = {
-			param1 : 1,
+			simulation : simulation,
 			param2 : 2
 		};
 		//printlnMessage('messages', JSON.stringify(myParams));
@@ -49,14 +55,14 @@
 	}
 	$(function() {
 
-		spinnerfl = $('#frontLeft  input').spinner({
+		periodSpinner = $('#periodID  input').spinner({
 			min : 1,
 			max : 100,
 			alignment : 'horizontal'
 		}).val(2);
 
-		$('#frontLeft').on("spinstop", function(event, ui) {
-			period = spinnerfl.spinner("value");
+		$('#periodID').on("spinstop", function(event, ui) {
+			period = periodSpinner.spinner("value");
 			printlnMessage('messages', "period " + period);
 		});
 
@@ -85,9 +91,11 @@
 	<div>
 
 		<label><input type="checkbox" name="getValuesLoop" id="getValuesLoop" value="male"> Loop measurement</label>
-
-		period <span id='frontLeft' class="horizontal controls"><input /></span>s<br>
-
+		<!-- -->
+		period <span id='periodID' class="horizontal controls"><input /></span>s
+		<!-- -->
+		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
+		<!-- -->
 		<button id='getValues'>Get Values</button>
 
 

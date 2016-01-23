@@ -35,6 +35,6 @@ function ajaxCalled_getValues() {
 		//printlnMessage('messages', "ajaxCalled_getValues()");
 		getValuesAjaxJSON = ajaxGetValuesRequestJSON.responseText;
 		//printlnMessage('messages', "response from PHP and python:");
-		printlnMessage('messages', getValuesAjaxJSON);
+		printMessage('messages', getValuesAjaxJSON);
 	}
 }
