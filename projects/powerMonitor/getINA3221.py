@@ -88,8 +88,8 @@ else:
      shuntvoltage3 = ina3221.getShuntVoltage_mV(OUTPUT_CHANNEL)
      current_mA3 = ina3221.getCurrent_mA(OUTPUT_CHANNEL)
      loadvoltage3 = busvoltage3 + (shuntvoltage3 / 1000)
-          
+     power3=shuntvoltage3*current_mA3          
      now=time.strftime("%Y-%m-%d %H:%M:%S")     
-     print "%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3)
+     print "%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA %5.3mW" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3,power3)
      #sys.stdout.write("%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3))
 
