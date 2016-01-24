@@ -70,6 +70,10 @@
 			getValues();
 		});
 
+		$("#buttonDatabase").click(function() {
+			printlnMessage('messages', "database options ");			
+		});
+
 		$('#getValuesLoop').click(function() {
 			// printlnMessage('messages', 'type clicked');
 			if ($(this).is(':checked')) {
@@ -90,13 +94,18 @@
 
 	<div>
 
+		<button id='getValues'>Get Values</button>
+		<!-- -->
 		<label><input type="checkbox" name="getValuesLoop" id="getValuesLoop" value="male"> Loop measurement</label>
 		<!-- -->
 		period <span id='periodID' class="horizontal controls"><input /></span>s
 		<!-- -->
 		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
 		<!-- -->
-		<button id='getValues'>Get Values</button>
+		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
+		<!-- -->
+		<button id='buttonDatabase'>Database</button>
+		<!-- -->
 
 
 	</div>
