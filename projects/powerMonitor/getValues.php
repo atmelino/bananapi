@@ -8,6 +8,7 @@ $json=$_GET['json'];
 
 
 $cmd = "/usr/bin/python ./getINA3221.py ".escapeshellarg($json);
+//$cmd = "/usr/bin/python ./testDate.py ".escapeshellarg($json);
 
 $handle = popen($cmd, 'r');
 $res = fread($handle, 8192);

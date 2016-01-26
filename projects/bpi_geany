@@ -22,13 +22,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
+current_page=5
 FILE_NAME_0=312;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2Fservo%2Fdevelop%2Fpopen_servo300.php;0;4
-FILE_NAME_1=825;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FtestSDL_Pi_INA3221.py;0;4
-FILE_NAME_2=35;Javascript;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FpowerMonitorFunctions.js;0;4
-FILE_NAME_3=1200;HTML;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2Findex.html;0;4
-FILE_NAME_4=1163;Javascript;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FajaxFunctionsJSON.js;0;4
-FILE_NAME_5=57;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FgetValuesJSON.php;0;4
+FILE_NAME_1=35;Javascript;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FpowerMonitorFunctions.js;0;4
+FILE_NAME_2=1200;HTML;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2Findex.html;0;4
+FILE_NAME_3=1163;Javascript;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FajaxFunctionsJSON.js;0;4
+FILE_NAME_4=57;PHP;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FgetValuesJSON.php;0;4
+FILE_NAME_5=2935;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FgetINA3221.py;0;4
 
 [VTE]
 last_dir=/home/bananapi

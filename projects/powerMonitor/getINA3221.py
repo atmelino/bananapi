@@ -1,15 +1,6 @@
 #!/usr/bin/env python
-#
-# Test SDL_Pi_INA3221
-# John C. Shovic, SwitchDoc Labs
-# 03/05/2015
-#
-#
-
-# imports
 
 import sys
-import time
 import datetime
 import random 
 import SDL_Pi_INA3221
@@ -96,7 +87,10 @@ else:
      
      
      
-now=time.strftime("%Y-%m-%d %H:%M:%S")     
+
+now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#print(now)
+
 returnval = {
     'date': now,
     'bv3': busvoltage3,
