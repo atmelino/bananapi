@@ -32,15 +32,17 @@ busvoltage1   = 0
 shuntvoltage1 = 0
 current_mA1   = 0
 loadvoltage1  = 0
+power1=0
 busvoltage2 = 0
 shuntvoltage2 = 0
 current_mA2 = 0
 loadvoltage2 = 0
+power2=0
 busvoltage3 = 0
 shuntvoltage3 = 0
 current_mA3 = 0
 loadvoltage3 = 0
-
+power3=0
 
 if simulation==1:
      busvoltage3 = 1
@@ -93,8 +95,20 @@ else:
 
      
      
+     
 now=time.strftime("%Y-%m-%d %H:%M:%S")     
-print "%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA %5.3f mW" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3,power3)
+returnval = {
+    'date': now,
+    'bv3': busvoltage3,
+    'sv3': shuntvoltage3,
+    'cmA3': current_mA3,
+    'lv3': loadvoltage3,
+    'pw3': power3
+}
+print(json.dumps(returnval))
+
+
 #print "%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA " % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3)
 #sys.stdout.write("%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3))
+#print "%12s %3.2f V  %3.2f mV  %3.2f V  %3.2f mA %5.3f mW" % (now, busvoltage3, shuntvoltage3, loadvoltage3 ,current_mA3,power3)
 
