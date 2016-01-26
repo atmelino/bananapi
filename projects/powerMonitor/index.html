@@ -10,6 +10,8 @@
 <script src="../../lib/sprintf/sprintf.js"></script>
 <link rel="stylesheet" href="../../lib/alerts/jquery.alerts.css" type="text/css" media="screen" />
 <script src="../../lib/alerts/jquery.alerts.js"></script>
+<link rel="stylesheet" href="jquery.dialog.css">
+<script src="jquery.dialog.js"></script>
 <script type="text/JavaScript" src="globals.js"></script>
 <script type="text/JavaScript" src="ajaxFunctionsJSON.js"></script>
 <script type="text/JavaScript" src="functions.js"></script>
@@ -111,7 +113,50 @@
 			}
 		});
 
+		$(function() {
+			$("#prompt_example").click(function() {
+				jPrompt("Enter your name", function(e, value) {
+					jAlert("You name :" + value + ":");
+
+				});
+			});
+
+			$("#prompt_DB").click(
+					function() {
+						
+						// read data from cookies
+						if (existCookie('hostname') != true)
+							setCookie('hostname', "localhost", 100);
+							
+						hostname = getCookie('hostname');
+						
+						
+// 						if (getCookie('hostname') == "localhost")
+// 							sim = 1;
+// 						else
+// 							sim = 0;
+
+						
+// 						hostname = "localhost";
+						username = "solarPanel";
+						password = "solarPanel";
+						database = "solarPanel";
+						jPromptDatabase(hostname, username, password, database,
+								mycallback);
+					});
+		});
+
 	});
+
+	function mycallback(e, newhostname, newusername,
+			newpassword, newdatabase) {
+		//jAlert("You name :" + value + ":");
+		printlnMessage('messages', newhostname);
+		printlnMessage('messages', newusername);
+		printlnMessage('messages', newpassword);
+		printlnMessage('messages', newdatabase);
+		setCookie('hostname', newhostname, 100);
+	}
 </script>
 
 
@@ -129,11 +174,12 @@
 		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
 		<!-- -->
 		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
+		<!--
+		<button id='buttonDatabase'>Database</button> -->
+		<!-- 
+		<button id='buttonDatabasetmp'>Database</button>-->
 		<!-- -->
-		<button id='buttonDatabase'>Database</button>
-		<!-- -->
-		<button id='buttonDatabasetmp'>Database</button>
-		<!-- -->
+		<button id="prompt_DB">Database</button>
 
 
 	</div>
