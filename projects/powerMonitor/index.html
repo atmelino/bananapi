@@ -75,6 +75,16 @@
 			getValues();
 		});
 
+		$("#saveValues").click(function() {
+			myParams = {
+				simulation : simulation,
+				param2 : 2
+			};
+			//printlnMessage('messages', JSON.stringify(myParams));
+			printlnMessage('messages', "save values clicked");
+			ajax_saveValues(myParams);
+		});
+
 		$("#buttonDatabase")
 				.click(
 						function() {
@@ -123,21 +133,19 @@
 
 			$("#prompt_DB").click(
 					function() {
-						
+
 						// read data from cookies
 						if (existCookie('hostname') != true)
 							setCookie('hostname', "localhost", 100);
-							
-						hostname = getCookie('hostname');
-						
-						
-// 						if (getCookie('hostname') == "localhost")
-// 							sim = 1;
-// 						else
-// 							sim = 0;
 
-						
-// 						hostname = "localhost";
+						hostname = getCookie('hostname');
+
+						// 						if (getCookie('hostname') == "localhost")
+						// 							sim = 1;
+						// 						else
+						// 							sim = 0;
+
+						// 						hostname = "localhost";
 						username = "solarPanel";
 						password = "solarPanel";
 						database = "solarPanel";
@@ -148,8 +156,7 @@
 
 	});
 
-	function mycallback(e, newhostname, newusername,
-			newpassword, newdatabase) {
+	function mycallback(e, newhostname, newusername, newpassword, newdatabase) {
 		//jAlert("You name :" + value + ":");
 		printlnMessage('messages', newhostname);
 		printlnMessage('messages', newusername);
@@ -179,7 +186,12 @@
 		<!-- 
 		<button id='buttonDatabasetmp'>Database</button>-->
 		<!-- -->
-		<button id="prompt_DB">Database</button>
+		<!--<button id="create_DB">Create Database</button> -->
+		<button onclick="ajax_createDB()">Create Database Tables</button>
+		<!-- -->
+		<button id="prompt_DB">Set Database Server</button>
+		<!-- -->
+		<button id="saveValues">Save Values</button>
 
 
 	</div>
