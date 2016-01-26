@@ -35,9 +35,16 @@ function ajaxCalled_getValues() {
 		// printlnMessage('messages', "ajaxCalled_getValues()");
 		getValuesAjax = ajaxGetValuesRequest.responseText;
 		// printlnMessage('messages', "response from PHP and python:");
-		printMessage('messages', getValuesAjax);
+		//printMessage('messages', getValuesAjax);
 		getValuesAjaxJSON = JSON.parse(getValuesAjax);
-		printMessage('messages', getValuesAjaxJSON.bv3);
+		//printMessage('messages', getValuesAjaxJSON.bv3);
+		part1 = sprintf('%s ',getValuesAjaxJSON.date);
+		part2 = sprintf('%5.2f ',parseFloat(getValuesAjaxJSON.bv3));
+		part3 = sprintf('%5.2f ',parseFloat(getValuesAjaxJSON.cmA3));
+		part4 = sprintf('%5.2f ',parseFloat(getValuesAjaxJSON.pw3));
+		var printstring = part1+part2+part3+part4;
+		printlnMessage('messages', printstring);
+
 	}
 }
 

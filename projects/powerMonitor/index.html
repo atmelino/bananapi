@@ -72,6 +72,8 @@
 		});
 
 		$("#getValues").click(function() {
+			header = sprintf('%20s %5s %5s %5s','date   ','Volt ','mA ','mW ');
+			printlnMessage('messages', header);
 			getValues();
 		});
 
@@ -116,6 +118,8 @@
 			// printlnMessage('messages', 'type clicked');
 			if ($(this).is(':checked')) {
 				printlnMessage('messages', 'timer started');
+				header = sprintf('%20s %5s %5s %5s','date   ','Volt ','mA ','mW ');
+				printlnMessage('messages', header);
 				getValuesTimerFunc();
 			} else {
 				printlnMessage('messages', 'timer stopped');
