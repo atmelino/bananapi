@@ -50,7 +50,7 @@ function ajaxCalled_getValues() {
 		printlnMessage('messages', printstring);
 
 		if (document.getElementById('saveSQL').checked) {
-			printlnMessage('messages', "save to database");
+			//printlnMessage('messages', "save to database");
 
 			myParams = {
 				fs : 'saveValues',
@@ -129,7 +129,7 @@ function ajax_saveValues(myParams) {
 	ajaxsaveValuesRequest.onreadystatechange = ajaxCalled_saveValues;
 	var requeststring;
 	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
-	printlnMessage('messages', requeststring);
+	//printlnMessage('messages', requeststring);
 	ajaxsaveValuesRequest.open("POST", encodeURI(requeststring), true);
 	ajaxsaveValuesRequest.send(null);
 }
@@ -140,7 +140,7 @@ function ajaxCalled_saveValues() {
 
 		// printlnMessage('messages',"ajaxCalled_saveValues called");
 		ValuesAjax = ajaxsaveValuesRequest.responseText;
-		printlnMessage('messages', ValuesAjax);
+		//printlnMessage('messages', ValuesAjax);
 
 	}
 }

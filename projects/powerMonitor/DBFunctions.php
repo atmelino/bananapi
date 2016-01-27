@@ -48,14 +48,14 @@ function saveValues($con,$database,$decoded)
 	$lV3=$decoded->lV3;
 	$cmA3=$decoded->cmA3;
 	$pw3=$decoded->pw3;
-	print "lV3=".$lV3."\n";
+	//print "lV3=".$lV3."\n";
 	
 	$sql = "INSERT INTO  `".$database."`.`myvalues` ";
 	$sql .= "( `id` ,	`date` ,	`lV3` ,	`cmA3` ,	`pw3` )";
 	$sql .=" VALUES ( NULL , NOW( )";
 	$sql .=",'".$lV3."','".$cmA3."','".$pw3."'";
 	$sql .=" );";
-	print $sql;
+	//print $sql;
 	$result = mysql_query($sql);
 }
 
