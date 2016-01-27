@@ -81,34 +81,49 @@
 		$("#saveValues").click(function() {
 			myParams = {
 				simulation : simulation,
+				fs : 'saveValues',
 				param2 : 2
 			};
 			//printlnMessage('messages', JSON.stringify(myParams));
-			printlnMessage('messages', "save values clicked");
+			//printlnMessage('messages', "save values clicked");
 			ajax_saveValues(myParams);
 		});
 
-		$("#buttonDatabase").click(function() {
-			printlnMessage('messages', "database options ");
-
-			textimg = '<br>';
-			text0 = "<span style='font-size:125%'> Injectors 1,2, and 3 drain into a waste compartment.<br> ";
-			text1 = 'Injector 4 requires a plate. ';
-			text2 = 'Please select <br>either injector 4 or any combination of injector 1, 2, and 3</span>';
-			text3 = "<span style='font-size:150%'>Please select <i>either</i> injector 4<br>";
-			text4 = '<i>or</i> any combination of injectors 1, 2, and 3</span>';
-
-			//jAlert(textimg+text0+text1+text2,'Invalid Injector Selection');
-			jAlert(textimg + text3 + text4, 'Invalid Injector Selection');
-
+		$("#loadValues").click(function() {
+			myParams = {
+				fs : 'loadValues',
+				param2 : 2
+			};
+			//printlnMessage('messages', "load values clicked");
+			ajax_loadValues(myParams);
 		});
 
-		$("#buttonDatabasetmp").click(function() {
-			jPrompt('Type something:', 'Prefilled value', 'Prompt Dialog', function(r) {
-				if (r)
-					alert('You entered ' + r);
-			});
-		});
+		$("#buttonDatabase")
+				.click(
+						function() {
+							printlnMessage('messages', "database options ");
+
+							textimg = '<br>';
+							text0 = "<span style='font-size:125%'> Injectors 1,2, and 3 drain into a waste compartment.<br> ";
+							text1 = 'Injector 4 requires a plate. ';
+							text2 = 'Please select <br>either injector 4 or any combination of injector 1, 2, and 3</span>';
+							text3 = "<span style='font-size:150%'>Please select <i>either</i> injector 4<br>";
+							text4 = '<i>or</i> any combination of injectors 1, 2, and 3</span>';
+
+							//jAlert(textimg+text0+text1+text2,'Invalid Injector Selection');
+							jAlert(textimg + text3 + text4,
+									'Invalid Injector Selection');
+
+						});
+
+		$("#buttonDatabasetmp").click(
+				function() {
+					jPrompt('Type something:', 'Prefilled value',
+							'Prompt Dialog', function(r) {
+								if (r)
+									alert('You entered ' + r);
+							});
+				});
 
 		$('#getValuesLoop').click(function() {
 			// printlnMessage('messages', 'type clicked');
@@ -130,25 +145,27 @@
 				});
 			});
 
-			$("#prompt_DB").click(function() {
+			$("#prompt_DB").click(
+					function() {
 
-				// read data from cookies
-				if (existCookie('hostname') != true)
-					setCookie('hostname', "localhost", 100);
+						// read data from cookies
+						if (existCookie('hostname') != true)
+							setCookie('hostname', "localhost", 100);
 
-				hostname = getCookie('hostname');
+						hostname = getCookie('hostname');
 
-				// 						if (getCookie('hostname') == "localhost")
-				// 							sim = 1;
-				// 						else
-				// 							sim = 0;
+						// 						if (getCookie('hostname') == "localhost")
+						// 							sim = 1;
+						// 						else
+						// 							sim = 0;
 
-				// 						hostname = "localhost";
-				username = "solarPanel";
-				password = "solarPanel";
-				database = "solarPanel";
-				jPromptDatabase(hostname, username, password, database, mycallback);
-			});
+						// 						hostname = "localhost";
+						username = "solarPanel";
+						password = "solarPanel";
+						database = "solarPanel";
+						jPromptDatabase(hostname, username, password, database,
+								mycallback);
+					});
 		});
 
 	});
@@ -189,6 +206,8 @@
 		<button id="prompt_DB">Set Database Server</button>
 		<!-- -->
 		<button id="saveValues">Save Values</button>
+		<!-- -->
+		<button id="loadValues">Load Values</button>
 
 
 	</div>

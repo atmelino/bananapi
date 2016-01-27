@@ -90,8 +90,8 @@ function ajaxCalled_createDB() {
 	}
 }
 
-function ajax_saveValues() {
-	printlnMessage('messages', "ajax_saveValues() called");
+function ajax_saveValues(myParams) {
+	//printlnMessage('messages', "ajax_saveValues() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
 		ajaxsaveValuesRequest = new XMLHttpRequest();
@@ -111,9 +111,6 @@ function ajax_saveValues() {
 	}
 
 	ajaxsaveValuesRequest.onreadystatechange = ajaxCalled_saveValues;
-	myParams = {
-		testparam : 'abc'
-	};
 	var requeststring;
 	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
 	printlnMessage('messages', requeststring);
@@ -127,6 +124,45 @@ function ajaxCalled_saveValues() {
 
 		// printlnMessage('messages',"ajaxCalled_saveValues called");
 		ValuesAjax = ajaxsaveValuesRequest.responseText;
+		printlnMessage('messages', ValuesAjax);
+
+	}
+}
+
+function ajax_loadValues() {
+	//printlnMessage('messages', "ajax_loadValues() called");
+	try {
+		// Opera 8.0+, Firefox, Safari
+		ajaxloadValuesRequest = new XMLHttpRequest();
+	} catch (e) {
+		// Internet Explorer Browsers
+		try {
+			ajaxloadValuesRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				ajaxloadValuesRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {
+				// Something went wrong
+				alert("Your browser broke!");
+				return false;
+			}
+		}
+	}
+
+	ajaxloadValuesRequest.onreadystatechange = ajaxCalled_loadValues;
+	var requeststring;
+	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
+	printlnMessage('messages', requeststring);
+	ajaxloadValuesRequest.open("POST", encodeURI(requeststring), true);
+	ajaxloadValuesRequest.send(null);
+}
+
+// Create a function that will receive data sent from the server
+function ajaxCalled_loadValues() {
+	if (ajaxloadValuesRequest.readyState == 4) {
+
+		// printlnMessage('messages',"ajaxCalled_loadValues called");
+		ValuesAjax = ajaxloadValuesRequest.responseText;
 		printlnMessage('messages', ValuesAjax);
 
 	}
