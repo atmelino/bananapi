@@ -25,6 +25,19 @@ sudo apt-get install phpmyadmin
 
 <h3>Installation - power monitor</h3>
 
+create user and database named solarPanel
+
+point web browser to the Banana Pi
+
+open phpmyadmin
+<a href="http://localhost/phpmyadmin">phpmyadmin</a>
+
+create new user and new database at the same time
+
+<img src="phpmyadmin_solarPanel.png" alt="phpmyadmin" style="width:600px;">
+
+
+
 
 
 
