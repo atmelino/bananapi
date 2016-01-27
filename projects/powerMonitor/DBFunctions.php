@@ -31,7 +31,7 @@ function main()
 	{
 		//print "calling saveValues\n";
 		//print "calling saveValues".$bv3."\n";
-		saveValues($con,$database);
+		saveValues($con,$database,$decoded);
 	}
 	if(strcmp($functionString,'loadValues')==0)
 	{
@@ -41,15 +41,20 @@ function main()
 }
 
 
-function saveValues($con,$database)
+function saveValues($con,$database,$decoded)
 {
 	//print "function saveValues() start\n";
 
-	$loadV=3.78;
-
+	$lV3=$decoded->lV3;
+	$cmA3=$decoded->cmA3;
+	$pw3=$decoded->pw3;
+	print "lV3=".$lV3."\n";
+	
 	$sql = "INSERT INTO  `".$database."`.`myvalues` ";
-	$sql .= "( `id` ,	`date` ,	`loadVolt` )";
-	$sql .=" VALUES ( NULL , NOW( ),  '".$loadV."');	";
+	$sql .= "( `id` ,	`date` ,	`lV3` ,	`cmA3` ,	`pw3` )";
+	$sql .=" VALUES ( NULL , NOW( )";
+	$sql .=",'".$lV3."','".$cmA3."','".$pw3."'";
+	$sql .=" );";
 	print $sql;
 	$result = mysql_query($sql);
 }

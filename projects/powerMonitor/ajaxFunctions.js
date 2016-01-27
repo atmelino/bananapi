@@ -9,8 +9,7 @@ function ajax_getValues(myParams) {
 			ajaxGetValuesRequest = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
 			try {
-				ajaxGetValuesRequest = new ActiveXObject(
-						"Microsoft.XMLHTTP");
+				ajaxGetValuesRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e) {
 				// Something went wrong
 				alert("Your browser broke!");
@@ -35,18 +34,35 @@ function ajaxCalled_getValues() {
 		// printlnMessage('messages', "ajaxCalled_getValues()");
 		getValuesAjax = ajaxGetValuesRequest.responseText;
 		// printlnMessage('messages', "response from PHP and python:");
-		//printMessage('messages', getValuesAjax);
+		// printMessage('messages', getValuesAjax);
 		getValuesAjaxJSON = JSON.parse(getValuesAjax);
-		//printMessage('messages', getValuesAjaxJSON.bv3);
-		//part1 = sprintf('%s ',getValuesAjaxJSON.date);
+		// printMessage('messages', getValuesAjaxJSON.bv3);
+		// part1 = sprintf('%s ',getValuesAjaxJSON.date);
 
-
-		part1=new Date().toLocaleString()+' ';
-		part2 = sprintf('%7.2f ',parseFloat(getValuesAjaxJSON.bv3));
-		part3 = sprintf('%6.2f ',parseFloat(getValuesAjaxJSON.cmA3));
-		part4 = sprintf('%8.2f ',parseFloat(getValuesAjaxJSON.pw3));
-		var printstring = part1+part2+part3+part4;
+		lV3 = getValuesAjaxJSON.lV3;
+		cmA3 = getValuesAjaxJSON.cmA3;
+		pw3 = getValuesAjaxJSON.pw3;
+		part1 = new Date().toLocaleString() + ' ';
+		part2 = sprintf('%7.2f ', parseFloat(lV3));
+		part3 = sprintf('%6.2f ', parseFloat(cmA3));
+		part4 = sprintf('%8.2f ', parseFloat(pw3));
+		var printstring = part1 + part2 + part3 + part4;
 		printlnMessage('messages', printstring);
+
+		if (document.getElementById('saveSQL').checked) {
+			printlnMessage('messages', "save to database");
+
+			myParams = {
+				fs : 'saveValues',
+				lV3 : lV3,
+				cmA3 : cmA3,
+				pw3 : pw3,
+			};
+			// printlnMessage('messages', JSON.stringify(myParams));
+			// printlnMessage('messages', "save values clicked");
+			ajax_saveValues(myParams);
+
+		}
 
 	}
 }
@@ -91,7 +107,7 @@ function ajaxCalled_createDB() {
 }
 
 function ajax_saveValues(myParams) {
-	//printlnMessage('messages', "ajax_saveValues() called");
+	// printlnMessage('messages', "ajax_saveValues() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
 		ajaxsaveValuesRequest = new XMLHttpRequest();
@@ -130,7 +146,7 @@ function ajaxCalled_saveValues() {
 }
 
 function ajax_loadValues() {
-	//printlnMessage('messages', "ajax_loadValues() called");
+	// printlnMessage('messages', "ajax_loadValues() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
 		ajaxloadValuesRequest = new XMLHttpRequest();

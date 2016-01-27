@@ -42,9 +42,15 @@ function createValuesTable()
 	$sql .=",  PRIMARY KEY (`id`) ";
 	$sql .=", username VARCHAR(45) NOT NULL";
 	$sql .=", date DATETIME  ";
-	$sql .=", loadVolt float  ";
-	$sql .=", loadAmp float  ";
-	$sql .=", power float  ";
+	$sql .=", lV1 float  ";
+	$sql .=", cmA1 float  ";
+	$sql .=", pw1 float  ";
+	$sql .=", lV2 float  ";
+	$sql .=", cmA2 float  ";
+	$sql .=", pw2 float  ";
+	$sql .=", lV3 float  ";
+	$sql .=", cmA3 float  ";
+	$sql .=", pw3 float  ";
 	$sql .="  ) ENGINE=InnoDB;";
 	print $sql."<br>";
 
