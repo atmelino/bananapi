@@ -93,10 +93,10 @@ now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 returnval = {
     'date': now,
-    'bv3': busvoltage3,
-    'sv3': shuntvoltage3,
+    'bV3': busvoltage3,
+    'sV3': shuntvoltage3,
+    'lV3': loadvoltage3,
     'cmA3': current_mA3,
-    'lv3': loadvoltage3,
     'pw3': power3
 }
 print(json.dumps(returnval))

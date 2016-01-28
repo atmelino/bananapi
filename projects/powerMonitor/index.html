@@ -80,9 +80,10 @@
 
 		$("#saveValues").click(function() {
 			myParams = {
-				simulation : simulation,
 				fs : 'saveValues',
-				param2 : 2
+				lV3 : 2,
+				cmA3 : 3,
+				pw3 : 6,
 			};
 			//printlnMessage('messages', JSON.stringify(myParams));
 			//printlnMessage('messages', "save values clicked");
@@ -98,33 +99,6 @@
 			ajax_loadValues(myParams);
 		});
 
-		$("#buttonDatabase")
-				.click(
-						function() {
-							printlnMessage('messages', "database options ");
-
-							textimg = '<br>';
-							text0 = "<span style='font-size:125%'> Injectors 1,2, and 3 drain into a waste compartment.<br> ";
-							text1 = 'Injector 4 requires a plate. ';
-							text2 = 'Please select <br>either injector 4 or any combination of injector 1, 2, and 3</span>';
-							text3 = "<span style='font-size:150%'>Please select <i>either</i> injector 4<br>";
-							text4 = '<i>or</i> any combination of injectors 1, 2, and 3</span>';
-
-							//jAlert(textimg+text0+text1+text2,'Invalid Injector Selection');
-							jAlert(textimg + text3 + text4,
-									'Invalid Injector Selection');
-
-						});
-
-		$("#buttonDatabasetmp").click(
-				function() {
-					jPrompt('Type something:', 'Prefilled value',
-							'Prompt Dialog', function(r) {
-								if (r)
-									alert('You entered ' + r);
-							});
-				});
-
 		$('#getValuesLoop').click(function() {
 			// printlnMessage('messages', 'type clicked');
 			if ($(this).is(':checked')) {
@@ -137,35 +111,17 @@
 			}
 		});
 
-		$(function() {
-			$("#prompt_example").click(function() {
-				jPrompt("Enter your name", function(e, value) {
-					jAlert("You name :" + value + ":");
+		$("#prompt_DB").click(function() {
 
-				});
-			});
+			// read data from cookies
+			if (existCookie('hostname') != true)
+				setCookie('hostname', "localhost", 100);
 
-			$("#prompt_DB").click(
-					function() {
-
-						// read data from cookies
-						if (existCookie('hostname') != true)
-							setCookie('hostname', "localhost", 100);
-
-						hostname = getCookie('hostname');
-
-						// 						if (getCookie('hostname') == "localhost")
-						// 							sim = 1;
-						// 						else
-						// 							sim = 0;
-
-						// 						hostname = "localhost";
-						username = "solarPanel";
-						password = "solarPanel";
-						database = "solarPanel";
-						jPromptDatabase(hostname, username, password, database,
-								mycallback);
-					});
+			hostname = getCookie('hostname');
+			username = "solarPanel";
+			password = "solarPanel";
+			database = "solarPanel";
+			jPromptDatabase(hostname, username, password, database, mycallback);
 		});
 
 	});
@@ -195,12 +151,7 @@
 		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
 		<!-- -->
 		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
-		<!--
-		<button id='buttonDatabase'>Database</button> -->
-		<!-- 
-		<button id='buttonDatabasetmp'>Database</button>-->
 		<!-- -->
-		<!--<button id="create_DB">Create Database</button> -->
 		<button onclick="ajax_createDB()">Create Database Tables</button>
 		<!-- -->
 		<button id="prompt_DB">Set Database Server</button>
