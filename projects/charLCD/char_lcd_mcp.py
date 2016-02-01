@@ -2,9 +2,10 @@
 # Example using an RGB character LCD connected to an MCP23017 GPIO extender.
 import time
 
-print "char_lcd_mcp.py import CharLCD"
+#print "char_lcd_mcp.py import CharLCD"
+#print "char_lcd_mcp.py import MCP230xx"
+
 import Adafruit_CharLCD as LCD
-print "char_lcd_mcp.py import MCP230xx"
 import Adafruit_GPIO.MCP230xx as MCP
 
 

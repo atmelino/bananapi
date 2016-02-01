@@ -78,18 +78,6 @@
 			getValues();
 		});
 
-		$("#saveValues").click(function() {
-			myParams = {
-				fs : 'saveValues',
-				lV3 : 2,
-				cmA3 : 3,
-				pw3 : 6,
-			};
-			//printlnMessage('messages', JSON.stringify(myParams));
-			//printlnMessage('messages', "save values clicked");
-			ajax_saveValues(myParams);
-		});
-
 		$("#loadValues").click(function() {
 			myParams = {
 				fs : 'loadValues',
@@ -155,8 +143,6 @@
 		<button onclick="ajax_createDB()">Create Database Tables</button>
 		<!-- -->
 		<button id="prompt_DB">Set Database Server</button>
-		<!-- -->
-		<button id="saveValues">Save Values</button>
 		<!-- -->
 		<button id="loadValues">Load Values</button>
 

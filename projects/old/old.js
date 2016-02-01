@@ -18,3 +18,15 @@
 			// 							sim = 0;
 
 			// 						hostname = "localhost";
+			$("#saveValues").click(function() {
+				myParams = {
+					fs : 'saveValues',
+					lV3 : 2,
+					cmA3 : 3,
+					pw3 : 6,
+				};
+				//printlnMessage('messages', JSON.stringify(myParams));
+				//printlnMessage('messages', "save values clicked");
+				ajax_saveValues(myParams);
+			});
+
