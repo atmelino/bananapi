@@ -1,6 +1,19 @@
 
+open a terminal
 
-the script autoStartPM.sh is automatically started when the system boots. To change that, run
+crontab -e
+
+add the line
+
+@reboot $HOME/test.sh >> $HOME/testlog.txt 2>&1
+
+
+the script autoStartPM.sh is automatically started when the system boots. 
+
+
+
+
+To change that, run
 
 
 crontab -e
