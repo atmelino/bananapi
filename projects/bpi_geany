@@ -23,8 +23,10 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=1711;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FcharLCD%2Fnewerlib%2Fexamples%2Fchar_lcd_mcp.py;0;4
-FILE_NAME_1=1853;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FcharLCD%2Fnewerlib%2Fexamples%2FAdafruit_GPIO%2FI2C.py;0;4
+FILE_NAME_0=3149;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FprintPowerOnLCD.py;0;4
+FILE_NAME_1=1370;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FcharLCD%2Fchar_lcd_mcp.py;0;4
+FILE_NAME_2=6731;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FAdafruit_CharLCD.py;0;4
+FILE_NAME_3=107;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FautoStartPM.sh;0;4
 
 [VTE]
 last_dir=/home/bananapi

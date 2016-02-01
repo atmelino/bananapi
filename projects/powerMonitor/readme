@@ -1,0 +1,12 @@
+
+
+the script autoStartPM.sh is automatically started when the system boots. To change that, run
+
+
+crontab -e
+
+and convert the line to a comment.
+
+To run it at at startup again, uncomment the line.
+
+

@@ -63,8 +63,8 @@ lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7,
                             lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
 
 
-print 'sending Hello world! to LCD'
-lcd.message('Hello\nworld!')
+print 'sending start messsage to LCD'
+lcd.message('Power Monitor .2')
 
 
 
@@ -115,6 +115,11 @@ while True:
     }
     print(json.dumps(returnval))
     
+    #lcd.clear()
+    lcd.set_cursor( 0, 0);
+    printstring= "%4.2f V %6.0f mW" % (loadvoltage3,power3)
+    lcd.message(printstring)
+    
     #
-    time.sleep(2.0)
+    time.sleep(0.5)
 
