@@ -22,11 +22,11 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=3149;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FprintPowerOnLCD.py;0;4
-FILE_NAME_1=1370;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FcharLCD%2Fchar_lcd_mcp.py;0;4
-FILE_NAME_2=6731;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FAdafruit_CharLCD.py;0;4
-FILE_NAME_3=107;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FautoStartPM.sh;0;4
+current_page=2
+FILE_NAME_0=112;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FautoStartPM.sh;0;4
+FILE_NAME_1=13;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbananapi%2Ftest.sh;0;4
+FILE_NAME_2=322;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2FprintPowerOnLCD.py;0;4
+FILE_NAME_3=374;None;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2Freadme;0;4
 
 [VTE]
 last_dir=/home/bananapi

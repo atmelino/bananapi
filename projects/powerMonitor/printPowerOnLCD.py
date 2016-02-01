@@ -14,12 +14,14 @@ SOLAR_CELL_CHANNEL   = 2
 OUTPUT_CHANNEL       = 3
 
 
-myparams=sys.argv[1]
-print "python: "+myparams
+#myparams=sys.argv[1]
+#print "python: "+myparams
 
-parsed_json = json.loads(myparams)                         
-if 'simulation' in parsed_json:
-  simulation=parsed_json['simulation']     
+#parsed_json = json.loads(myparams)                         
+#if 'simulation' in parsed_json:
+#  simulation=parsed_json['simulation']     
+
+simulation=0     
 
 busvoltage1   = 0
 shuntvoltage1 = 0

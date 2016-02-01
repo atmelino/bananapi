@@ -1,20 +1,19 @@
 
-open a terminal
+For a new system install, in order to make the python script run automatically when the computer is started,
+
+open a terminal and run
 
 crontab -e
 
 add the line
 
-@reboot $HOME/test.sh >> $HOME/testlog.txt 2>&1
+@reboot /media/data/public_html/bananapi/projects/powerMonitor/autoStartPM.sh  >> $HOME/testpylog.txt 2>&1
 
-
-the script autoStartPM.sh is automatically started when the system boots. 
-
+the script autoStartPM.sh is then automatically started when the system boots. 
 
 
 
-To change that, run
-
+To disable the autostart, run
 
 crontab -e
 
