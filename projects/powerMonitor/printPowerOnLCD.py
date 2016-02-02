@@ -60,9 +60,12 @@ lcd_columns = 16
 lcd_rows    = 2
 
 print "char_lcd_mcp.py init gpio"
-gpio = MCP.MCP23017()
-lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, 
-                            lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
+#gpio = MCP.MCP23017()
+#lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, 
+                            #lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
+
+# Initialize the LCD using the pins 
+lcd = LCD.Adafruit_CharLCDPlate(cols=20,lines=4)
 
 
 print 'sending start messsage to LCD'
@@ -83,19 +86,19 @@ while True:
     else:
          ina3221 = SDL_Pi_INA3221.SDL_Pi_INA3221(twi=2,addr=0x40)
          
-         later =0
-         if later>0:
-              busvoltage1 = ina3221.getBusVoltage_V(LIPO_BATTERY_CHANNEL)
-              shuntvoltage1 = ina3221.getShuntVoltage_mV(LIPO_BATTERY_CHANNEL)
-              current_mA1 = ina3221.getCurrent_mA(LIPO_BATTERY_CHANNEL)                
-              loadvoltage1 = busvoltage1 + (shuntvoltage1 / 1000)              
-              power1=loadvoltage1*current_mA1          
-              
-              busvoltage2 = ina3221.getBusVoltage_V(SOLAR_CELL_CHANNEL)
-              shuntvoltage2 = ina3221.getShuntVoltage_mV(SOLAR_CELL_CHANNEL)
-              current_mA2 = -ina3221.getCurrent_mA(SOLAR_CELL_CHANNEL)
-              loadvoltage2 = busvoltage2 + (shuntvoltage2 / 1000)
-              power2=loadvoltage2*current_mA2          
+         #later =0
+         #if later>0:
+         busvoltage1 = ina3221.getBusVoltage_V(LIPO_BATTERY_CHANNEL)
+         shuntvoltage1 = ina3221.getShuntVoltage_mV(LIPO_BATTERY_CHANNEL)
+         current_mA1 = ina3221.getCurrent_mA(LIPO_BATTERY_CHANNEL)                
+         loadvoltage1 = busvoltage1 + (shuntvoltage1 / 1000)              
+         power1=loadvoltage1*current_mA1          
+
+         busvoltage2 = ina3221.getBusVoltage_V(SOLAR_CELL_CHANNEL)
+         shuntvoltage2 = ina3221.getShuntVoltage_mV(SOLAR_CELL_CHANNEL)
+         current_mA2 = -ina3221.getCurrent_mA(SOLAR_CELL_CHANNEL)
+         loadvoltage2 = busvoltage2 + (shuntvoltage2 / 1000)
+         power2=loadvoltage2*current_mA2          
          
          busvoltage3 = ina3221.getBusVoltage_V(OUTPUT_CHANNEL)
          shuntvoltage3 = ina3221.getShuntVoltage_mV(OUTPUT_CHANNEL)
@@ -119,9 +122,15 @@ while True:
     
     #lcd.clear()
     lcd.set_cursor( 0, 0);
+    printstring= "%4.2f V %6.0f mW" % (loadvoltage1,power1)
+    lcd.message(printstring)
+    lcd.set_cursor( 0, 1);
+    printstring= "%4.2f V %6.0f mW" % (loadvoltage2,power2)
+    lcd.message(printstring)
+    lcd.set_cursor( 0, 2);
     printstring= "%4.2f V %6.0f mW" % (loadvoltage3,power3)
     lcd.message(printstring)
-    
+
     #
     time.sleep(0.5)
 
