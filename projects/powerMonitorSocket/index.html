@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Power Monitor</title>
+
+<script src="../../lib/jquery-ui-1.10.3/jquery-1.10.2.min.js"></script>
+<script src="../../lib/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.css">
+<script src="../../lib/jquery-ui-1.10.3/plugins/spinner-layout/jquery.ui.spinner.js"></script>
+<script src="../../lib/sprintf/sprintf.js"></script>
+<link rel="stylesheet" href="../../lib/alerts/jquery.alerts.css" type="text/css" media="screen" />
+<script src="../../lib/alerts/jquery.alerts.js"></script>
+<link rel="stylesheet" href="jquery.dialog.css">
+<script src="jquery.dialog.js"></script>
+<script type="text/JavaScript" src="globals.js"></script>
+<script type="text/JavaScript" src="ajaxFunctions.js"></script>
+<script type="text/JavaScript" src="functions.js"></script>
+<script type="text/JavaScript" src="powerMonitorFunctions.js"></script>
+
+<style type="text/css">
+.controls {
+	display: inline-block;
+	margin: 10px;
+}
+
+.vertical input {
+	width: 3ch;
+	height: 4em;
+}
+
+.spinnersize1 input {
+	font-size: 8pt;
+	display: inline-block;
+	margin: 10px;
+	/*width: 30px;*/
+	width: 6ch;
+}
+</style>
+
+<script type="text/javascript">
+	header = sprintf('%22s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ');
+
+	function onload_function() {
+		//printlnMessage('messages', 'onload home');
+	}
+
+	function getValues() {
+		//printlnMessage('messages', "get values");
+
+		if (document.getElementById('simulation').checked)
+			simulation = 1;
+		else
+			simulation = 0;
+
+		myParams = {
+			simulation : simulation,
+			param2 : 2
+		};
+		//printlnMessage('messages', JSON.stringify(myParams));
+		ajax_getValues(myParams);
+	}
+
+	$(function() {
+
+		periodSpinner = $('#periodID  input').spinner({
+			min : 1,
+			max : 100,
+			alignment : 'horizontal'
+		}).val(2);
+
+		$('#periodID').on("spinstop", function(event, ui) {
+			period = periodSpinner.spinner("value");
+			printlnMessage('messages', "period " + period);
+		});
+
+		$("#getValues").click(function() {
+			printlnMessage('messages', header);
+			getValues();
+		});
+
+		$("#sendMessage").click(function() {
+			myParams = {
+				fs : 'sendMessage',
+				param2 : 2
+			};
+			ajax_sendMessage(myParams);
+		});
+
+		$("#loadValues").click(function() {
+			myParams = {
+				fs : 'loadValues',
+				param2 : 2
+			};
+			//printlnMessage('messages', "load values clicked");
+			ajax_loadValues(myParams);
+		});
+
+		$('#getValuesLoop').click(function() {
+			// printlnMessage('messages', 'type clicked');
+			if ($(this).is(':checked')) {
+				printlnMessage('messages', 'timer started');
+				printlnMessage('messages', header);
+				getValuesTimerFunc();
+			} else {
+				printlnMessage('messages', 'timer stopped');
+				clearTimeout(getValuesTimer);
+			}
+		});
+
+		$("#prompt_DB").click(function() {
+
+			// read data from cookies
+			if (existCookie('hostname') != true)
+				setCookie('hostname', "localhost", 100);
+
+			hostname = getCookie('hostname');
+			username = "solarPanel";
+			password = "solarPanel";
+			database = "solarPanel";
+			jPromptDatabase(hostname, username, password, database, mycallback);
+		});
+
+	});
+
+	function mycallback(e, newhostname, newusername, newpassword, newdatabase) {
+		//jAlert("You name :" + value + ":");
+		printlnMessage('messages', newhostname);
+		printlnMessage('messages', newusername);
+		printlnMessage('messages', newpassword);
+		printlnMessage('messages', newdatabase);
+		setCookie('hostname', newhostname, 100);
+	}
+</script>
+
+
+</head>
+<body onload="onload_function()">
+
+	<div>
+
+		<button id='sendMessage'>sendMessage</button>
+		<!-- -->
+		<button id='getValues'>Get Values</button>
+		<!-- -->
+		<label><input type="checkbox" name="getValuesLoop" id="getValuesLoop" value="male"> Loop measurement</label>
+		<!-- -->
+		period <span id='periodID' class="horizontal controls"><input /></span>s
+		<!-- -->
+		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
+		<!-- -->
+		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
+		<!-- -->
+		<button onclick="ajax_createDB()">Create Database Tables</button>
+		<!-- -->
+		<button id="prompt_DB">Set Database Server</button>
+		<!-- -->
+		<button id="loadValues">Load Values</button>
+
+
+	</div>
+	<div id='messagesDiv'>
+		<textarea id="messages" cols=80; rows=20;></textarea>
+	</div>
+</body>
+</html>
