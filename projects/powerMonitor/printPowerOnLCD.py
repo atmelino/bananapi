@@ -118,7 +118,7 @@ while True:
         'cmA3': current_mA3,
         'pw3': power3
     }
-    print(json.dumps(returnval))
+    #print(json.dumps(returnval))
     
     #lcd.clear()
     lcd.set_cursor( 0, 0);
