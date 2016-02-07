@@ -38,6 +38,39 @@ create new user and new database at the same time
 
 
 
+<h3>Power Monitor</h3>
+
+
+For a new system install, in order to make the python script run automatically when the computer is started,
+
+open a terminal and run
+
+crontab -e
+
+add the line
+
+@reboot /media/data/public_html/bananapi/projects/powerMonitor/autoStartPM.sh  >> $HOME/testpylog.txt 2>&1
+
+the script autoStartPM.sh is then automatically started when the system boots. 
+
+
+
+To disable the autostart, run
+
+crontab -e
+
+and convert the line to a comment.
+
+To run it at at startup again, uncomment the line.
+
+
+Now run as superuser
+
+sudo crontab -e
+
+add the line
+
+@reboot /media/data/public_html/bananapi/projects/powerMonitor/pipe_web.sh  >> $HOME/testpylog.txt 2>&1
 
 
 
