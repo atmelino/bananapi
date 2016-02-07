@@ -36,7 +36,7 @@ function sendtoPipe($String)
 	$filename='/run/shm/web/powerMonitorpipe';
 	//print ($filename."\n");
 	//$pipe = fopen('/dev/shm/powerMonitorpipe','r+');
-	$pipe =fopen($filename,'x+');
+	$pipe =fopen($filename,'w+');
 	print ("fopen success: ".$pipe."\n");
 	var_dump($pipe);
 	fwrite($pipe,$String);
