@@ -18,19 +18,31 @@ function main()
 	if(strcmp($functionString,'sendMessage')==0)
 	{
 		print "calling sendMessage\n";
-		sendtoPipe($var);
+		$json=$_GET['json'];
+		print $json."\n";
+		sendtoPipe($json);
 	}
 
 }
 
 
 
+// note: the folder /run/shm/web must be owned by www-data:www-data
 function sendtoPipe($String)
 {
-	print ("sending string to pipe".$cString."\n");
-	$pipe = fopen('/dev/shm/powerMonitorpipe','r+');
+	print ("sending string to pipe: ".$String."\n");
+	//print ($_SERVER['DOCUMENT_ROOT']."\n");
+	//$filename=$_SERVER['DOCUMENT_ROOT'].'/test.txt';
+	$filename='/run/shm/web/powerMonitorpipe';
+	//print ($filename."\n");
+	//$pipe = fopen('/dev/shm/powerMonitorpipe','r+');
+	$pipe =fopen($filename,'x+');
+	print ("fopen success: ".$pipe."\n");
+	var_dump($pipe);
 	fwrite($pipe,$String);
+	//fwrite($pipe,'hello');
 	fclose($pipe);
+	print ("sendtoPipe() done\n");
 }
 
 //echo 'end PHP program';

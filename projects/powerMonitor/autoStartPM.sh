@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# make folder in ramdisk for pipe
+mkdir /run/shm/web
+sudo chown www-data:www-data /run/shm/web
+
+
+
 #sudo python printPowerOnLCD.py {\"simulation\":1}
 #python printPowerOnLCD.py {\"simulation\":0}
 
