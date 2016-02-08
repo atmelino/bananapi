@@ -1,3 +1,30 @@
+
+  
+  
+  
+
+            # create the pipe and open it for reading
+            #os.mkfifo(pipeNameIn)
+            #os.chmod(pipeNameIn, 0777)
+            #pipe = open(pipeNameIn, 'r')
+  
+              #pipe_name = "/tmp/hourly"
+  #print 'read from pipe'
+  
+  
+              #print 'while true loop'
+
+            # the name of the pipe
+            #pipeNameIn = '/run/shm/web/powerMonitorPipe'
+
+            # we will get an error if the pipe exists
+            # when creating a new one, so try removing it first
+            #try:
+                #os.unlink(pipeNameIn)
+            #except:
+                #pass
+
+  
   #myparams=sys.argv[1]
   #arg2=int(sys.argv[2])
 

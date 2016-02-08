@@ -44,22 +44,6 @@
 		//printlnMessage('messages', 'onload home');
 	}
 
-	function getValues() {
-		//printlnMessage('messages', "get values");
-
-		if (document.getElementById('simulation').checked)
-			simulation = 1;
-		else
-			simulation = 0;
-
-		myParams = {
-			simulation : simulation,
-			param2 : 2
-		};
-		//printlnMessage('messages', JSON.stringify(myParams));
-		ajax_getValues(myParams);
-	}
-
 	$(function() {
 
 		periodSpinner = $('#periodID  input').spinner({
@@ -73,15 +57,27 @@
 			printlnMessage('messages', "period " + period);
 		});
 
-		$("#getValues").click(function() {
-			printlnMessage('messages', header);
-			getValues();
+		$("#exitPython").click(function() {
+			printlnMessage('messages', 'end python program');
+			myParams = {
+				fs : 'sendMessage',
+				exit : 1,
+			};
+			ajax_sendMessage(myParams);
 		});
 
 		$("#sendMessage").click(function() {
+			if (document.getElementById('simulation').checked)
+				simulation = 1;
+			else
+				simulation = 0;
+			var line4 = document.getElementById("line4").value;
+			printlnMessage('messages', line4);
 			myParams = {
+				simulation : simulation,
 				fs : 'sendMessage',
-				param2 : 2
+				line4 : line4,
+				param2 : 55
 			};
 			ajax_sendMessage(myParams);
 		});
@@ -140,13 +136,16 @@
 
 		<button id='sendMessage'>sendMessage</button>
 		<!-- -->
-		<button id='getValues'>Get Values</button>
+		<input value="line4" id=line4>
+		<!-- -->
+		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label>
+		<!-- -->
+		<button id='exitPython'>end python program</button>
+		<br>
 		<!-- -->
 		<label><input type="checkbox" name="getValuesLoop" id="getValuesLoop" value="male"> Loop measurement</label>
 		<!-- -->
-		period <span id='periodID' class="horizontal controls"><input /></span>s
-		<!-- -->
-		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label><br>
+		period <span id='periodID' class="horizontal controls"><input /></span>s<br>
 		<!-- -->
 		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
 		<!-- -->

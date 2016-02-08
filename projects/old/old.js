@@ -30,3 +30,22 @@
 				ajax_saveValues(myParams);
 			});
 
+			function getValues() {
+				//printlnMessage('messages', "get values");
+
+				if (document.getElementById('simulation').checked)
+					simulation = 1;
+				else
+					simulation = 0;
+
+				myParams = {
+					simulation : simulation,
+					param2 : 2
+				};
+				//printlnMessage('messages', JSON.stringify(myParams));
+				ajax_getValues(myParams);
+			}
+			$("#getValues").click(function() {
+				printlnMessage('messages', header);
+				getValues();
+			});

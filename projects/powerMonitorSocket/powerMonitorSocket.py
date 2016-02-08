@@ -79,10 +79,6 @@ class PowerMonitor:
             gpio = MCP.MCP23017()
             lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7,
                                         lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
-            
-        
-        
-        
         
         if lcd == 'plate':
             # Init LCD
@@ -97,25 +93,16 @@ class PowerMonitor:
         
         
         while True:
-            print 'while true loop'
 
-            # the name of the pipe
-            pipeNameIn = '/run/shm/web/powerMonitorPipe'
+            pipe_name = "/tmp/testpipe"
 
-            # we will get an error if the pipe exists
-            # when creating a new one, so try removing it first
-            try:
-                os.unlink(pipeNameIn)
-            except:
-                pass
+            if not os.path.exists(pipe_name):
+                # os.mkfifo( pipe_name, 0644 )
+                os.mkfifo(pipe_name, 0777)
 
-            # create the pipe and open it for reading
-            os.mkfifo(pipeNameIn)
-            os.chmod(pipeNameIn, 0777)
-            pipe = open(pipeNameIn, 'r')
+            pipe = open(pipe_name, 'r')
 
             # read forever and print anything written to the pipe
-            print 'read from pipe'
             data = pipe.readline()
             if data != '':
                 print 'Received from pipe:'
@@ -128,8 +115,16 @@ class PowerMonitor:
                         simulation = 1
                     else:
                         simulation = 0
-                print 'simulation=%d' % simulation
-        
+                # print 'simulation=%d' % simulation
+
+                        
+            if 'line4' in decoded:
+                line4 = decoded['line4']
+
+            if 'exit' in decoded:
+                if decoded['exit']==1:
+                    sys.exit(1)
+
         
         
             if simulation == 1:
@@ -199,13 +194,12 @@ class PowerMonitor:
                 lcd.message(line2)
                 lcd.set_cursor(0, 2);
                 lcd.message(line3)
+                lcd.set_cursor(0, 4);
+                lcd.message(line4)
         
             #
             time.sleep(0.5)
         
-
-
-
 
 
 

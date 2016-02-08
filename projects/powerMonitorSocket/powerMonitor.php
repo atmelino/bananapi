@@ -33,9 +33,10 @@ function sendtoPipe($String)
 	print ("sending string to pipe: ".$String."\n");
 	//print ($_SERVER['DOCUMENT_ROOT']."\n");
 	//$filename=$_SERVER['DOCUMENT_ROOT'].'/test.txt';
-	$filename='/run/shm/web/powerMonitorpipe';
+	//$filename='/run/shm/web/powerMonitorpipe';
+	$filename='/tmp/testpipe';
+	
 	//print ($filename."\n");
-	//$pipe = fopen('/dev/shm/powerMonitorpipe','r+');
 	$pipe =fopen($filename,'w+');
 	print ("fopen success: ".$pipe."\n");
 	var_dump($pipe);
