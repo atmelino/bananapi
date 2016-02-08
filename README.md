@@ -40,37 +40,41 @@ create new user and new database at the same time
 
 <h3>Power Monitor</h3>
 
+We want the python script to start automatically when the Pi is booted, so that the power values are displayed without user intervention.
 
 For a new system install, in order to make the python script run automatically when the computer is started,
 
 open a terminal and run
 
-crontab -e
+<code>crontab -e</code>
 
 add the line
 
-@reboot /media/data/public_html/bananapi/projects/powerMonitor/autoStartPM.sh  >> $HOME/testpylog.txt 2>&1
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/autoStartPM.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 the script autoStartPM.sh is then automatically started when the system boots. 
+
+Now run as superuser
+
+<code>sudo crontab -e</code>
+
+add the line
+
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/pipe_web.sh  >> $HOME/testpylog.txt 2>&1</code>
+
+
 
 
 
 To disable the autostart, run
 
-crontab -e
+<code>crontab -e</code>
 
 and convert the line to a comment.
 
 To run it at at startup again, uncomment the line.
 
 
-Now run as superuser
-
-sudo crontab -e
-
-add the line
-
-@reboot /media/data/public_html/bananapi/projects/powerMonitor/pipe_web.sh  >> $HOME/testpylog.txt 2>&1
 
 
 
