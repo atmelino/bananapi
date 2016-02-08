@@ -47,8 +47,12 @@ class PowerMonitor:
        self.runit()
 
     def runit(self):
-        if simulation==0:
+        # LCD Type
+        lcd='plate'
+        lcd='none'
+        lcd='mcp'
         
+        if lcd=='mcp':
             # Init LCD
             import Adafruit_CharLCD as LCD
             import Adafruit_GPIO.MCP230xx as MCP
@@ -67,18 +71,25 @@ class PowerMonitor:
             # Define LCD column and row size for 16x2 LCD.
             lcd_columns = 16
             lcd_rows    = 2
-            
+        
             print "char_lcd_mcp.py init gpio"
-            #gpio = MCP.MCP23017()
-            #lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, 
-                                        #lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
+            gpio = MCP.MCP23017()
+            lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, 
+                                        lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
             
-            # Initialize the LCD using the pins 
+        
+        
+        
+        
+        if lcd=='plate':
+            # Init LCD
+            import Adafruit_CharLCD as LCD
+        
             lcd = LCD.Adafruit_CharLCDPlate(cols=20,lines=4)
-            
-            
-            print 'sending start messsage to LCD'
-            lcd.message('Power Monitor .2')
+        
+        
+        #print 'sending start messsage to LCD'
+        #lcd.message('Power Monitor .2')
         
         
         
@@ -127,22 +138,29 @@ class PowerMonitor:
                 'cmA3': current_mA3,
                 'pw3': power3
             }
-            print(json.dumps(returnval))
+            if lcd=='none':
+                print(json.dumps(returnval))
             
-            if simulation==0:
+            if lcd!='none':
                 #lcd.clear()
+                line1= "%4.2f V %6.0f mW" % (loadvoltage1,power1)
+                line2= "%4.2f V %6.0f mW" % (loadvoltage2,power2)
+                line3= "%4.2f V %6.0f mW" % (loadvoltage3,power3)
                 lcd.set_cursor( 0, 0);
-                printstring= "%4.2f V %6.0f mW" % (loadvoltage1,power1)
-                lcd.message(printstring)
+                lcd.message(line1)
                 lcd.set_cursor( 0, 1);
-                printstring= "%4.2f V %6.0f mW" % (loadvoltage2,power2)
-                lcd.message(printstring)
+                lcd.message(line2)
                 lcd.set_cursor( 0, 2);
-                printstring= "%4.2f V %6.0f mW" % (loadvoltage3,power3)
-                lcd.message(printstring)
+                lcd.message(line3)
         
             #
             time.sleep(0.5)
+        
+
+
+
+
+
 
 def main():
     powerMonitor=PowerMonitor()

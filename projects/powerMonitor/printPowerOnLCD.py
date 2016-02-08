@@ -72,8 +72,6 @@ if lcd=='mcp':
                                 lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
     
 
-    
-    # Initialize the LCD using the pins 
 
 
 
