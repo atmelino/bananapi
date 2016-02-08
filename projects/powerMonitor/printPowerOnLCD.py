@@ -42,9 +42,9 @@ power3=0
 
 
 # LCD Type
-lcd='plate'
 lcd='none'
 lcd='mcp'
+lcd='plate'
 
 if lcd=='mcp':
     # Init LCD

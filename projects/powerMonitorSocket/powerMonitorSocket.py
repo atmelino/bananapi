@@ -23,7 +23,7 @@ if len(sys.argv) > 1:
 # if 'simulation' in parsed_json:
 #  simulation=parsed_json['simulation']     
 
-simulation = 1  
+global simulation
 
 busvoltage1 = 0
 shuntvoltage1 = 0
@@ -45,15 +45,19 @@ power3 = 0
 class PowerMonitor:
 
     def __init__(self):
-       print "__init__()"
-       self.runit()
+        global simulation  
+        simulation = 1
+        print "__init__()"
+        self.runit()
 
     def runit(self):
+        global simulation
+
         print "runit()"
         # LCD Type
-        lcd = 'plate'
         lcd = 'mcp'
         lcd = 'none'
+        lcd = 'plate'
         
         if lcd == 'mcp':
             # Init LCD
@@ -115,15 +119,12 @@ class PowerMonitor:
                         simulation = 1
                     else:
                         simulation = 0
-                # print 'simulation=%d' % simulation
-
-                        
-            if 'line4' in decoded:
-                line4 = decoded['line4']
-
-            if 'exit' in decoded:
-                if decoded['exit']==1:
-                    sys.exit(1)
+                # print 'simulation=%d' % simulation                        
+                if 'line4' in decoded:
+                    line4 = decoded['line4']
+                if 'exit' in decoded:
+                    if decoded['exit']==1:
+                        sys.exit(1)
 
         
         
@@ -194,7 +195,7 @@ class PowerMonitor:
                 lcd.message(line2)
                 lcd.set_cursor(0, 2);
                 lcd.message(line3)
-                lcd.set_cursor(0, 4);
+                lcd.set_cursor(0, 3);
                 lcd.message(line4)
         
             #
