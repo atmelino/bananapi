@@ -13,9 +13,10 @@ LIPO_BATTERY_CHANNEL = 1
 SOLAR_CELL_CHANNEL   = 2
 OUTPUT_CHANNEL       = 3
 
-
-myparams=sys.argv[1]
-print "python: "+myparams
+#print len(sys.argv)
+if len(sys.argv)>1:
+	myparams=sys.argv[1]
+	print "python: "+myparams
 
 #parsed_json = json.loads(myparams)                         
 #if 'simulation' in parsed_json:
@@ -96,10 +97,20 @@ class PowerMonitor:
         while True:
         
             if simulation==1:
+                 busvoltage1 = 1
+                 shuntvoltage1 = 2
+                 current_mA1 = 8
+                 loadvoltage1 = random.randint(0, 9)
+                 power1=loadvoltage1*current_mA1          
+                 busvoltage2 = 1
+                 shuntvoltage2 = 2
+                 current_mA2 = 8
+                 loadvoltage2 = random.randint(0, 9)
+                 power2=loadvoltage2*current_mA2          
                  busvoltage3 = 1
                  shuntvoltage3 = 2
                  current_mA3 = 8
-                 loadvoltage3 = 6
+                 loadvoltage3 = random.randint(0, 9)
                  power3=loadvoltage3*current_mA3          
                   
             
