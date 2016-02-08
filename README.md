@@ -50,7 +50,7 @@ open a terminal and run
 
 add the line
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/autoStartPM.sh  >> $HOME/testpylog.txt 2>&1</code>
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPMSocket.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 the script autoStartPM.sh is then automatically started when the system boots. 
 
