@@ -28,3 +28,10 @@ if (is_resource($process)) {// print pipe output
 
 echo "proc_open() end";
 
+
+global $hostname;
+global $username;
+global $password;
+global $database;
+
+

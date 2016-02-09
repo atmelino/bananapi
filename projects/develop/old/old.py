@@ -1,4 +1,26 @@
 
+
+
+                 # later =0
+                 # if later>0:
+
+
+busvoltage1 = 0
+shuntvoltage1 = 0
+current_mA1 = 0
+loadvoltage1 = 0
+power1 = 0
+busvoltage2 = 0
+shuntvoltage2 = 0
+current_mA2 = 0
+loadvoltage2 = 0
+power2 = 0
+busvoltage3 = 0
+shuntvoltage3 = 0
+current_mA3 = 0
+loadvoltage3 = 0
+power3 = 0
+
   
   
   

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/b1in/env python
 
 import os, threading
 import sys
@@ -9,6 +9,13 @@ import SDL_Pi_INA3221
 import json
 
 
+global simINA3221
+global lcd
+        # LCD Type
+        # lcd = 'mcp'
+        # lcd = 'none'
+        # lcd = 'plate'
+
 # the three channels of the INA3221 named for SunAirPlus Solar Power Controller channels (www.switchdoc.com)
 LIPO_BATTERY_CHANNEL = 1
 SOLAR_CELL_CHANNEL = 2
@@ -18,47 +25,25 @@ OUTPUT_CHANNEL = 3
 if len(sys.argv) > 1:
     myparams = sys.argv[1]
     print "python: " + myparams
+    myparamjson = json.loads(myparams)
+    print myparamjson['simINA3221']
+    print myparamjson['LCD']
 
-# parsed_json = json.loads(myparams)                         
-# if 'simulation' in parsed_json:
-#  simulation=parsed_json['simulation']     
-
-global simulation
-
-busvoltage1 = 0
-shuntvoltage1 = 0
-current_mA1 = 0
-loadvoltage1 = 0
-power1 = 0
-busvoltage2 = 0
-shuntvoltage2 = 0
-current_mA2 = 0
-loadvoltage2 = 0
-power2 = 0
-busvoltage3 = 0
-shuntvoltage3 = 0
-current_mA3 = 0
-loadvoltage3 = 0
-power3 = 0
+    simINA3221 = myparamjson['simINA3221']
+    lcd = myparamjson['LCD']
+else:
+    simINA3221 = 1
+    lcd = "none"
 
 
 class PowerMonitor:
 
     def __init__(self):
-        global simulation  
-        simulation = 1
+        global lcd
+        # global simINA3221  
+        # simINA3221 = 1
         print "__init__()"
-        self.runit()
-
-    def runit(self):
-        global simulation
-
-        print "runit()"
-        # LCD Type
-        lcd = 'mcp'
-        lcd = 'none'
-        lcd = 'plate'
-        
+        # self.runit()
         if lcd == 'mcp':
             # Init LCD
             import Adafruit_CharLCD as LCD
@@ -94,16 +79,42 @@ class PowerMonitor:
         # print 'sending start messsage to LCD'
         # lcd.message('Power Monitor .2')
         
+
+
+    def startThreads(self):
+        print "startThreads()"
+        # start read pipe thread
+        self.readPipe_thread = threading.Thread(target=self.readPipe)
+        self.readPipe_thread.setDaemon(1)
+        self.readPipe_thread.start()
+        # start read INA3221 thread
+        self.readINA3221_thread = threading.Thread(target=self.readINA3221)
+        self.readINA3221_thread.setDaemon(1)
+        self.readINA3221_thread.start()
         
+        
+    def allThreadsJoin(self):
+        self.readPipe_thread.join()
+        self.readINA3221_thread.join()
+        
+    def stop(self):           
+        self.alive = False
+        os._exit(1)
+        #sys.exit(1)
+
+        
+    def readPipe(self):
+
+        pipe_name = "/tmp/testpipe"
+
         
         while True:
-
-            pipe_name = "/tmp/testpipe"
 
             if not os.path.exists(pipe_name):
                 # os.mkfifo( pipe_name, 0644 )
                 os.mkfifo(pipe_name, 0777)
 
+            print 'waiting for pipe:'
             pipe = open(pipe_name, 'r')
 
             # read forever and print anything written to the pipe
@@ -114,21 +125,31 @@ class PowerMonitor:
                 
                 decoded = json.loads(data)
                 
-                if 'simulation' in decoded:
-                    if decoded['simulation'] == 1:
-                        simulation = 1
+                if 'simINA3221' in decoded:
+                    if decoded['simINA3221'] == 1:
+                        simINA3221 = 1
                     else:
-                        simulation = 0
+                        simINA3221 = 0
                 # print 'simulation=%d' % simulation                        
                 if 'line4' in decoded:
                     line4 = decoded['line4']
                 if 'exit' in decoded:
-                    if decoded['exit']==1:
-                        sys.exit(1)
+                    if decoded['exit'] == 1:
+                        #sys.exit(1)
+                        print 'Exit'
+                        self.stop()
+                        break  # exit app
 
         
+
+    def readINA3221(self):
+        global simINA3221
+        global lcd
+
+        # print "readINA()"
+        while True:
         
-            if simulation == 1:
+            if simINA3221 == 1:
                  busvoltage1 = 1
                  shuntvoltage1 = 2
                  current_mA1 = 8
@@ -149,8 +170,6 @@ class PowerMonitor:
             else:
                  ina3221 = SDL_Pi_INA3221.SDL_Pi_INA3221(twi=2, addr=0x40)
                  
-                 # later =0
-                 # if later>0:
                  busvoltage1 = ina3221.getBusVoltage_V(LIPO_BATTERY_CHANNEL)
                  shuntvoltage1 = ina3221.getShuntVoltage_mV(LIPO_BATTERY_CHANNEL)
                  current_mA1 = ina3221.getCurrent_mA(LIPO_BATTERY_CHANNEL)                
@@ -199,13 +218,15 @@ class PowerMonitor:
                 lcd.message(line4)
         
             #
-            time.sleep(0.5)
+            time.sleep(1)
         
 
 
 
 def main():
     powerMonitor = PowerMonitor()
+    PowerMonitor.startThreads(powerMonitor)
+    PowerMonitor.allThreadsJoin(powerMonitor)
 
 
 if __name__ == '__main__':
