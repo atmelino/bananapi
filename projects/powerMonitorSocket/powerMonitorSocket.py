@@ -10,6 +10,7 @@ import json
 
 
 global simINA3221
+global lcdType
 global lcd
 global userMessage
         # LCD Type
@@ -31,15 +32,16 @@ if len(sys.argv) > 1:
     print myparamjson['LCD']
 
     simINA3221 = myparamjson['simINA3221']
-    lcd = myparamjson['LCD']
+    lcdType = myparamjson['LCD']
 else:
     simINA3221 = 1
-    lcd = "none"
+    lcdType = "none"
 
 
 class PowerMonitor:
 
     def __init__(self):
+        global lcdType
         global lcd
         global userMessage
         # global simINA3221  
@@ -49,7 +51,7 @@ class PowerMonitor:
         
         print "__init__()"
         # self.runit()
-        if lcd == 'mcp':
+        if lcdType == 'mcp':
             # Init LCD
             import Adafruit_CharLCD as LCD
             import Adafruit_GPIO.MCP230xx as MCP
@@ -74,7 +76,7 @@ class PowerMonitor:
             lcd = LCD.Adafruit_RGBCharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7,
                                         lcd_columns, lcd_rows, lcd_red, lcd_green, lcd_blue, gpio=gpio)
         
-        if lcd == 'plate':
+        if lcdType == 'plate':
             # Init LCD
             import Adafruit_CharLCD as LCD
         
@@ -150,11 +152,12 @@ class PowerMonitor:
 
     def readINA3221(self):
         global simINA3221
+        global lcdType
         global lcd
         global userMessage
 
+        # print "readINA()"
         while True:
-            print "readINA()"
         
             if simINA3221 == 1:
                  busvoltage1 = 1
@@ -207,11 +210,10 @@ class PowerMonitor:
                 'cmA3': current_mA3,
                 'pw3': power3
             }
-            if lcd == 'none':
+            if lcdType == 'none':
                 print(json.dumps(returnval))
             
-            if lcd == 'mcp':
-                print(json.dumps(returnval))
+            if lcdType == 'mcp':
                 # lcd.clear()
                 line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
                 line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
@@ -222,7 +224,7 @@ class PowerMonitor:
                 lcd.message(userMessage)
 
             
-            if lcd == 'plate':
+            if lcdType == 'plate':
                 # lcd.clear()
                 line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
                 line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
