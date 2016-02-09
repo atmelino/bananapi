@@ -203,7 +203,22 @@ class PowerMonitor:
             if lcd == 'none':
                 print(json.dumps(returnval))
             
-            if lcd != 'none':
+            if lcd == 'mcp':
+                # lcd.clear()
+                line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
+                line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
+                line3 = "%4.2f V %6.0f mW" % (loadvoltage3, power3)
+                lcd.set_cursor(0, 0);
+                lcd.message(line1)
+                lcd.set_cursor(0, 1);
+                lcd.message(line2)
+                lcd.set_cursor(0, 2);
+                lcd.message(line3)
+                lcd.set_cursor(0, 3);
+                lcd.message(line4)
+
+            
+            if lcd == 'plate':
                 # lcd.clear()
                 line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
                 line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
