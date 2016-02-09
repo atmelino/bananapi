@@ -153,8 +153,8 @@ class PowerMonitor:
         global lcd
         global userMessage
 
-        # print "readINA()"
         while True:
+            print "readINA()"
         
             if simINA3221 == 1:
                  busvoltage1 = 1
@@ -211,6 +211,7 @@ class PowerMonitor:
                 print(json.dumps(returnval))
             
             if lcd == 'mcp':
+                print(json.dumps(returnval))
                 # lcd.clear()
                 line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
                 line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
