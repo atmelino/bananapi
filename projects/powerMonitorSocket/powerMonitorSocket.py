@@ -11,6 +11,7 @@ import json
 
 global simINA3221
 global lcd
+global userMessage
         # LCD Type
         # lcd = 'mcp'
         # lcd = 'none'
@@ -40,8 +41,12 @@ class PowerMonitor:
 
     def __init__(self):
         global lcd
+        global userMessage
         # global simINA3221  
         # simINA3221 = 1
+        userMessage="hello"
+        
+        
         print "__init__()"
         # self.runit()
         if lcd == 'mcp':
@@ -104,6 +109,7 @@ class PowerMonitor:
 
         
     def readPipe(self):
+        global userMessage
 
         pipe_name = "/tmp/testpipe"
 
@@ -132,7 +138,7 @@ class PowerMonitor:
                         simINA3221 = 0
                 # print 'simulation=%d' % simulation                        
                 if 'line4' in decoded:
-                    line4 = decoded['line4']
+                    userMessage = decoded['line4']
                 if 'exit' in decoded:
                     if decoded['exit'] == 1:
                         #sys.exit(1)
@@ -145,6 +151,7 @@ class PowerMonitor:
     def readINA3221(self):
         global simINA3221
         global lcd
+        global userMessage
 
         # print "readINA()"
         while True:
@@ -207,15 +214,11 @@ class PowerMonitor:
                 # lcd.clear()
                 line1 = "%4.2f V %6.0f mW" % (loadvoltage1, power1)
                 line2 = "%4.2f V %6.0f mW" % (loadvoltage2, power2)
-                line3 = "%4.2f V %6.0f mW" % (loadvoltage3, power3)
                 lcd.set_cursor(0, 0);
                 lcd.message(line1)
                 lcd.set_cursor(0, 1);
-                lcd.message(line2)
-                lcd.set_cursor(0, 2);
-                lcd.message(line3)
-                lcd.set_cursor(0, 3);
-                lcd.message(line4)
+                #lcd.message(line2)
+                lcd.message(userMessage)
 
             
             if lcd == 'plate':
@@ -230,7 +233,7 @@ class PowerMonitor:
                 lcd.set_cursor(0, 2);
                 lcd.message(line3)
                 lcd.set_cursor(0, 3);
-                lcd.message(line4)
+                lcd.message(userMessage)
         
             #
             time.sleep(1)
