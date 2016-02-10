@@ -14,14 +14,17 @@ password is bananapi
 
 install LAMP server:
 
-sudo apt-get install tasksel
+<code>sudo apt-get install tasksel</code>
 
-sudo tasksel
+<code>sudo tasksel</code>
 
+when asked, select LAMP and continue.
 
+install phpmyadmin:
 
+<code>sudo apt-get install phpmyadmin</code>
 
-sudo apt-get install phpmyadmin
+This will make it easier to create a database when needed.
 
 <h3>Installation - power monitor</h3>
 
@@ -48,9 +51,11 @@ open a terminal and run
 
 <code>crontab -e</code>
 
-add the line
+Depending on the configuration, add one of the lines:
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPMSocket.sh  >> $HOME/testpylog.txt 2>&1</code>
+For a Banana Pro with the INA3221 hat and the Adafruit LCD hat:
+
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPM_INA_LCDplate.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 the script autoStartPM.sh is then automatically started when the system boots. 
 
