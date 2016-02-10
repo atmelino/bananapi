@@ -35,6 +35,9 @@ point web browser to the Banana Pi
 open phpmyadmin
 <a href="http://localhost/phpmyadmin">phpmyadmin</a>
 
+user is root
+password is what you entered in tasksel
+
 create new user and new database at the same time
 
 <img src="phpmyadmin_solarPanel.png" alt="phpmyadmin" style="width:600px;">
@@ -53,11 +56,21 @@ open a terminal and run
 
 Depending on the configuration, add one of the lines:
 
-For a Banana Pro with the INA3221 hat and the Adafruit LCD hat:
+- For a Banana Pro with the INA3221 hat and the Adafruit LCD hat:
 
 <code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPM_INA_LCDplate.sh  >> $HOME/testpylog.txt 2>&1</code>
 
-the script autoStartPM.sh is then automatically started when the system boots. 
+- For a Banana Pro without the INA3221 hat and a MCP23017 based LCD hat:
+
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPM_noINA_LCDmcp.sh  >> $HOME/testpylog.txt 2>&1</code>
+
+- For any computer:
+
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/autoStartPM_noINA_noLCD.sh  >> $HOME/testpylog.txt 2>&1</code>
+
+
+
+the script is then automatically started when the system boots. 
 
 Now run as superuser
 
