@@ -22,9 +22,11 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=103;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitor%2Fchar_lcd_plate_4x20_blue.py;0;4
-FILE_NAME_1=13;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitorSocket%2FautoStartPMSocket.sh;0;4
+current_page=2
+FILE_NAME_0=2865;Python;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitorSocket%2FpowerMonitorSocket.py;0;4
+FILE_NAME_1=158;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitorSocket%2Fpipe_web.sh;0;4
+FILE_NAME_2=12;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitorSocket%2FautoStartPM_noINA_LCDmcp.sh;0;4
+FILE_NAME_3=117;Sh;0;EUTF-8;1;1;0;%2Fmedia%2Fdata%2Fpublic_html%2Fbananapi%2Fprojects%2FpowerMonitorSocket%2FautoStartPMSocket.sh;0;4
 
 [VTE]
 last_dir=/home/bananapi

@@ -1,4 +1,4 @@
-#!/usr/b1in/env python
+#!/usr/bin/env python
 
 import os, threading
 import sys
@@ -112,17 +112,19 @@ class PowerMonitor:
         
     def readPipe(self):
         global userMessage
+        counter=0
 
         pipe_name = "/tmp/testpipe"
 
         
         while True:
+            time.sleep(0.5)
 
             if not os.path.exists(pipe_name):
                 # os.mkfifo( pipe_name, 0644 )
                 os.mkfifo(pipe_name, 0777)
-
-            print 'waiting for pipe:'
+            counter += 1
+            print 'waiting for pipe: %d' %counter
             pipe = open(pipe_name, 'r')
 
             # read forever and print anything written to the pipe
