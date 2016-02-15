@@ -124,7 +124,7 @@ class PowerMonitor:
                 # os.mkfifo( pipe_name, 0644 )
                 os.mkfifo(pipe_name, 0777)
             counter += 1
-            print 'waiting for pipe: %d' %counter
+            #print 'waiting for pipe: %d' %counter
             pipe = open(pipe_name, 'r')
 
             # read forever and print anything written to the pipe
