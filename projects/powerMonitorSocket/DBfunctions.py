@@ -12,7 +12,7 @@ def measureStore(lV3,cmA3,pw3):
 
     # print 'measureStore called'
 
-    myString='%d,%d,%d ' %(lV3,cmA3,pw3)
+    myString='%4.2f,%d,%6.0f ' %(lV3,cmA3,pw3)
     print 'lV3 cmA3 pw3 %s ' %myString
     #print myString
     query = "INSERT INTO myvalues (lV3,cmA3,pw3) VALUES (%s); " % myString
@@ -20,7 +20,7 @@ def measureStore(lV3,cmA3,pw3):
  
 
     later=0
-    if later>1:
+    if later>0:
         config = {
           'user': 'solarPanel',
           'password': 'solarPanel',
@@ -31,8 +31,7 @@ def measureStore(lV3,cmA3,pw3):
         cnx = mysql.connector.connect(**config)
         cursor = cnx.cursor()
     
-        query = "UPDATE myvalues SET '%s'" % myString
-    
+   
         #print query
     
         cursor.execute(query)
