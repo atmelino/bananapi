@@ -6,3 +6,5 @@
 
 touch /tmp/testpipe
 chown www-data:www-data /tmp/testpipe
+chmod 777 /tmp/testpipe
+

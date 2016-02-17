@@ -125,33 +125,38 @@ class PowerMonitor:
                 os.mkfifo(pipe_name, 0777)
             counter += 1
             #print 'waiting for pipe: %d' %counter
-            pipe = open(pipe_name, 'r')
+            pipe = open(pipe_name, 'rw+')
 
             # read forever and print anything written to the pipe
             data = pipe.readline()
             if data != '':
                 print 'Received from pipe:'
                 print data
-                
-                decoded = json.loads(data)
-                
-                if 'simINA3221' in decoded:
-                    if decoded['simINA3221'] == 1:
-                        simINA3221 = 1
-                    else:
-                        simINA3221 = 0
-                # print 'simulation=%d' % simulation                        
-                if 'line4' in decoded:
-                    userMessage = decoded['line4']
-                if 'exit' in decoded:
-                    if decoded['exit'] == 1:
-                        #sys.exit(1)
-                        print 'Exit'
-                        self.stop()
-                        break  # exit app
+                pipe.seek(0, 0)
+                #pipe.write('')
+                pipe.truncate()
 
-        
 
+                try:
+                    decoded = json.loads(data)
+                
+                    if 'simINA3221' in decoded:
+                        if decoded['simINA3221'] == 1:
+                            simINA3221 = 1
+                        else:
+                            simINA3221 = 0
+                                            
+                    if 'line4' in decoded:
+                        userMessage = decoded['line4']
+                    if 'exit' in decoded:
+                        if decoded['exit'] == 1:
+                            print 'Exit'
+                            self.stop()
+                            break  # exit app
+
+                except ValueError:  # includes simplejson.decoder.JSONDecodeError
+                    print 'Decoding JSON has failed'
+                
     def readINA3221(self):
         global simINA3221
         global lcdType
