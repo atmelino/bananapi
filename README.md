@@ -43,6 +43,11 @@ create new user and new database at the same time
 <img src="phpmyadmin_solarPanel.png" alt="phpmyadmin" style="width:600px;">
 
 
+install mySQL library for Python:
+
+<code>sudo apt-get install mysql.connector</code>
+
+
 
 <h3>Power Monitor</h3>
 

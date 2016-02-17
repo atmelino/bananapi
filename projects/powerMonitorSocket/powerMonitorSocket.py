@@ -6,6 +6,7 @@ import time
 import datetime
 import random 
 import SDL_Pi_INA3221
+import DBfunctions
 import json
 
 
@@ -246,6 +247,10 @@ class PowerMonitor:
                 lcd.message(userMessage)
         
             #
+            
+            DBfunctions.measureStore(loadvoltage3,current_mA3,power3)
+
+            
             time.sleep(1)
         
 
