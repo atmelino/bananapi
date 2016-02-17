@@ -73,7 +73,9 @@
 				simulation = 0;
 			var line4 = document.getElementById("line4").value;
 			printlnMessage('messages', line4);
+			var d = new Date();
 			myParams = {
+				date : d,
 				simulation : simulation,
 				fs : 'sendMessage',
 				line4 : line4,
@@ -103,18 +105,20 @@
 			}
 		});
 
-		$("#prompt_DB").click(function() {
+		$("#prompt_DB").click(
+				function() {
 
-			// read data from cookies
-			if (existCookie('hostname') != true)
-				setCookie('hostname', "localhost", 100);
+					// read data from cookies
+					if (existCookie('hostname') != true)
+						setCookie('hostname', "localhost", 100);
 
-			hostname = getCookie('hostname');
-			username = "solarPanel";
-			password = "solarPanel";
-			database = "solarPanel";
-			jPromptDatabase(hostname, username, password, database, mycallback);
-		});
+					hostname = getCookie('hostname');
+					username = "solarPanel";
+					password = "solarPanel";
+					database = "solarPanel";
+					jPromptDatabase(hostname, username, password, database,
+							mycallback);
+				});
 
 	});
 
