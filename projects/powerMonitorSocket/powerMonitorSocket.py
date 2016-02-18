@@ -8,6 +8,7 @@ import random
 import SDL_Pi_INA3221
 import DBfunctions
 import json
+from mysql.connector.errors import InterfaceError
 
 
 global simINA3221
@@ -258,7 +259,10 @@ class PowerMonitor:
             
             
             if timercounter % 10 == 0:
-                DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
+                try:
+                    DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
+                except InterfaceError:  
+                    print 'Decoding JSON has failed'
 
             
             time.sleep(1)
