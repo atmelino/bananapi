@@ -51,8 +51,8 @@ class PowerMonitor:
 
         # global simINA3221  
         # simINA3221 = 1
-        userMessage="hello"
-        timercounter=0
+        userMessage = "hello"
+        timercounter = 0
         
         
         print "__init__()"
@@ -113,12 +113,12 @@ class PowerMonitor:
     def stop(self):           
         self.alive = False
         os._exit(1)
-        #sys.exit(1)
+        # sys.exit(1)
 
         
     def readPipe(self):
         global userMessage
-        counter=0
+        counter = 0
 
         pipe_name = "/tmp/testpipe"
 
@@ -130,7 +130,7 @@ class PowerMonitor:
                 # os.mkfifo( pipe_name, 0644 )
                 os.mkfifo(pipe_name, 0777)
             counter += 1
-            #print 'waiting for pipe: %d' %counter
+            # print 'waiting for pipe: %d' %counter
             pipe = open(pipe_name, 'rw+')
 
             # read forever and print anything written to the pipe
@@ -139,7 +139,7 @@ class PowerMonitor:
                 print 'Received from pipe:'
                 print data
                 pipe.seek(0, 0)
-                #pipe.write('')
+                # pipe.write('')
                 pipe.truncate()
 
 
@@ -235,7 +235,7 @@ class PowerMonitor:
                 lcd.set_cursor(0, 0);
                 lcd.message(line1)
                 lcd.set_cursor(0, 1);
-                #lcd.message(line2)
+                # lcd.message(line2)
                 lcd.message(userMessage)
 
             
@@ -257,8 +257,8 @@ class PowerMonitor:
             
             
             
-            if timercounter%10==0:
-                DBfunctions.measureStore(nowdatetime,loadvoltage3,current_mA3,power3)
+            if timercounter % 10 == 0:
+                DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
 
             
             time.sleep(1)

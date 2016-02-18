@@ -8,19 +8,20 @@ import mysql.connector
 
 
     
-def measureStore(nowdatetime,lV3, cmA3, pw3):
+def measureStore(nowdatetime, lV1, cmA1, pw1, lV2, cmA2, pw2, lV3, cmA3, pw3):
+    
     # print 'measureStore called'
-    #print 'measureStore %s' %nowdatetime
-    tableName='D'+nowdatetime[:4]+'_'+nowdatetime[5:7]+'_'+nowdatetime[8:10]
+    # print 'measureStore %s' %nowdatetime
+    tableName = 'D' + nowdatetime[:4] + '_' + nowdatetime[5:7] + '_' + nowdatetime[8:10]
     
     makeTable(tableName)
-    #makeTable('D2016')
+    # makeTable('D2016')
 
-    myString = "'%s',%4.2f,%4.2f,%6.0f " % (nowdatetime,lV3, cmA3, pw3)
-    #print 'date lV3 cmA3 pw3 %s ' % myString
+    myString = "'%s',%4.2f,%4.2f,%6.0f,%4.2f,%4.2f,%6.0f,%4.2f,%4.2f,%6.0f " % (nowdatetime, lV1, cmA1, pw1, lV2, cmA2, pw2,lV3, cmA3, pw3)
+    # print 'date lV3 cmA3 pw3 %s ' % myString
     # print myString
-    query = "INSERT INTO "+tableName+"(date,lV3,cmA3,pw3) VALUES (%s); " % myString
-    #print query
+    query = "INSERT INTO " + tableName + "(date,lV1, cmA1, pw1, lV2, cmA2, pw2,lV3,cmA3,pw3) VALUES (%s); " % myString
+    # print query
  
 
     later = 1
@@ -64,7 +65,7 @@ def makeTable(name):
     query += ", pw3 float  "
     query += "  ) ENGINE=InnoDB"
     
-    #print query
+    # print query
     
     config = {
       'user': 'solarPanel',
