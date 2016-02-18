@@ -88,7 +88,7 @@ class PowerMonitor:
             import Adafruit_CharLCD as LCD
         
             lcd = LCD.Adafruit_CharLCDPlate(cols=20, lines=4)
-        
+            lcd.set_backlight(0)
         
         # print 'sending start messsage to LCD'
         # lcd.message('Power Monitor .2')
@@ -260,7 +260,7 @@ class PowerMonitor:
             
             if timercounter % 10 == 0:
                 try:
-                    print 'SQL save'
+                    #print 'SQL save'
                     DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
                 except InterfaceError:  
                     print 'SQL save has failed'
