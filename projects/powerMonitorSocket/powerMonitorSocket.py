@@ -260,9 +260,10 @@ class PowerMonitor:
             
             if timercounter % 10 == 0:
                 try:
+                    print 'SQL save'
                     DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
                 except InterfaceError:  
-                    print 'Decoding JSON has failed'
+                    print 'SQL save has failed'
 
             
             time.sleep(1)
