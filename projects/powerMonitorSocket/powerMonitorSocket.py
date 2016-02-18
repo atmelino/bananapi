@@ -14,6 +14,8 @@ global simINA3221
 global lcdType
 global lcd
 global userMessage
+global timercounter
+
         # LCD Type
         # lcd = 'mcp'
         # lcd = 'none'
@@ -45,9 +47,12 @@ class PowerMonitor:
         global lcdType
         global lcd
         global userMessage
+        global timercounter
+
         # global simINA3221  
         # simINA3221 = 1
         userMessage="hello"
+        timercounter=0
         
         
         print "__init__()"
@@ -163,6 +168,8 @@ class PowerMonitor:
         global lcdType
         global lcd
         global userMessage
+        global timercounter
+
 
         # print "readINA()"
         while True:
@@ -207,11 +214,11 @@ class PowerMonitor:
                  power3 = loadvoltage3 * current_mA3          
             
             
-            now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            nowdatetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             # print(now)
             
             returnval = {
-                'date': now,
+                'date': nowdatetime,
                 'bV3': busvoltage3,
                 'sV3': shuntvoltage3,
                 'lV3': loadvoltage3,
@@ -248,11 +255,15 @@ class PowerMonitor:
         
             #
             
-            DBfunctions.measureStore(loadvoltage3,current_mA3,power3)
+            
+            
+            if timercounter%10==0:
+                DBfunctions.measureStore(nowdatetime,loadvoltage3,current_mA3,power3)
 
             
             time.sleep(1)
-        
+            timercounter += 1
+
 
 
 
