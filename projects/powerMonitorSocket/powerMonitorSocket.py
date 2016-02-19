@@ -88,7 +88,7 @@ class PowerMonitor:
             import Adafruit_CharLCD as LCD
         
             lcd = LCD.Adafruit_CharLCDPlate(cols=20, lines=4)
-            lcd.set_backlight(0)
+            #lcd.set_backlight(0)
         
         # print 'sending start messsage to LCD'
         # lcd.message('Power Monitor .2')
