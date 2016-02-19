@@ -9,6 +9,9 @@ myrtc = RTC.RTC_DS1307()
 
 
 a=myrtc.read_all()
-
 print a
 
+myrtc.write_now()
+
+b=myrtc.read_all()
+print b
