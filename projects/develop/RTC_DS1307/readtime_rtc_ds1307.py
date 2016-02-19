@@ -3,7 +3,7 @@
 import RTC_DS1307 as RTC
 
 
-print "myrtc"
+print "read time rtc"
 myrtc = RTC.RTC_DS1307()
 
 
@@ -11,7 +11,7 @@ myrtc = RTC.RTC_DS1307()
 a=myrtc.read_all()
 print a
 
-myrtc.write_now()
 
-b=myrtc.read_all()
-print b
+c=myrtc.read_str()
+print c
+
