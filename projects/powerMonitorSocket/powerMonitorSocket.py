@@ -9,11 +9,12 @@ import SDL_Pi_INA3221
 import DBfunctions
 import json
 from mysql.connector.errors import InterfaceError
-
+import RTC_DS1307 as RTC
 
 global simINA3221
 global lcdType
 global lcd
+global RTCinstalled
 global userMessage
 global timercounter
 
@@ -34,13 +35,15 @@ if len(sys.argv) > 1:
     myparamjson = json.loads(myparams)
     print myparamjson['simINA3221']
     print myparamjson['LCD']
+    print myparamjson['RTC']
 
     simINA3221 = myparamjson['simINA3221']
     lcdType = myparamjson['LCD']
+    RTCinstalled=myparamjson['RTC']
 else:
     simINA3221 = 1
     lcdType = "none"
-
+    RTCinstalled=0
 
 class PowerMonitor:
 
@@ -256,6 +259,8 @@ class PowerMonitor:
         
             #
             
+            RTCTime=myrtc.read_str()
+
             
             
             if timercounter % 10 == 0:
