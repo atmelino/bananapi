@@ -260,6 +260,8 @@ class PowerMonitor:
             #
             
             RTCTime=myrtc.read_str()
+            lcd.set_cursor(0, 1);
+            lcd.message(RTCTime)
 
             
             
