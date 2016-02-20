@@ -15,6 +15,7 @@ global simINA3221
 global lcdType
 global lcd
 global RTCinstalled
+global myrtc
 global userMessage
 global timercounter
 
@@ -50,6 +51,7 @@ class PowerMonitor:
     def __init__(self):
         global lcdType
         global lcd
+        global myrtc
         global userMessage
         global timercounter
 
@@ -92,6 +94,10 @@ class PowerMonitor:
         
             lcd = LCD.Adafruit_CharLCDPlate(cols=20, lines=4)
             #lcd.set_backlight(0)
+
+
+
+        myrtc = RTC.RTC_DS1307()
         
         # print 'sending start messsage to LCD'
         # lcd.message('Power Monitor .2')
@@ -171,6 +177,7 @@ class PowerMonitor:
         global simINA3221
         global lcdType
         global lcd
+        global myrtc
         global userMessage
         global timercounter
 
