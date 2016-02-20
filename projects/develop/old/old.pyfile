@@ -1,6 +1,14 @@
 
 
 
+
+        
+# print 'sending start messsage to LCD'
+# lcd.message('Power Monitor .2')
+        
+
+
+
                  # later =0
                  # if later>0:
 

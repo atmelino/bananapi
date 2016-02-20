@@ -33,14 +33,20 @@ OUTPUT_CHANNEL = 3
 if len(sys.argv) > 1:
     myparams = sys.argv[1]
     print "python: " + myparams
-    myparamjson = json.loads(myparams)
-    print myparamjson['simINA3221']
-    print myparamjson['LCD']
-    print myparamjson['RTC']
-
-    simINA3221 = myparamjson['simINA3221']
-    lcdType = myparamjson['LCD']
-    RTCinstalled=myparamjson['RTC']
+    
+    try:
+        myparamjson = json.loads(myparams)               
+        if 'simINA3221' in myparamjson:
+            print myparamjson['simINA3221']
+            simINA3221 = myparamjson['simINA3221']
+        if 'LCD' in myparamjson:
+            print myparamjson['LCD']
+            lcdType = myparamjson['LCD']
+        if 'RTC' in myparamjson:
+            print myparamjson['RTC']
+            RTCinstalled=myparamjson['RTC']
+    except ValueError:  # includes simplejson.decoder.JSONDecodeError
+        print 'Decoding JSON has failed'
 else:
     simINA3221 = 1
     lcdType = "none"
@@ -96,12 +102,8 @@ class PowerMonitor:
             #lcd.set_backlight(0)
 
 
-
-        myrtc = RTC.RTC_DS1307()
-        
-        # print 'sending start messsage to LCD'
-        # lcd.message('Power Monitor .2')
-        
+        if RTCinstalled==1:
+            myrtc = RTC.RTC_DS1307()
 
 
     def startThreads(self):
@@ -225,8 +227,12 @@ class PowerMonitor:
                  power3 = loadvoltage3 * current_mA3          
             
             
-            nowdatetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            # print(now)
+            
+            if RTCinstalled==1:
+                RTCTime=myrtc.read_str()
+                nowdatetime='20'+RTCTime
+            else:
+                nowdatetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             
             returnval = {
                 'date': nowdatetime,
@@ -248,6 +254,9 @@ class PowerMonitor:
                 lcd.set_cursor(0, 1);
                 # lcd.message(line2)
                 lcd.message(userMessage)
+                if RTCinstalled==1:
+                    lcd.set_cursor(0, 1);
+                    lcd.message(RTCTime)
 
             
             if lcdType == 'plate':
@@ -266,9 +275,6 @@ class PowerMonitor:
         
             #
             
-            RTCTime=myrtc.read_str()
-            lcd.set_cursor(0, 1);
-            lcd.message(RTCTime)
 
             
             
