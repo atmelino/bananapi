@@ -84,6 +84,14 @@
 			ajax_sendMessage(myParams);
 		});
 
+		$("#showTables").click(function() {
+			myParams = {
+				fs : 'showTables',
+				param2 : 2
+			};
+			ajax_showTables(myParams);
+		});
+
 		$("#loadValues").click(function() {
 			myParams = {
 				fs : 'loadValues',
@@ -142,12 +150,8 @@
 		<!-- -->
 		<input value="line4" id=line4>
 		<!-- -->
-		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label>
-		<!-- -->
 		<button id='exitPython'>end python program</button>
 		<br>
-		<!-- -->
-		<label><input type="checkbox" name="getValuesLoop" id="getValuesLoop" value="male"> Loop measurement</label>
 		<!-- -->
 		period <span id='periodID' class="horizontal controls"><input /></span>s<br>
 		<!-- -->
@@ -156,6 +160,8 @@
 		<button onclick="ajax_createDB()">Create Database Tables</button>
 		<!-- -->
 		<button id="prompt_DB">Set Database Server</button>
+		<!-- -->
+		<button id="showTables">Show Tables</button>
 		<!-- -->
 		<button id="loadValues">Load Values</button>
 

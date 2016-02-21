@@ -35,16 +35,12 @@ function ajaxCalled_sendMessage() {
 		sendMessageAjax = ajaxsendMessageRequest.responseText;
 		// printlnMessage('messages', "response from PHP and python:");
 		printMessage('messages', sendMessageAjax);
-		//sendMessageAjaxJSON = JSON.parse(sendMessageAjax);
+		// sendMessageAjaxJSON = JSON.parse(sendMessageAjax);
 		// printMessage('messages', sendMessageAjaxJSON.bv3);
 		// part1 = sprintf('%s ',sendMessageAjaxJSON.date);
 
-
 	}
 }
-
-
-
 
 function ajax_getValues(myParams) {
 	// printlnMessage('messages', "ajax_getValues() called");
@@ -193,6 +189,60 @@ function ajaxCalled_saveValues() {
 	}
 }
 
+function ajax_showTables() {
+	// printlnMessage('messages', "ajax_showTables() called");
+	try {
+		// Opera 8.0+, Firefox, Safari
+		ajaxshowTablesRequest = new XMLHttpRequest();
+	} catch (e) {
+		// Internet Explorer Browsers
+		try {
+			ajaxshowTablesRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				ajaxshowTablesRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {
+				// Something went wrong
+				alert("Your browser broke!");
+				return false;
+			}
+		}
+	}
+
+	ajaxshowTablesRequest.onreadystatechange = ajaxCalled_showTables;
+	var requeststring;
+	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
+	//printlnMessage('messages', requeststring);
+	ajaxshowTablesRequest.open("POST", encodeURI(requeststring), true);
+	ajaxshowTablesRequest.send(null);
+}
+
+// Create a function that will receive data sent from the server
+function ajaxCalled_showTables() {
+	if (ajaxshowTablesRequest.readyState == 4) {
+
+		// printlnMessage('messages',"ajaxCalled_showTables called");
+		ValuesAjax = ajaxshowTablesRequest.responseText;
+		// printlnMessage('messages', ValuesAjax);
+
+		ValuesAjaxJSON = JSON.parse(ValuesAjax);
+		printlnMessage('messages', 'Tables:');
+		// //printlnMessage('messages', ValuesAjaxJSON.lV3.length);
+		for (i = 0; i < ValuesAjaxJSON.table.length; i++) {
+			printlnMessage('messages', ValuesAjaxJSON.table[i]);
+			// lV3 = ValuesAjaxJSON.lV3[i];
+			// cmA3 = ValuesAjaxJSON.cmA3[i];
+			// pw3 = ValuesAjaxJSON.pw3[i];
+			// part1 = new Date().toLocaleString() + ' ';
+			// part2 = sprintf('%7.2f ', parseFloat(lV3));
+			// part3 = sprintf('%6.2f ', parseFloat(cmA3));
+			// part4 = sprintf('%8.2f ', parseFloat(pw3));
+			// var printstring = part1 + part2 + part3 + part4;
+			// printlnMessage('messages', printstring);
+		}
+	}
+}
+
 function ajax_loadValues() {
 	// printlnMessage('messages', "ajax_loadValues() called");
 	try {
@@ -216,7 +266,7 @@ function ajax_loadValues() {
 	ajaxloadValuesRequest.onreadystatechange = ajaxCalled_loadValues;
 	var requeststring;
 	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
-	//printlnMessage('messages', requeststring);
+	// printlnMessage('messages', requeststring);
 	ajaxloadValuesRequest.open("POST", encodeURI(requeststring), true);
 	ajaxloadValuesRequest.send(null);
 }
@@ -227,14 +277,15 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages',"ajaxCalled_loadValues called");
 		ValuesAjax = ajaxloadValuesRequest.responseText;
-		//printlnMessage('messages', ValuesAjax);
+		// printlnMessage('messages', ValuesAjax);
+
 		ValuesAjaxJSON = JSON.parse(ValuesAjax);
 
 		header = sprintf('%22s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ');
 		printlnMessage('messages', header);
-		//printlnMessage('messages', ValuesAjaxJSON.lV3.length);
-		for (i = 0; i < ValuesAjaxJSON.lV3.length;i++) {
-			//printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
+		// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
+		for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
+			// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
 			lV3 = ValuesAjaxJSON.lV3[i];
 			cmA3 = ValuesAjaxJSON.cmA3[i];
 			pw3 = ValuesAjaxJSON.pw3[i];
