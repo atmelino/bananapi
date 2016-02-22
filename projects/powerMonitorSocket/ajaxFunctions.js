@@ -227,9 +227,17 @@ function ajaxCalled_showTables() {
 
 		ValuesAjaxJSON = JSON.parse(ValuesAjax);
 		printlnMessage('messages', 'Tables:');
+		elementId = document.getElementById("dayComboBox");
+		elementId.options.length = 0;
+
+		//for ( var i = 0; i < items.length; i++) {
+		//}
 		// //printlnMessage('messages', ValuesAjaxJSON.lV3.length);
 		for (i = 0; i < ValuesAjaxJSON.table.length; i++) {
-			printlnMessage('messages', ValuesAjaxJSON.table[i]);
+			day=ValuesAjaxJSON.table[i];
+			printlnMessage('messages', day);
+			AddItem("dayComboBox", day, day);
+
 			// lV3 = ValuesAjaxJSON.lV3[i];
 			// cmA3 = ValuesAjaxJSON.cmA3[i];
 			// pw3 = ValuesAjaxJSON.pw3[i];
@@ -266,7 +274,7 @@ function ajax_loadValues() {
 	ajaxloadValuesRequest.onreadystatechange = ajaxCalled_loadValues;
 	var requeststring;
 	requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
-	// printlnMessage('messages', requeststring);
+	//printlnMessage('messages', requeststring);
 	ajaxloadValuesRequest.open("POST", encodeURI(requeststring), true);
 	ajaxloadValuesRequest.send(null);
 }
@@ -277,7 +285,7 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages',"ajaxCalled_loadValues called");
 		ValuesAjax = ajaxloadValuesRequest.responseText;
-		// printlnMessage('messages', ValuesAjax);
+		//printlnMessage('messages', ValuesAjax);
 
 		ValuesAjaxJSON = JSON.parse(ValuesAjax);
 
@@ -286,10 +294,12 @@ function ajaxCalled_loadValues() {
 		// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
 		for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
 			// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
+			date=ValuesAjaxJSON.date[i]
 			lV3 = ValuesAjaxJSON.lV3[i];
 			cmA3 = ValuesAjaxJSON.cmA3[i];
 			pw3 = ValuesAjaxJSON.pw3[i];
-			part1 = new Date().toLocaleString() + ' ';
+			//part1 = new Date().toLocaleString() + ' ';
+			part1 = sprintf('%22s ', date);
 			part2 = sprintf('%7.2f ', parseFloat(lV3));
 			part3 = sprintf('%6.2f ', parseFloat(cmA3));
 			part4 = sprintf('%8.2f ', parseFloat(pw3));
@@ -297,4 +307,29 @@ function ajaxCalled_loadValues() {
 			printlnMessage('messages', printstring);
 		}
 	}
+}
+
+function AddItem(Element, Text, Value) {
+	// Create an Option object
+	var opt = document.createElement("option");
+
+	// Add an Option object to Drop Down/List Box
+	document.getElementById(Element).options.add(opt);
+
+	// Assign text and value to Option object
+	opt.text = Text;
+	opt.value = Value;
+}
+
+function getSelectedText(elementId) {
+
+	// printMessage('messages',"elementId:");
+	// printlnMessage('messages',elementId);
+
+	var elt = document.getElementById(elementId);
+
+	if (elt.selectedIndex == -1)
+		return null;
+
+	return elt.options[elt.selectedIndex].text;
 }

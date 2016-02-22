@@ -39,7 +39,7 @@ function main()
 	}
 	if(strcmp($functionString,'loadValues')==0)
 	{
-		loadValues($con,$database);
+		loadValues($con,$database,$decoded);
 	}
 	mysql_close($con);
 }
@@ -99,10 +99,11 @@ function showTables($con,$database)
 
 
 
-function loadValues($con,$database)
+function loadValues($con,$database,$decoded)
 {
 
-	$sql = "SELECT * FROM D2016_02_17";
+	$date=$decoded->date;
+	$sql = "SELECT * FROM ".$date;
 	$result = mysql_query($sql);
 
 	$myarray=array();

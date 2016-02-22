@@ -44,6 +44,17 @@
 		//printlnMessage('messages', 'onload home');
 	}
 
+	function dayComboSelect() {
+		var date = getSelectedText("dayComboBox");
+		myParams = {
+				fs : 'loadValues',
+				date: date,
+			};
+			//printlnMessage('messages', "load values clicked");
+			ajax_loadValues(myParams);
+		
+	}
+
 	$(function() {
 
 		periodSpinner = $('#periodID  input').spinner({
@@ -113,20 +124,18 @@
 			}
 		});
 
-		$("#prompt_DB").click(
-				function() {
+		$("#prompt_DB").click(function() {
 
-					// read data from cookies
-					if (existCookie('hostname') != true)
-						setCookie('hostname', "localhost", 100);
+			// read data from cookies
+			if (existCookie('hostname') != true)
+				setCookie('hostname', "localhost", 100);
 
-					hostname = getCookie('hostname');
-					username = "solarPanel";
-					password = "solarPanel";
-					database = "solarPanel";
-					jPromptDatabase(hostname, username, password, database,
-							mycallback);
-				});
+			hostname = getCookie('hostname');
+			username = "solarPanel";
+			password = "solarPanel";
+			database = "solarPanel";
+			jPromptDatabase(hostname, username, password, database, mycallback);
+		});
 
 	});
 
@@ -154,14 +163,16 @@
 		<!-- -->
 		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label>
 		<!-- -->
-		<br>
-		period <span id='periodID' class="horizontal controls"><input /></span>s<br>
+		<br> period <span id='periodID' class="horizontal controls"><input /></span>s<br>
 		<!-- -->
 		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
 		<!-- -->
 		<button id="prompt_DB">Set Database Server</button>
 		<!-- -->
 		<button id="showTables">Show Tables</button>
+		<select id="dayComboBox" onchange="dayComboSelect()">
+			<option value='sat'>Select a Table</option>
+		</select>
 		<!-- -->
 		<button id="loadValues">Load Values</button>
 
