@@ -88,11 +88,11 @@ function showTables($con,$database)
 	//loop to show all the tables
 	// 	$query1 = mysql_query("SHOW tables FROM solarPanel") or die ('cannot select tables');
 	// 	while($table = mysql_fetch_array($query1))
-		// 	{
+	// 	{
 
-		// 		echo "Table: ";
-		// 		echo $table[0];
-		// 	}
+	// 		echo "Table: ";
+	// 		echo $table[0];
+	// 	}
 
 
 }
@@ -111,6 +111,12 @@ function loadValues($con,$database,$decoded)
 	while($row = mysql_fetch_assoc($result)) {
 		//var_dump($row);
 		$myarray['date'][]= $row['date'];
+		$myarray['lV1'][]= $row['lV1'];
+		$myarray['cmA1'][]= $row['cmA1'];
+		$myarray['pw1'][]= $row['pw1'];
+		$myarray['lV2'][]= $row['lV2'];
+		$myarray['cmA2'][]= $row['cmA2'];
+		$myarray['pw2'][]= $row['pw2'];
 		$myarray['lV3'][]= $row['lV3'];
 		$myarray['cmA3'][]= $row['cmA3'];
 		$myarray['pw3'][]= $row['pw3'];
