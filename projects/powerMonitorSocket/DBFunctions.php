@@ -103,12 +103,22 @@ function loadValues($con,$database,$decoded)
 {
 
 	$date=$decoded->date;
+	$myarray=array();
+	$myarray['message']='';
+
+	$sql ="SELECT count(*) as count from ".$date;
+	//$myarray['sql']=$sql;
+	$result=mysql_query($sql);
+	$count=mysql_fetch_assoc($result);
+	$count=$count['count'];
+	$myarray['count']=$count;
+	$myarray['message'].=$count;
+	
+
 	$sql = "SELECT * FROM ".$date." LIMIT 10" ;
 	$result = mysql_query($sql);
 
 	//var_dump($result);
-	$myarray=array();
-	$myarray['message']='';
 	//$myarray['sqlresult']=$result;
 
 	while($row = mysql_fetch_assoc($result)) {

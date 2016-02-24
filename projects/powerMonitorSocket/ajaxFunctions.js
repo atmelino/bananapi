@@ -286,48 +286,49 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages',"ajaxCalled_loadValues called");
 		ValuesAjax = ajaxloadValuesRequest.responseText;
-		// printlnMessage('messages', ValuesAjax);
-		later = true;
-		if (later) {
-			ValuesAjaxJSON = JSON.parse(ValuesAjax);
+		printlnMessage('messages', ValuesAjax);
 
-			var data;
-			header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ', 'Volt ',
-					'mA ', 'mW ', 'Volt ', 'mA ', 'mW ');
-			//printlnMessage('messages', header);
-			var data=header+'<br>';
-			// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
-			for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
-				// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
-				date = ValuesAjaxJSON.date[i]
-				lV1 = ValuesAjaxJSON.lV1[i];
-				cmA1 = ValuesAjaxJSON.cmA1[i];
-				pw1 = ValuesAjaxJSON.pw1[i];
-				lV2 = ValuesAjaxJSON.lV2[i];
-				cmA2 = ValuesAjaxJSON.cmA2[i];
-				pw2 = ValuesAjaxJSON.pw2[i];
-				lV3 = ValuesAjaxJSON.lV3[i];
-				cmA3 = ValuesAjaxJSON.cmA3[i];
-				pw3 = ValuesAjaxJSON.pw3[i];
-				// part1 = new Date().toLocaleString() + ' ';
-				part1 = sprintf('%22s ', date);
-				part2 = sprintf('%7.2f ', parseFloat(lV1));
-				part3 = sprintf('%6.2f ', parseFloat(cmA1));
-				part4 = sprintf('%8.2f ', parseFloat(pw1));
-				part5 = sprintf('%7.2f ', parseFloat(lV3));
-				part6 = sprintf('%6.2f ', parseFloat(cmA3));
-				part7 = sprintf('%8.2f ', parseFloat(pw3));
-				part8 = sprintf('%7.2f ', parseFloat(lV3));
-				part9 = sprintf('%6.2f ', parseFloat(cmA3));
-				part10 = sprintf('%8.2f ', parseFloat(pw3));
-				var printstring = part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8 + part9 + part10;
-				//printlnMessage('messages', printstring);
-				data += printstring+'<br>';
-			}
-            $('#data').html(data);
-            document.getElementById('from').innerText = '5';
+		ValuesAjaxJSON = JSON.parse(ValuesAjax);
+		printlnMessage('messages', ValuesAjaxJSON.message);
 
+		document.getElementById('of').innerText = ValuesAjaxJSON.count;
+
+		var data;
+		header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ', 'Volt ', 'mA ',
+				'mW ', 'Volt ', 'mA ', 'mW ');
+		// printlnMessage('messages', header);
+		var data = header + '<br>';
+		// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
+		for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
+			// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
+			date = ValuesAjaxJSON.date[i]
+			lV1 = ValuesAjaxJSON.lV1[i];
+			cmA1 = ValuesAjaxJSON.cmA1[i];
+			pw1 = ValuesAjaxJSON.pw1[i];
+			lV2 = ValuesAjaxJSON.lV2[i];
+			cmA2 = ValuesAjaxJSON.cmA2[i];
+			pw2 = ValuesAjaxJSON.pw2[i];
+			lV3 = ValuesAjaxJSON.lV3[i];
+			cmA3 = ValuesAjaxJSON.cmA3[i];
+			pw3 = ValuesAjaxJSON.pw3[i];
+			// part1 = new Date().toLocaleString() + ' ';
+			part1 = sprintf('%22s ', date);
+			part2 = sprintf('%7.2f ', parseFloat(lV1));
+			part3 = sprintf('%6.2f ', parseFloat(cmA1));
+			part4 = sprintf('%8.2f ', parseFloat(pw1));
+			part5 = sprintf('%7.2f ', parseFloat(lV3));
+			part6 = sprintf('%6.2f ', parseFloat(cmA3));
+			part7 = sprintf('%8.2f ', parseFloat(pw3));
+			part8 = sprintf('%7.2f ', parseFloat(lV3));
+			part9 = sprintf('%6.2f ', parseFloat(cmA3));
+			part10 = sprintf('%8.2f ', parseFloat(pw3));
+			var printstring = part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8 + part9 + part10;
+			// printlnMessage('messages', printstring);
+			data += printstring + '<br>';
 		}
+		$('#data').html(data);
+		document.getElementById('from').innerText = '5';
+
 	}
 }
 
