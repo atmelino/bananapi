@@ -115,7 +115,10 @@ function loadValues($con,$database,$decoded)
 	$myarray['message'].=$count;
 	
 
-	$sql = "SELECT * FROM ".$date." LIMIT 10" ;
+	$limit=$decoded->limit;
+	$range=$decoded->range;
+	$myarray['message'].=' '.$limit.' '.$range;
+	$sql = "SELECT * FROM ".$date." LIMIT ".$limit.' , '.$range ;
 	$result = mysql_query($sql);
 
 	//var_dump($result);

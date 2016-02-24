@@ -50,14 +50,24 @@
 	}
 
 	function dayComboSelect() {
-		var date = getSelectedText("dayComboBox");
-		myParams = {
-			fs : 'loadValues',
-			date : date,
-		};
-		//printlnMessage('messages', "load values clicked");
-		ajax_loadValues(myParams);
+		getRange(0, 10);
+	}
 
+	function getRange(limit, range) {
+		var date = getSelectedText("dayComboBox");
+		document.getElementById('from').innerText = limit + 1;
+		document.getElementById('to').innerText = limit + range;
+
+		if (date != "select a date") {
+			myParams = {
+				fs : 'loadValues',
+				date : date,
+				limit : limit,
+				range : range
+			};
+			//printlnMessage('messages', "load values clicked");
+			ajax_loadValues(myParams);
+		}
 	}
 
 	$(function() {
@@ -103,18 +113,15 @@
 		$("#showTables").click(function() {
 			myParams = {
 				fs : 'showTables',
-				param2 : 2
 			};
 			ajax_showTables(myParams);
 		});
 
-		$("#loadValues").click(function() {
-			myParams = {
-				fs : 'loadValues',
-				param2 : 2
-			};
-			//printlnMessage('messages', "load values clicked");
-			ajax_loadValues(myParams);
+		$("#F").click(function() {
+			start=parseInt(document.getElementById('to').textContent);
+			//printlnMessage('messages', start);
+
+			getRange(start, 20);
 		});
 
 		$('#getValuesLoop').click(function() {
@@ -179,7 +186,6 @@
 			<option value='sat'>Select a Table</option>
 		</select>
 		<!-- -->
-		<button id="loadValues">Load Values</button>
 
 
 	</div>
@@ -188,11 +194,11 @@
 		showing records <label id="from">1 </label> to <label id="to">10 </label> of <label id="of">100 </label>
 		<button id="RR">&lt;&lt;</button>
 		<!-- -->
-		<button id="RR">&lt;</button>
+		<button id="R">&lt;</button>
 		<!-- -->
-		<button id="RR">&gt;</button>
+		<button id="F">&gt;</button>
 		<!-- -->
-		<button id="RR">&gt;&gt;</button>
+		<button id="FF">&gt;&gt;</button>
 		<!-- -->
 		<br>
 		<div id="data"></div>

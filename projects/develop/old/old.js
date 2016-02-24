@@ -1,4 +1,56 @@
-		// 		$('.vertical input').spinner({
+		$("#loadValues").click(function() {
+			myParams = {
+				fs : 'loadValues',
+				param2 : 2
+			};
+			//printlnMessage('messages', "load values clicked");
+			ajax_loadValues(myParams);
+		});
+		function ajax_saveValues(myParams) {
+			// printlnMessage('messages', "ajax_saveValues() called");
+			try {
+				// Opera 8.0+, Firefox, Safari
+				ajaxsaveValuesRequest = new XMLHttpRequest();
+			} catch (e) {
+				// Internet Explorer Browsers
+				try {
+					ajaxsaveValuesRequest = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch (e) {
+					try {
+						ajaxsaveValuesRequest = new ActiveXObject("Microsoft.XMLHTTP");
+					} catch (e) {
+						// Something went wrong
+						alert("Your browser broke!");
+						return false;
+					}
+				}
+			}
+
+			ajaxsaveValuesRequest.onreadystatechange = ajaxCalled_saveValues;
+			var requeststring;
+			requeststring = "DBFunctions.php?json=" + JSON.stringify(myParams);
+			// printlnMessage('messages', requeststring);
+			ajaxsaveValuesRequest.open("POST", encodeURI(requeststring), true);
+			ajaxsaveValuesRequest.send(null);
+		}
+
+		// Create a function that will receive data sent from the server
+		function ajaxCalled_saveValues() {
+			if (ajaxsaveValuesRequest.readyState == 4) {
+
+				// printlnMessage('messages',"ajaxCalled_saveValues called");
+				ValuesAjax = ajaxsaveValuesRequest.responseText;
+				// printlnMessage('messages', ValuesAjax);
+
+			}
+		}
+
+
+
+
+
+
+// 		$('.vertical input').spinner({
 		// 			min : -10,
 		// 			max : 10,
 		// 			alignment : 'vertical'
