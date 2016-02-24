@@ -233,6 +233,7 @@ function ajaxCalled_showTables() {
 		// for ( var i = 0; i < items.length; i++) {
 		// }
 		// //printlnMessage('messages', ValuesAjaxJSON.lV3.length);
+		AddItem("dayComboBox", "select a date", 1);
 		for (i = 0; i < ValuesAjaxJSON.table.length; i++) {
 			day = ValuesAjaxJSON.table[i];
 			printlnMessage('messages', day);
@@ -285,15 +286,16 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages',"ajaxCalled_loadValues called");
 		ValuesAjax = ajaxloadValuesRequest.responseText;
-		//printlnMessage('messages', ValuesAjax);
+		// printlnMessage('messages', ValuesAjax);
 		later = true;
 		if (later) {
 			ValuesAjaxJSON = JSON.parse(ValuesAjax);
 
-			header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s',
-					'date   ', 'Volt ', 'mA ', 'mW ', 'Volt ', 'mA ', 'mW ',
-					'Volt ', 'mA ', 'mW ');
-			printlnMessage('messages', header);
+			var data;
+			header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ', 'Volt ',
+					'mA ', 'mW ', 'Volt ', 'mA ', 'mW ');
+			//printlnMessage('messages', header);
+			var data=header+'<br>';
 			// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
 			for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
 				// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
@@ -318,10 +320,13 @@ function ajaxCalled_loadValues() {
 				part8 = sprintf('%7.2f ', parseFloat(lV3));
 				part9 = sprintf('%6.2f ', parseFloat(cmA3));
 				part10 = sprintf('%8.2f ', parseFloat(pw3));
-				var printstring = part1 + part2 + part3 + part4 + part5 + part6
-						+ part7 + part8 + part9 + part10;
-				printlnMessage('messages', printstring);
+				var printstring = part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8 + part9 + part10;
+				//printlnMessage('messages', printstring);
+				data += printstring+'<br>';
 			}
+            $('#data').html(data);
+            document.getElementById('from').innerText = '5';
+
 		}
 	}
 }

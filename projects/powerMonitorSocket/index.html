@@ -35,6 +35,11 @@
 	/*width: 30px;*/
 	width: 6ch;
 }
+
+#dataDiv {
+	font-family: monospace;
+	/*font-size: 8pt;*/
+}
 </style>
 
 <script type="text/javascript">
@@ -47,12 +52,12 @@
 	function dayComboSelect() {
 		var date = getSelectedText("dayComboBox");
 		myParams = {
-				fs : 'loadValues',
-				date: date,
-			};
-			//printlnMessage('messages', "load values clicked");
-			ajax_loadValues(myParams);
-		
+			fs : 'loadValues',
+			date : date,
+		};
+		//printlnMessage('messages', "load values clicked");
+		ajax_loadValues(myParams);
+
 	}
 
 	$(function() {
@@ -178,8 +183,15 @@
 
 
 	</div>
+
+	<div id='dataDiv'>
+		showing records <label id="from">1 </label> to <label id="to">10 </label> of <label id="of">100 </label><< < > >><br>
+		<div id="data"></div>
+	</div>
 	<div id='messagesDiv'>
 		<textarea id="messages" cols=100; rows=20;></textarea>
 	</div>
+
+
 </body>
 </html>
