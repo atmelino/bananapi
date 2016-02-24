@@ -103,10 +103,13 @@ function loadValues($con,$database,$decoded)
 {
 
 	$date=$decoded->date;
-	$sql = "SELECT * FROM ".$date;
+	$sql = "SELECT * FROM ".$date." LIMIT 10" ;
 	$result = mysql_query($sql);
 
+	//var_dump($result);
 	$myarray=array();
+	$myarray['message']='';
+	//$myarray['sqlresult']=$result;
 
 	while($row = mysql_fetch_assoc($result)) {
 		//var_dump($row);
