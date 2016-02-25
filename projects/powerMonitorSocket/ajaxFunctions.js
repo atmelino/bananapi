@@ -263,7 +263,8 @@ function ajaxCalled_loadValues() {
 		// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
 		for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
 			// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
-			date = ValuesAjaxJSON.date[i]
+			id = ValuesAjaxJSON.id[i];
+			date = ValuesAjaxJSON.date[i];
 			lV1 = ValuesAjaxJSON.lV1[i];
 			cmA1 = ValuesAjaxJSON.cmA1[i];
 			pw1 = ValuesAjaxJSON.pw1[i];
@@ -274,7 +275,7 @@ function ajaxCalled_loadValues() {
 			cmA3 = ValuesAjaxJSON.cmA3[i];
 			pw3 = ValuesAjaxJSON.pw3[i];
 			// part1 = new Date().toLocaleString() + ' ';
-			part1 = sprintf('%22s ', date);
+			part1 = sprintf('%3d %22s ', id,date);
 			part2 = sprintf('%7.2f ', parseFloat(lV1));
 			part3 = sprintf('%6.2f ', parseFloat(cmA1));
 			part4 = sprintf('%8.2f ', parseFloat(pw1));

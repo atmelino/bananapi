@@ -123,9 +123,14 @@ function loadValues($con,$database,$decoded)
 
 	//var_dump($result);
 	//$myarray['sqlresult']=$result;
-
+	//$myresult = var_export($result, true);
+	//$myarray['sqlresult']=$myresult;
+	
 	while($row = mysql_fetch_assoc($result)) {
 		//var_dump($row);
+	    //$myarray['sqlresult'].=$row;
+	    //$myarray['sqlresult'].=var_export($row, true);
+		$myarray['id'][]= $row['id'];
 		$myarray['date'][]= $row['date'];
 		$myarray['lV1'][]= $row['lV1'];
 		$myarray['cmA1'][]= $row['cmA1'];

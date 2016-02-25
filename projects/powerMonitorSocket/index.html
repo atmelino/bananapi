@@ -50,7 +50,7 @@
 	}
 
 	function dayComboSelect() {
-		getRange(0, 10);
+		getRange(0, 20);
 	}
 
 	function getRange(limit, range) {
@@ -124,6 +124,14 @@
 			getRange(start, 20);
 		});
 
+		$("#R").click(function() {
+			start=parseInt(document.getElementById('to').textContent)-40;
+			printlnMessage('messages', start);
+
+			getRange(start, 20);
+			//getRange(0, 20);
+		});
+
 		$('#getValuesLoop').click(function() {
 			// printlnMessage('messages', 'type clicked');
 			if ($(this).is(':checked')) {
@@ -191,7 +199,7 @@
 	</div>
 
 	<div id='dataDiv'>
-		showing records <label id="from">1 </label> to <label id="to">10 </label> of <label id="of">100 </label>
+		showing records <label id="from">1 </label> to <label id="to">20 </label> of <label id="of">100 </label>
 		<button id="RR">&lt;&lt;</button>
 		<!-- -->
 		<button id="R">&lt;</button>
