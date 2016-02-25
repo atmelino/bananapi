@@ -63,7 +63,8 @@ class PowerMonitor:
 
         # global simINA3221  
         # simINA3221 = 1
-        userMessage = "hello"
+        #userMessage = "hello world"
+        userMessage = "          "
         timercounter = 0
         
         
