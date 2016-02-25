@@ -284,7 +284,7 @@ class PowerMonitor:
                     #print 'SQL save'
                     DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
                     if lcdType == 'none':
-                        print(json.dumps(returnval))
+                        print('SQL save')
                     if lcdType == 'mcp':
                         lcd.set_cursor(0, 1);
                         lcd.message('SQL save')
