@@ -230,7 +230,11 @@ class PowerMonitor:
             
             
             if RTCinstalled==1:
-                RTCTime=myrtc.read_str()
+                RTCTime1=myrtc.read_str()
+                RTCTime='%s%s' %(RTCTime1[0:8],RTCTime1[9:17])
+                #RTCTime='%s%s' %(RTCTime1[0:8],'d')
+                #RTCTime='%s%s' %('f',RTCTime1[9:14])
+
                 nowdatetime='20'+RTCTime
             else:
                 nowdatetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
