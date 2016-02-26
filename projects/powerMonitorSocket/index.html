@@ -2,6 +2,7 @@
 <head>
 <title>Power Monitor</title>
 
+<link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/themes/base/jquery.ui.all.css">
 <script src="../../lib/jquery-ui-1.10.3/jquery-1.10.2.min.js"></script>
 <script src="../../lib/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css">
@@ -12,6 +13,10 @@
 <script src="../../lib/alerts/jquery.alerts.js"></script>
 <link rel="stylesheet" href="jquery.dialog.css">
 <script src="jquery.dialog.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/plugins/DataTables/css/jquery.dataTables.css">
+<script src="../../lib/jquery-ui-1.10.3/plugins/DataTables/js/jquery.dataTables.js"></script>
+
 <script type="text/JavaScript" src="globals.js"></script>
 <script type="text/JavaScript" src="ajaxFunctions.js"></script>
 <script type="text/JavaScript" src="functions.js"></script>
@@ -44,10 +49,86 @@
 
 <script type="text/javascript">
 	header = sprintf('%22s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ');
+	var oTable;
 
 	function onload_function() {
 		//printlnMessage('messages', 'onload home');
 	}
+
+	// 	$(document).ready(function() {
+	// 		$('#example').DataTable({
+	// 			data : dataSet,
+	// 			columns : [ {
+	// 				title : "Name"
+	// 			}, {
+	// 				title : "Position"
+	// 			}, {
+	// 				title : "Office"
+	// 			}, {
+	// 				title : "Extn."
+	// 			}, {
+	// 				title : "Start date"
+	// 			}, {
+	// 				title : "Salary"
+	// 			} ]
+	// 		});
+	// 	});
+
+	// 	$(document).ready(function() {
+	// 		$('#example').DataTable();
+	// 	});
+
+	// 	$(document).ready(function() {
+	// 		var oTable = $('#example').dataTable({
+	// 			"bProcessing" : true,
+	// 			"bServerSide" : true,
+	// 			"sAjaxSource" : "server_processing04.php",
+
+	// 			fnRowCallback : function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+	// 				// Row click
+	// 				$(nRow).on('click', function() {
+	// 					console.log('Row Clicked', this, aData, iDisplayIndex, iDisplayIndexFull);
+	// 				});
+
+	// 				// Cell click
+	// 				$('td', nRow).on('click', function() {
+	// 					console.log('Col Clicked.', this, aData, iDisplayIndex, iDisplayIndexFull);
+	// 				});
+	// 			}
+
+	// 		});
+
+	// 		var table = $('#example').DataTable();
+
+	// 		var columns = table.columns();
+	// 		//alert(columns);
+
+	// 		//table.column('2').visible(false);
+
+	// 	});
+
+// 	$(document).ready(function() {
+// 		$('#example').dataTable({
+// 			'bSort' : false,
+// 			'aoColumns' : [ {
+// 				sWidth : "45%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			}, {
+// 				sWidth : "45%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			}, {
+// 				sWidth : "10%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			} ],
+// 			"scrollY" : "200px",
+// 			"scrollCollapse" : true,
+// 			"info" : true,
+// 			"paging" : true
+// 		});
+// 	});
 
 	function dayComboSelect() {
 		getRange(0, 20);
@@ -118,14 +199,14 @@
 		});
 
 		$("#F").click(function() {
-			start=parseInt(document.getElementById('to').textContent);
+			start = parseInt(document.getElementById('to').textContent);
 			//printlnMessage('messages', start);
 
 			getRange(start, 20);
 		});
 
 		$("#R").click(function() {
-			start=parseInt(document.getElementById('to').textContent)-40;
+			start = parseInt(document.getElementById('to').textContent) - 40;
 			printlnMessage('messages', start);
 
 			getRange(start, 20);
@@ -144,18 +225,20 @@
 			}
 		});
 
-		$("#prompt_DB").click(function() {
+		$("#prompt_DB").click(
+				function() {
 
-			// read data from cookies
-			if (existCookie('hostname') != true)
-				setCookie('hostname', "localhost", 100);
+					// read data from cookies
+					if (existCookie('hostname') != true)
+						setCookie('hostname', "localhost", 100);
 
-			hostname = getCookie('hostname');
-			username = "solarPanel";
-			password = "solarPanel";
-			database = "solarPanel";
-			jPromptDatabase(hostname, username, password, database, mycallback);
-		});
+					hostname = getCookie('hostname');
+					username = "solarPanel";
+					password = "solarPanel";
+					database = "solarPanel";
+					jPromptDatabase(hostname, username, password, database,
+							mycallback);
+				});
 
 	});
 
@@ -198,6 +281,7 @@
 
 	</div>
 
+
 	<div id='dataDiv'>
 		showing records <label id="from">1 </label> to <label id="to">20 </label> of <label id="of">100 </label>
 		<button id="RR">&lt;&lt;</button>
@@ -214,6 +298,56 @@
 	<div id='messagesDiv'>
 		<textarea id="messages" cols=100; rows=20;></textarea>
 	</div>
+
+
+	<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Office</th>
+				<th>Age</th>
+				<th>Start date</th>
+				<th>Salary</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Office</th>
+				<th>Age</th>
+				<th>Start date</th>
+				<th>Salary</th>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td>Tiger Nixon</td>
+				<td>System Architect</td>
+				<td>Edinburgh</td>
+				<td>61</td>
+				<td>2011/04/25</td>
+				<td>$320,800</td>
+			</tr>
+			<tr>
+				<td>Jonas Alexander</td>
+				<td>Developer</td>
+				<td>San Francisco</td>
+				<td>30</td>
+				<td>2010/07/14</td>
+				<td>$86,500</td>
+			</tr>
+			<tr>
+				<td>Donna Snider</td>
+				<td>Customer Support</td>
+				<td>New York</td>
+				<td>27</td>
+				<td>2011/01/25</td>
+				<td>$112,000</td>
+			</tr>
+		</tbody>
+	</table>
 
 
 </body>
