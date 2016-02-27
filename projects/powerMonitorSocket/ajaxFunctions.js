@@ -150,7 +150,6 @@ function ajaxCalled_createDB() {
 	}
 }
 
-
 function ajax_showTables() {
 	// printlnMessage('messages', "ajax_showTables() called");
 	try {
@@ -248,19 +247,24 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages',"ajaxCalled_loadValues called");
 		ValuesAjax = ajaxloadValuesRequest.responseText;
-		//printlnMessage('messages', ValuesAjax);
+		// printlnMessage('messages', ValuesAjax);
 
 		ValuesAjaxJSON = JSON.parse(ValuesAjax);
-		//printlnMessage('messages', ValuesAjaxJSON.message);
+		// printlnMessage('messages', ValuesAjaxJSON.message);
 
 		document.getElementById('of').innerText = ValuesAjaxJSON.count;
 
-		var data;
-		header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s', 'date   ', 'Volt ', 'mA ', 'mW ', 'Volt ', 'mA ',
-				'mW ', 'Volt ', 'mA ', 'mW ');
+		// var data;
+		// header = sprintf('%22s %7s %6s %8s %7s %6s %8s %7s %6s %8s', 'date ',
+		// 'Volt ', 'mA ', 'mW ', 'Volt ', 'mA ', 'mW ', 'Volt ', 'mA ',
+		// 'mW ');
 		// printlnMessage('messages', header);
-		var data = header + '<br>';
+		// var data = header + '<br>';
 		// printlnMessage('messages', ValuesAjaxJSON.lV3.length);
+		mytable = new Array();
+		header = [ 'id', 'date', 'Volt', 'mA', 'mW', 'Volt', 'mA', 'mW',
+				'Volt', 'mA', 'mW' ]
+		mytable.push(header);
 		for (i = 0; i < ValuesAjaxJSON.lV3.length; i++) {
 			// printlnMessage('messages', ValuesAjaxJSON.lV3[i]);
 			id = ValuesAjaxJSON.id[i];
@@ -275,46 +279,39 @@ function ajaxCalled_loadValues() {
 			cmA3 = ValuesAjaxJSON.cmA3[i];
 			pw3 = ValuesAjaxJSON.pw3[i];
 			// part1 = new Date().toLocaleString() + ' ';
-			part1 = sprintf('%3d %22s ', id,date);
-			part2 = sprintf('%7.2f ', parseFloat(lV1));
-			part3 = sprintf('%6.2f ', parseFloat(cmA1));
-			part4 = sprintf('%8.2f ', parseFloat(pw1));
-			part5 = sprintf('%7.2f ', parseFloat(lV3));
-			part6 = sprintf('%6.2f ', parseFloat(cmA3));
-			part7 = sprintf('%8.2f ', parseFloat(pw3));
-			part8 = sprintf('%7.2f ', parseFloat(lV3));
-			part9 = sprintf('%6.2f ', parseFloat(cmA3));
-			part10 = sprintf('%8.2f ', parseFloat(pw3));
-			var printstring = part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8 + part9 + part10;
+			cell = new Array();
+			cell.push(sprintf('%3d', id));
+			cell.push(sprintf('%22s ', date));
+			cell.push(sprintf('%7.2f ', parseFloat(lV1)));
+			cell.push(sprintf('%6.2f ', parseFloat(cmA1)));
+			cell.push(sprintf('%8.2f ', parseFloat(pw1)));
+			cell.push(sprintf('%7.2f ', parseFloat(lV3)));
+			cell.push(sprintf('%6.2f ', parseFloat(cmA3)));
+			cell.push(sprintf('%8.2f ', parseFloat(pw3)));
+			cell.push(sprintf('%7.2f ', parseFloat(lV3)));
+			cell.push(sprintf('%6.2f ', parseFloat(cmA3)));
+			cell.push(sprintf('%8.2f ', parseFloat(pw3)));
+
+			// printlnMessage('messages', cell);
+			mytable.push(cell);
+			// var printstring = part1 + part2 + part3 + part4 + part5 + part6 +
+			// part7 + part8 + part9 + part10;
 			// printlnMessage('messages', printstring);
-			data += printstring + '<br>';
+			// data += printstring + '<br>';
 		}
-		$('#data').html(data);
+		// $('#data').html(data);
+		// printlnMessage('messages', ValuesAjaxJSON.pw3);
 
+		// d = new Array(ValuesAjaxJSON.pw3);
+		// printlnMessage('messages', d);
+
+		// mytable = new Array(cell);
+
+		var textToAppend = createTableFromData(mytable);
+
+		// printlnMessage('messages', textToAppend);
+
+		//$('#dataTable').append(textToAppend);
+		$('#dataTable').html(textToAppend);
 	}
-}
-
-function AddItem(Element, Text, Value) {
-	// Create an Option object
-	var opt = document.createElement("option");
-
-	// Add an Option object to Drop Down/List Box
-	document.getElementById(Element).options.add(opt);
-
-	// Assign text and value to Option object
-	opt.text = Text;
-	opt.value = Value;
-}
-
-function getSelectedText(elementId) {
-
-	// printMessage('messages',"elementId:");
-	// printlnMessage('messages',elementId);
-
-	var elt = document.getElementById(elementId);
-
-	if (elt.selectedIndex == -1)
-		return null;
-
-	return elt.options[elt.selectedIndex].text;
 }

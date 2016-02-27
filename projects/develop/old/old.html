@@ -1,4 +1,84 @@
+	#dataTable tr:nth-child(odd) td {
+	background-color: #CDF; . controls { display : inline-block;
+	margin: 0px;
+	margin: 0px;
+	height: 2px;
+}
+
+.paddingBetweenRows td {
+	background-color: #CDF;
+	padding: 0px;
+	margin: 0px;
+	height: 2px;
+}
 	
+	#dataTable {
+	background-color: #CDF;
+	text-align: right;
+	border-collapse: separate;
+}
+
+td {
+	border-spacing: 10px;
+}
+	
+	
+	<link rel="stylesheet" href="../../lib/jquery-ui-1.10.3/themes/base/jquery.ui.all.css">
+	<link rel="stylesheet" type="text/css" href="../../lib/jquery-ui-1.10.3/plugins/DataTables/css/jquery.dataTables.css">
+<script src="../../lib/jquery-ui-1.10.3/plugins/DataTables/js/jquery.dataTables.js"></script>
+	
+	
+	
+		<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Office</th>
+				<th>Age</th>
+				<th>Start date</th>
+				<th>Salary</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Office</th>
+				<th>Age</th>
+				<th>Start date</th>
+				<th>Salary</th>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr>
+				<td>Tiger Nixon</td>
+				<td>System Architect</td>
+				<td>Edinburgh</td>
+				<td>61</td>
+				<td>2011/04/25</td>
+				<td>$320,800</td>
+			</tr>
+			<tr>
+				<td>Jonas Alexander</td>
+				<td>Developer</td>
+				<td>San Francisco</td>
+				<td>30</td>
+				<td>2010/07/14</td>
+				<td>$86,500</td>
+			</tr>
+			<tr>
+				<td>Donna Snider</td>
+				<td>Customer Support</td>
+				<td>New York</td>
+				<td>27</td>
+				<td>2011/01/25</td>
+				<td>$112,000</td>
+			</tr>
+		</tbody>
+	</table>
+
+
 	
 			<button id="loadValues">Load Values</button>
 	

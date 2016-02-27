@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+
+
+<style type="text/css">
+#example tr:nth-child(odd) td {
+	background-color: #CDF;
+}
+</style>
+
+<script type="text/javascript">
+	var json_example = [
+			[ "(0,0)", "(0,1)", "(0,2)", "(0,3)", "(0,4)", "(0,5)", "(0,6)",
+					"(0,7)", "(0,8)", "(0,9)" ],
+			[ "(1,0)", "(1,1)", "(1,2)", "(1,3)", "(1,4)", "(1,5)", "(1,6)",
+					"(1,7)", "(1,8)", "(1,9)" ],
+			[ "(98,0)", "(98,1)", "(98,2)", "(98,3)", "(98,4)", "(98,5)",
+					"(98,6)", "(98,7)", "(98,8)", "(98,9)" ],
+			[ "(99,0)", "(99,1)", "(99,2)", "(99,3)", "(99,4)", "(99,5)",
+					"(99,6)", "(99,7)", "(99,8)", "(99,9)" ],
+			[ "(100,0)", "(100,1)", "(100,2)", "(100,3)", "(100,4)", "(100,5)",
+					"(100,6)", "(100,7)", "(100,8)", "(100,9)" ],
+			[ "(197,0)", "(197,1)", "(197,2)", "(197,3)", "(197,4)", "(197,5)",
+					"(197,6)", "(197,7)", "(197,8)", "(197,9)" ],
+			[ "(198,0)", "(198,1)", "(198,2)", "(198,3)", "(198,4)", "(198,5)",
+					"(198,6)", "(198,7)", "(198,8)", "(198,9)" ],
+			[ "(199,0)", "(199,1)", "(199,2)", "(199,3)", "(199,4)", "(199,5)",
+					"(199,6)", "(199,7)", "(199,8)", "(199,9)" ] ];
+
+	// 	$(document)
+	// 			.ready(
+	// 					function() {
+
+	function onload_function() {
+
+		var oldTable = document.getElementById('example'), newTable = oldTable
+				.cloneNode();
+		for ( var i = 0; i < json_example.length; i++) {
+			var tr = document.createElement('tr');
+			for ( var j = 0; j < json_example[i].length; j++) {
+				var td = document.createElement('td');
+				td.appendChild(document.createTextNode(json_example[i][j]));
+				tr.appendChild(td);
+			}
+			newTable.appendChild(tr);
+		}
+
+		oldTable.parentNode.replaceChild(newTable, oldTable);
+	}
+	//					});
+</script>
+
+
+
+</head>
+<body onload="onload_function()">
+
+
+
+
+</body>
+
+
+<table id="example"></table>
+
+
+</html>

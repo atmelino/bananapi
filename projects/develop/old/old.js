@@ -1,4 +1,98 @@
-		$("#loadValues").click(function() {
+
+			// part1 = new Date().toLocaleString() + ' ';
+			part1 = sprintf('%3d %22s ', id,date);
+			part2 = sprintf('%7.2f ', parseFloat(lV1));
+			part3 = sprintf('%6.2f ', parseFloat(cmA1));
+			part4 = sprintf('%8.2f ', parseFloat(pw1));
+			part5 = sprintf('%7.2f ', parseFloat(lV3));
+			part6 = sprintf('%6.2f ', parseFloat(cmA3));
+			part7 = sprintf('%8.2f ', parseFloat(pw3));
+			part8 = sprintf('%7.2f ', parseFloat(lV3));
+			part9 = sprintf('%6.2f ', parseFloat(cmA3));
+			part10 = sprintf('%8.2f ', parseFloat(pw3));
+			var printstring = part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8 + part9 + part10;
+			// printlnMessage('messages', printstring);
+			data += printstring + '<br>';
+
+	var oTable;
+	// 	$(document).ready(function() {
+	// 		$('#example').DataTable({
+	// 			data : dataSet,
+	// 			columns : [ {
+	// 				title : "Name"
+	// 			}, {
+	// 				title : "Position"
+	// 			}, {
+	// 				title : "Office"
+	// 			}, {
+	// 				title : "Extn."
+	// 			}, {
+	// 				title : "Start date"
+	// 			}, {
+	// 				title : "Salary"
+	// 			} ]
+	// 		});
+	// 	});
+
+	// 	$(document).ready(function() {
+	// 		$('#example').DataTable();
+	// 	});
+
+	// 	$(document).ready(function() {
+	// 		var oTable = $('#example').dataTable({
+	// 			"bProcessing" : true,
+	// 			"bServerSide" : true,
+	// 			"sAjaxSource" : "server_processing04.php",
+
+	// 			fnRowCallback : function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+	// 				// Row click
+	// 				$(nRow).on('click', function() {
+	// 					console.log('Row Clicked', this, aData, iDisplayIndex, iDisplayIndexFull);
+	// 				});
+
+	// 				// Cell click
+	// 				$('td', nRow).on('click', function() {
+	// 					console.log('Col Clicked.', this, aData, iDisplayIndex, iDisplayIndexFull);
+	// 				});
+	// 			}
+
+	// 		});
+
+	// 		var table = $('#example').DataTable();
+
+	// 		var columns = table.columns();
+	// 		//alert(columns);
+
+	// 		//table.column('2').visible(false);
+
+	// 	});
+
+// 	$(document).ready(function() {
+// 		$('#example').dataTable({
+// 			'bSort' : false,
+// 			'aoColumns' : [ {
+// 				sWidth : "45%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			}, {
+// 				sWidth : "45%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			}, {
+// 				sWidth : "10%",
+// 				bSearchable : false,
+// 				bSortable : false
+// 			} ],
+// 			"scrollY" : "200px",
+// 			"scrollCollapse" : true,
+// 			"info" : true,
+// 			"paging" : true
+// 		});
+// 	});
+
+
+
+$("#loadValues").click(function() {
 			myParams = {
 				fs : 'loadValues',
 				param2 : 2
