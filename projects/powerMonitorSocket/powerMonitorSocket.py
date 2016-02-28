@@ -245,10 +245,9 @@ class PowerMonitor:
             
             
             if RTCinstalled==1:
-                RTCTime1=myrtc.read_str()
-                RTCTime='%s%s' %(RTCTime1[0:8],RTCTime1[9:17])
-                #RTCTime='%s%s' %(RTCTime1[0:8],'d')
-                #RTCTime='%s%s' %('f',RTCTime1[9:14])
+                RTCTime=myrtc.read_str()
+                RTCTimeShort='%s%s' %(RTCTime[0:8],RTCTime[9:17])
+
 
                 nowdatetime='20'+RTCTime
             else:
@@ -277,7 +276,7 @@ class PowerMonitor:
                 lcd.message(userMessage)
                 if RTCinstalled==1:
                     lcd.set_cursor(0, 1);
-                    lcd.message(RTCTime)
+                    lcd.message(RTCTimeShort)
 
             
             if lcdType == 'plate':
@@ -292,7 +291,8 @@ class PowerMonitor:
                 lcd.set_cursor(0, 2);
                 lcd.message(line3)
                 lcd.set_cursor(0, 3);
-                lcd.message(userMessage)
+                #lcd.message(userMessage)
+                lcd.message(RTCTime)
         
             
             
@@ -309,7 +309,7 @@ class PowerMonitor:
                             lcd.message('SQL save')
                         if lcdType == 'plate':
                             lcd.set_cursor(0, 3);
-                            lcd.message('SQL save')
+                            lcd.message('SQL save            ')
                     except InterfaceError:
                         print 'SQL save has failed'
 
