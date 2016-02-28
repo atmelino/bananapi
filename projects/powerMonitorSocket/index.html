@@ -18,16 +18,15 @@
 <script type="text/JavaScript" src="powerMonitorFunctions.js"></script>
 
 <style type="text/css">
-
 table th,td {
-    padding: 0px 10px;
+	padding: 0px 10px;
 }
+
 table {
-    border-collapse: separate;
-    border-spacing: 0px;
+	border-collapse: separate;
+	border-spacing: 0px;
 	text-align: right;
 }
-
 
 .vertical input {
 	width: 3ch;
@@ -53,7 +52,15 @@ table {
 
 	function onload_function() {
 		//printlnMessage('messages', 'onload home');
+		showTables();
 	}
+
+	function showTables() {
+		myParams = {
+			fs : 'showTables',
+		};
+		ajax_showTables(myParams);
+	};
 
 	function dayComboSelect() {
 		getRange(0, 20);
@@ -82,7 +89,7 @@ table {
 			min : 1,
 			max : 100,
 			alignment : 'horizontal'
-		}).val(2);
+		}).val(10);
 
 		$('#periodID').on("spinstop", function(event, ui) {
 			period = periodSpinner.spinner("value");
@@ -99,23 +106,46 @@ table {
 		});
 
 		$("#sendMessage").click(function() {
-			if (document.getElementById('simulation').checked)
-				simulation = 1;
-			else
-				simulation = 0;
 			var line4 = document.getElementById("line4").value;
 			printlnMessage('messages', line4);
 			var d = new Date();
 			myParams = {
 				date : d,
-				simulation : simulation,
 				fs : 'sendMessage',
 				line4 : line4,
-				param2 : 55
 			};
 			ajax_sendMessage(myParams);
 		});
 
+		$("#SQLSaveOff").click(function() {
+			printlnMessage('messages', 'SQL Save Off');
+			myParams = {
+				fs : 'sendMessage',
+				SQLSave : 0,
+			};
+			ajax_sendMessage(myParams);
+		});
+
+		$("#SQLSaveOn").click(function() {
+			printlnMessage('messages', 'SQL Save On');
+			myParams = {
+				fs : 'sendMessage',
+				SQLSave : 1,
+			};
+			ajax_sendMessage(myParams);
+		});
+
+		$("#periodSet").click(function() {
+			period = periodSpinner.spinner("value");
+			printlnMessage('messages', 'period set '+period);
+			myParams = {
+				fs : 'sendMessage',
+				SQLSavePeriod : period,
+			};
+			ajax_sendMessage(myParams);
+		});
+
+		
 		$("#showTables").click(function() {
 			myParams = {
 				fs : 'showTables',
@@ -189,18 +219,21 @@ table {
 		<!-- -->
 		<button id='exitPython'>end python program</button>
 		<!-- -->
-		<label><input type="checkbox" name="simulation" id="simulation" value="male"> Simulation</label>
+		<br>
 		<!-- -->
-		<br> period <span id='periodID' class="horizontal controls"><input /></span>s<br>
+		<button id='SQLSaveOn'>SQL Save On</button>
 		<!-- -->
-		<label><input type="checkbox" name="saveSQL" id="saveSQL" value="male"> Save to mySQL</label>
+		<button id='SQLSaveOff'>SQL Save Off</button>
+		<!-- -->
+		period <span id='periodID' class="horizontal controls"><input /></span>s
+		<!-- -->
+		<button id='periodSet'>Period Set</button>
+		<!-- -->
+		<br>
 		<!-- -->
 		<button id="prompt_DB">Set Database Server</button>
 		<!-- -->
 		<button id="showTables">Show Tables</button>
-		<select id="dayComboBox" onchange="dayComboSelect()">
-			<option value='sat'>Select a Table</option>
-		</select>
 		<!-- -->
 
 
@@ -208,6 +241,10 @@ table {
 
 
 	<div id='dataDiv'>
+		<select id="dayComboBox" onchange="dayComboSelect()">
+			<option value='sat'>Select a Table</option>
+		</select>
+		<!-- -->
 		showing records <label id="from">1 </label> to <label id="to">20 </label> of <label id="of">100 </label>
 		<button id="RR">&lt;&lt;</button>
 		<!-- -->

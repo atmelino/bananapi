@@ -12,6 +12,8 @@ from mysql.connector.errors import InterfaceError
 import RTC_DS1307 as RTC
 
 global simINA3221
+global SQLSave
+global SQLSavePeriod
 global lcdType
 global lcd
 global RTCinstalled
@@ -60,14 +62,17 @@ class PowerMonitor:
         global myrtc
         global userMessage
         global timercounter
+        global SQLSave
+        global SQLSavePeriod
 
         # global simINA3221  
         # simINA3221 = 1
         #userMessage = "hello world"
         userMessage = "          "
         timercounter = 0
-        
-        
+        SQLSave=1
+        SQLSavePeriod = 10
+
         print "__init__()"
         # self.runit()
         if lcdType == 'mcp':
@@ -132,6 +137,8 @@ class PowerMonitor:
     def readPipe(self):
         global userMessage
         counter = 0
+        global SQLSave
+        global SQLSavePeriod
 
         pipe_name = "/tmp/testpipe"
 
@@ -164,7 +171,13 @@ class PowerMonitor:
                             simINA3221 = 1
                         else:
                             simINA3221 = 0
-                                            
+                    if 'SQLSave' in decoded:
+                        if decoded['SQLSave'] == 1:
+                            SQLSave = 1
+                        else:
+                            SQLSave = 0                                            
+                    if 'SQLSavePeriod' in decoded:
+                        SQLSavePeriod = decoded['SQLSavePeriod']
                     if 'line4' in decoded:
                         userMessage = decoded['line4']
                     if 'exit' in decoded:
@@ -178,6 +191,8 @@ class PowerMonitor:
                 
     def readINA3221(self):
         global simINA3221
+        global SQLSave
+        global SQLSavePeriod
         global lcdType
         global lcd
         global myrtc
@@ -279,25 +294,24 @@ class PowerMonitor:
                 lcd.set_cursor(0, 3);
                 lcd.message(userMessage)
         
-            #
-            
-
             
             
-            if timercounter % 10 == 0:
-                try:
+            
+            if SQLSave==1:
+                if timercounter % SQLSavePeriod == 0:
+                    try:
                     #print 'SQL save'
-                    DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
-                    if lcdType == 'none':
-                        print('SQL save')
-                    if lcdType == 'mcp':
-                        lcd.set_cursor(0, 1);
-                        lcd.message('SQL save')
-                    if lcdType == 'plate':
-                        lcd.set_cursor(0, 3);
-                        lcd.message('SQL save')
-                except InterfaceError:  
-                    print 'SQL save has failed'
+                        DBfunctions.measureStore(nowdatetime, loadvoltage1, current_mA1, power1, loadvoltage2, current_mA2, power2, loadvoltage3, current_mA3, power3)
+                        if lcdType == 'none':
+                            print('SQL save')
+                        if lcdType == 'mcp':
+                            lcd.set_cursor(0, 1);
+                            lcd.message('SQL save')
+                        if lcdType == 'plate':
+                            lcd.set_cursor(0, 3);
+                            lcd.message('SQL save')
+                    except InterfaceError:
+                        print 'SQL save has failed'
 
             
             time.sleep(1)

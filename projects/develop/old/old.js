@@ -1,4 +1,19 @@
 
+
+			myParams = {
+				date : d,
+				simulation : simulation,
+				fs : 'sendMessage',
+				line4 : line4,
+				param2 : 55
+			};
+			ajax_sendMessage(myParams);
+
+if (document.getElementById('simulation').checked)
+				simulation = 1;
+			else
+				simulation = 0;
+
 			// part1 = new Date().toLocaleString() + ' ';
 			part1 = sprintf('%3d %22s ', id,date);
 			part2 = sprintf('%7.2f ', parseFloat(lV1));
