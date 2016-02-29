@@ -63,15 +63,15 @@ Depending on the configuration, add one of the lines:
 
 - For a Banana Pro with the INA3221+RTC hat and the Adafruit LCD hat:
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/script/autoStartPM_INA_LCDplate_RTC.sh  >> $HOME/testpylog.txt 2>&1</code>
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/script/autoStartPM_INA_LCDplate_RTC.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 - For a Banana Pro without the INA3221+RTC hat and a MCP23017 based LCD hat:
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/script/autoStartPM_noINA_LCDmcp_noRTC.sh  >> $HOME/testpylog.txt 2>&1</code>
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/script/autoStartPM_noINA_LCDmcp_noRTC.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 - For any computer:
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/script/autoStartPM_noINA_noLCD_noRTC.sh  >> $HOME/testpylog.txt 2>&1</code>
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/script/autoStartPM_noINA_noLCD_noRTC.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 
 
@@ -83,7 +83,7 @@ Now run as superuser
 
 add the line
 
-<code>@reboot /media/data/public_html/bananapi/projects/powerMonitorSocket/script/pipe_web.sh  >> $HOME/testpylog.txt 2>&1</code>
+<code>@reboot /media/data/public_html/bananapi/projects/powerMonitor/script/pipe_web.sh  >> $HOME/testpylog.txt 2>&1</code>
 
 
 
