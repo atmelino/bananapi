@@ -170,13 +170,10 @@ function SaveToExcel($con)
 	//print $sql."<br>";
 	//$result=mysql_query($sql) or reportErrorData();
 	$result = mysql_query($sql);
-	$row = mysql_fetch_assoc($result);
 	//print $row['A01'];
 
+	$rows=0;
 	while($row = mysql_fetch_assoc($result)) {
-		//var_dump($row);
-		//$myarray['sqlresult'].=$row;
-		//$myarray['sqlresult'].=var_export($row, true);
 		$myarray['id'][]= $row['id'];
 		$myarray['date'][]= $row['date'];
 		$myarray['lV1'][]= $row['lV1'];
@@ -188,6 +185,7 @@ function SaveToExcel($con)
 		$myarray['lV3'][]= $row['lV3'];
 		$myarray['cmA3'][]= $row['cmA3'];
 		$myarray['pw3'][]= $row['pw3'];
+		$rows++;
 	}
 
 	// require the PHPExcel file
@@ -206,18 +204,51 @@ function SaveToExcel($con)
 	$objPHPExcel->getActiveSheet()->setCellValue("C1", "Volt");
 	$objPHPExcel->getActiveSheet()->setCellValue("D1", "mA");
 	$objPHPExcel->getActiveSheet()->setCellValue("E1", "mW");
+	$objPHPExcel->getActiveSheet()->setCellValue("F1", "Volt");
+	$objPHPExcel->getActiveSheet()->setCellValue("G1", "mA");
+	$objPHPExcel->getActiveSheet()->setCellValue("H1", "mW");
+	$objPHPExcel->getActiveSheet()->setCellValue("I1", "Volt");
+	$objPHPExcel->getActiveSheet()->setCellValue("J1", "mA");
+	$objPHPExcel->getActiveSheet()->setCellValue("K1", "mW");
 
 	// Loop through the result set
-	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
+	for ($rowpos = 0; $rowpos < $rows; $rowpos++) {
 		$excelstring=sprintf('A%d',$rowpos+2);
 		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['id'][$rowpos]);
 		$excelstring=sprintf('B%d',$rowpos+2);
 		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['date'][$rowpos]);
 		$excelstring=sprintf('C%d',$rowpos+2);
 		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['lV1'][$rowpos]);
+		$excelstring=sprintf('D%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['cmA1'][$rowpos]);
+		$excelstring=sprintf('E%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['pw1'][$rowpos]);
+		$excelstring=sprintf('F%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['lV2'][$rowpos]);
+		$excelstring=sprintf('G%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['cmA2'][$rowpos]);
+		$excelstring=sprintf('H%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['pw2'][$rowpos]);
+		$excelstring=sprintf('I%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['lV3'][$rowpos]);
+		$excelstring=sprintf('J%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['cmA3'][$rowpos]);
+		$excelstring=sprintf('K%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['pw3'][$rowpos]);
 	}
 
-
+	$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('C1:C'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('D1:D'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('E1:E'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('F1:F'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('G1:G'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('H1:H'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('I1:I'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('J1:J'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	$objPHPExcel->getActiveSheet()->getStyle('K1:K'.($rows+1))->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+	
 	// Save as an Excel BIFF (xls) file
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 

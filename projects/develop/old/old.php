@@ -33,5 +33,6 @@ global $hostname;
 global $username;
 global $password;
 global $database;
+	$objPHPExcel->getActiveSheet()->setCellValue("F4", $myarray['id'][0]);
 
 
