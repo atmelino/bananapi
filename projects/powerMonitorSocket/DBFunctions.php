@@ -44,8 +44,8 @@ function main()
 	if(strcmp($functionString,'SaveToExcel')==0)
 	{
 		SaveToExcel($con);
-	}	
-	
+	}
+
 	mysql_close($con);
 }
 
@@ -118,7 +118,7 @@ function loadValues($con,$database,$decoded)
 	$count=$count['count'];
 	$myarray['count']=$count;
 	$myarray['message'].=$count;
-	
+
 
 	$limit=$decoded->limit;
 	$range=$decoded->range;
@@ -130,11 +130,11 @@ function loadValues($con,$database,$decoded)
 	//$myarray['sqlresult']=$result;
 	//$myresult = var_export($result, true);
 	//$myarray['sqlresult']=$myresult;
-	
+
 	while($row = mysql_fetch_assoc($result)) {
 		//var_dump($row);
-	    //$myarray['sqlresult'].=$row;
-	    //$myarray['sqlresult'].=var_export($row, true);
+		//$myarray['sqlresult'].=$row;
+		//$myarray['sqlresult'].=var_export($row, true);
 		$myarray['id'][]= $row['id'];
 		$myarray['date'][]= $row['date'];
 		$myarray['lV1'][]= $row['lV1'];
@@ -166,12 +166,29 @@ function SaveToExcel($con)
 
 	$date=$decoded->date;
 
-	$sql ="SELECT * from ".$date;	
+	$sql ="SELECT * from ".$date;
 	//print $sql."<br>";
 	//$result=mysql_query($sql) or reportErrorData();
 	$result = mysql_query($sql);
 	$row = mysql_fetch_assoc($result);
 	//print $row['A01'];
+
+	while($row = mysql_fetch_assoc($result)) {
+		//var_dump($row);
+		//$myarray['sqlresult'].=$row;
+		//$myarray['sqlresult'].=var_export($row, true);
+		$myarray['id'][]= $row['id'];
+		$myarray['date'][]= $row['date'];
+		$myarray['lV1'][]= $row['lV1'];
+		$myarray['cmA1'][]= $row['cmA1'];
+		$myarray['pw1'][]= $row['pw1'];
+		$myarray['lV2'][]= $row['lV2'];
+		$myarray['cmA2'][]= $row['cmA2'];
+		$myarray['pw2'][]= $row['pw2'];
+		$myarray['lV3'][]= $row['lV3'];
+		$myarray['cmA3'][]= $row['cmA3'];
+		$myarray['pw3'][]= $row['pw3'];
+	}
 
 	// require the PHPExcel file
 	require '../../lib/Classes/PHPExcel.php';
@@ -181,47 +198,25 @@ function SaveToExcel($con)
 	$objPHPExcel->getDefaultStyle()->getFont()
 	->setName('Arila')
 	->setSize(10);
-	$objPHPExcel->getActiveSheet()->setTitle('Plate');
+	$objPHPExcel->getActiveSheet()->setTitle('data');
+
+
+	$objPHPExcel->getActiveSheet()->setCellValue("A1", "id");
+	$objPHPExcel->getActiveSheet()->setCellValue("B1", "Date");
+	$objPHPExcel->getActiveSheet()->setCellValue("C1", "Volt");
+	$objPHPExcel->getActiveSheet()->setCellValue("D1", "mA");
+	$objPHPExcel->getActiveSheet()->setCellValue("E1", "mW");
 
 	// Loop through the result set
-	$rowNumber = 1;
-
-	$objPHPExcel->getActiveSheet()->setCellValue("A1", "Sample");
-
-	$Aord=ord('A');
 	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
-		for ($colpos = 0; $colpos < 12; $colpos++) {
-			$colchar=chr($Aord+$colpos);
-			$excelstring=sprintf('%s%d',$colchar,$rowpos+2);
-			$rowchar=chr($Aord+$rowpos);
-			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
-			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$wellstring);
-		}
+		$excelstring=sprintf('A%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['id'][$rowpos]);
+		$excelstring=sprintf('B%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['date'][$rowpos]);
+		$excelstring=sprintf('C%d',$rowpos+2);
+		$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$myarray['lV1'][$rowpos]);
 	}
 
-	$objPHPExcel->getActiveSheet()->setCellValue("A11", "Reader");
-
-	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
-		for ($colpos = 0; $colpos < 12; $colpos++) {
-			$colchar=chr($Aord+$colpos);
-			$excelstring=sprintf('%s%d',$colchar,$rowpos+12);
-			$rowchar=chr($Aord+$rowpos);
-			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
-			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$row[$wellstring]);
-		}
-	}
-
-	$objPHPExcel->getActiveSheet()->setCellValue("A21", "Results");
-
-	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
-		for ($colpos = 0; $colpos < 12; $colpos++) {
-			$colchar=chr($Aord+$colpos);
-			$excelstring=sprintf('%s%d',$colchar,$rowpos+22);
-			$rowchar=chr($Aord+$rowpos);
-			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
-			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$row[$wellstring]);
-		}
-	}
 
 	// Save as an Excel BIFF (xls) file
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
