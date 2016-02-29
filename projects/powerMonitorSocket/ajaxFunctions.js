@@ -150,7 +150,7 @@ function ajaxCalled_createDB() {
 	}
 }
 
-function ajax_showTables() {
+function ajax_showTables(myParams) {
 	// printlnMessage('messages', "ajax_showTables() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
@@ -187,7 +187,7 @@ function ajaxCalled_showTables() {
 		// printlnMessage('messages', ValuesAjax);
 
 		ValuesAjaxJSON = JSON.parse(ValuesAjax);
-		printlnMessage('messages', 'Tables:');
+		// printlnMessage('messages', 'Tables:');
 		elementId = document.getElementById("dayComboBox");
 		elementId.options.length = 0;
 
@@ -195,25 +195,23 @@ function ajaxCalled_showTables() {
 		// }
 		// //printlnMessage('messages', ValuesAjaxJSON.lV3.length);
 		AddItem("dayComboBox", "select a date", 1);
-		for (i = 0; i < ValuesAjaxJSON.table.length; i++) {
+		length = ValuesAjaxJSON.table.length;
+		for (i = 0; i < length; i++) {
 			day = ValuesAjaxJSON.table[i];
-			printlnMessage('messages', day);
+			// printlnMessage('messages', day);
 			AddItem("dayComboBox", day, day);
-
-			// lV3 = ValuesAjaxJSON.lV3[i];
-			// cmA3 = ValuesAjaxJSON.cmA3[i];
-			// pw3 = ValuesAjaxJSON.pw3[i];
-			// part1 = new Date().toLocaleString() + ' ';
-			// part2 = sprintf('%7.2f ', parseFloat(lV3));
-			// part3 = sprintf('%6.2f ', parseFloat(cmA3));
-			// part4 = sprintf('%8.2f ', parseFloat(pw3));
-			// var printstring = part1 + part2 + part3 + part4;
-			// printlnMessage('messages', printstring);
 		}
+
+		date = ValuesAjaxJSON.table[length - 1];
+		printlnMessage('messages', ValuesAjaxJSON.table[length - 1]);
+		document.getElementById("dayComboBox").value = date;
+
+		dayComboSelect();
+
 	}
 }
 
-function ajax_loadValues() {
+function ajax_loadValues(myParams) {
 	// printlnMessage('messages', "ajax_loadValues() called");
 	try {
 		// Opera 8.0+, Firefox, Safari
@@ -311,7 +309,43 @@ function ajaxCalled_loadValues() {
 
 		// printlnMessage('messages', textToAppend);
 
-		//$('#dataTable').append(textToAppend);
+		// $('#dataTable').append(textToAppend);
 		$('#dataTable').html(textToAppend);
+	}
+}
+
+function ajax_saveToExcel(myParams) {
+	// printlnMessage('messages',"ajax_saveToExcel() called");
+	try {
+		// Opera 8.0+, Firefox, Safari
+		ajaxsaveToExcelRequest = new XMLHttpRequest();
+	} catch (e) {
+		// Internet Explorer Browsers
+		try {
+			ajaxsaveToExcelRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				ajaxsaveToExcelRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {
+				// Something went wrong
+				alert("Your browser broke!");
+				return false;
+			}
+		}
+	}
+
+	ajaxsaveToExcelRequest.onreadystatechange = ajaxCalled_saveToExcel;
+	var requeststring;
+	requeststring = "DBfunctions.php?json=" + JSON.stringify(myParams);
+	// printlnMessage('messages',requeststring);
+	ajaxsaveToExcelRequest.open("GET", encodeURI(requeststring), true);
+	ajaxsaveToExcelRequest.send(null);
+}
+
+function ajaxCalled_saveToExcel() {
+	if (ajaxsaveToExcelRequest.readyState == 4) {
+		// printlnMessage('messages',"ajaxCalled_retrieveLastPlate() state 4");
+		saveToExcelAjax = ajaxsaveToExcelRequest.responseText;
+		printlnMessage('messages', saveToExcelAjax);
 	}
 }

@@ -69,6 +69,7 @@ table {
 	function getRange(limit, range) {
 		var date = getSelectedText("dayComboBox");
 		document.getElementById('from').innerText = limit + 1;
+		//document.getElementById('from').value = limit + 1;
 		document.getElementById('to').innerText = limit + range;
 
 		if (date != "select a date") {
@@ -137,7 +138,7 @@ table {
 
 		$("#periodSet").click(function() {
 			period = periodSpinner.spinner("value");
-			printlnMessage('messages', 'period set '+period);
+			printlnMessage('messages', 'period set ' + period);
 			myParams = {
 				fs : 'sendMessage',
 				SQLSavePeriod : period,
@@ -145,13 +146,32 @@ table {
 			ajax_sendMessage(myParams);
 		});
 
-		
 		$("#showTables").click(function() {
 			myParams = {
 				fs : 'showTables',
 			};
 			ajax_showTables(myParams);
 		});
+
+		$("#SaveToExcel").click(
+				function() {
+					printlnMessage('messages', "SaveToExcel called");
+					var date = getSelectedText("dayComboBox");
+
+					if (date != "select a date") {
+
+						myParams = {
+							fs : 'SaveToExcel',
+							date : date,
+						};
+						var URLstring = "DBFunctions.php?json="
+								+ JSON.stringify(myParams);
+						var URLstring2 = encodeURI(URLstring);
+						// printlnMessage('messages',URLstring2);
+						location.href = URLstring2;
+						//ajax_saveToExcel(myParams);
+					}
+				});
 
 		$("#F").click(function() {
 			start = parseInt(document.getElementById('to').textContent);
@@ -245,7 +265,13 @@ table {
 			<option value='sat'>Select a Table</option>
 		</select>
 		<!-- -->
-		showing records <label id="from">1 </label> to <label id="to">20 </label> of <label id="of">100 </label>
+		showing records
+		<!-- -->
+		<span style='display: inline-block; width: 25px;'><label id="from">1</label> </span> to
+		<!-- -->
+		<span style='display: inline-block; width: 25px;'><label id="to">20</label> </span> of
+		<!-- -->
+		<span style='display: inline-block; width: 25px;'><label id="of">100</label> </span> 
 		<button id="RR">&lt;&lt;</button>
 		<!-- -->
 		<button id="R">&lt;</button>
@@ -254,6 +280,7 @@ table {
 		<!-- -->
 		<button id="FF">&gt;&gt;</button>
 		<!-- -->
+		<button id="SaveToExcel">Export Excel</button>
 		<br>
 		<div id="data">
 			<table id="dataTable" class='paddingBetweenRows'></table>

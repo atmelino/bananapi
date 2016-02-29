@@ -41,6 +41,11 @@ function main()
 	{
 		loadValues($con,$database,$decoded);
 	}
+	if(strcmp($functionString,'SaveToExcel')==0)
+	{
+		SaveToExcel($con);
+	}	
+	
 	mysql_close($con);
 }
 
@@ -146,7 +151,87 @@ function loadValues($con,$database,$decoded)
 	$encoded= json_encode($myarray);
 	echo $encoded;
 
+}
 
+
+function SaveToExcel($con)
+{
+	//print "SaveToExcel() called<br>";
+
+	$myarray=array();
+	$myarray['message']='';
+	$json=$_GET['json'];
+
+	$decoded = json_decode($_GET['json']);
+
+	$date=$decoded->date;
+
+	$sql ="SELECT * from ".$date;	
+	//print $sql."<br>";
+	//$result=mysql_query($sql) or reportErrorData();
+	$result = mysql_query($sql);
+	$row = mysql_fetch_assoc($result);
+	//print $row['A01'];
+
+	// require the PHPExcel file
+	require '../../lib/Classes/PHPExcel.php';
+
+	// Create a new PHPExcel object
+	$objPHPExcel = new PHPExcel();
+	$objPHPExcel->getDefaultStyle()->getFont()
+	->setName('Arila')
+	->setSize(10);
+	$objPHPExcel->getActiveSheet()->setTitle('Plate');
+
+	// Loop through the result set
+	$rowNumber = 1;
+
+	$objPHPExcel->getActiveSheet()->setCellValue("A1", "Sample");
+
+	$Aord=ord('A');
+	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
+		for ($colpos = 0; $colpos < 12; $colpos++) {
+			$colchar=chr($Aord+$colpos);
+			$excelstring=sprintf('%s%d',$colchar,$rowpos+2);
+			$rowchar=chr($Aord+$rowpos);
+			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
+			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$wellstring);
+		}
+	}
+
+	$objPHPExcel->getActiveSheet()->setCellValue("A11", "Reader");
+
+	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
+		for ($colpos = 0; $colpos < 12; $colpos++) {
+			$colchar=chr($Aord+$colpos);
+			$excelstring=sprintf('%s%d',$colchar,$rowpos+12);
+			$rowchar=chr($Aord+$rowpos);
+			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
+			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$row[$wellstring]);
+		}
+	}
+
+	$objPHPExcel->getActiveSheet()->setCellValue("A21", "Results");
+
+	for ($rowpos = 0; $rowpos < 8; $rowpos++) {
+		for ($colpos = 0; $colpos < 12; $colpos++) {
+			$colchar=chr($Aord+$colpos);
+			$excelstring=sprintf('%s%d',$colchar,$rowpos+22);
+			$rowchar=chr($Aord+$rowpos);
+			$wellstring = sprintf('%s%02d',$rowchar,$colpos+1);
+			$objPHPExcel->getActiveSheet()->setCellValue($excelstring,$row[$wellstring]);
+		}
+	}
+
+	// Save as an Excel BIFF (xls) file
+	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+
+	header('Content-Type: application/vnd.ms-excel');
+	header('Content-Disposition: attachment;filename="myFile.xls"');
+	header('Cache-Control: max-age=0');
+
+	$objWriter->save('php://output');
+	//exit();
 }
 
 
