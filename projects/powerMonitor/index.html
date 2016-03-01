@@ -182,10 +182,25 @@ table {
 
 		$("#R").click(function() {
 			start = parseInt(document.getElementById('to').textContent) - 40;
-			printlnMessage('messages', start);
+			//printlnMessage('messages', start);
 
 			getRange(start, 20);
 			//getRange(0, 20);
+		});
+
+		$("#RR").click(function() {
+			start =0;
+
+			getRange(start, 20);
+		});
+
+		$("#FF").click(function() {
+			//start = parseInt(document.getElementById('of').textContent) - 40;
+			of = parseInt(document.getElementById('of').textContent);
+			whole = parseInt(of / 20);
+			//printlnMessage('messages', parseInt(of/20));
+			start = whole * 20;
+			getRange(start, 20);
 		});
 
 		$('#getValuesLoop').click(function() {
@@ -271,7 +286,7 @@ table {
 		<!-- -->
 		<span style='display: inline-block; width: 25px;'><label id="to">20</label> </span> of
 		<!-- -->
-		<span style='display: inline-block; width: 25px;'><label id="of">100</label> </span> 
+		<span style='display: inline-block; width: 25px;'><label id="of">100</label> </span>
 		<button id="RR">&lt;&lt;</button>
 		<!-- -->
 		<button id="R">&lt;</button>
