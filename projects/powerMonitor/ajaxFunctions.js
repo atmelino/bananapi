@@ -283,9 +283,9 @@ function ajaxCalled_loadValues() {
 			cell.push(sprintf('%7.2f ', parseFloat(lV1)));
 			cell.push(sprintf('%6.2f ', parseFloat(cmA1)));
 			cell.push(sprintf('%8.2f ', parseFloat(pw1)));
-			cell.push(sprintf('%7.2f ', parseFloat(lV3)));
-			cell.push(sprintf('%6.2f ', parseFloat(cmA3)));
-			cell.push(sprintf('%8.2f ', parseFloat(pw3)));
+			cell.push(sprintf('%7.2f ', parseFloat(lV2)));
+			cell.push(sprintf('%6.2f ', parseFloat(cmA2)));
+			cell.push(sprintf('%8.2f ', parseFloat(pw2)));
 			cell.push(sprintf('%7.2f ', parseFloat(lV3)));
 			cell.push(sprintf('%6.2f ', parseFloat(cmA3)));
 			cell.push(sprintf('%8.2f ', parseFloat(pw3)));
