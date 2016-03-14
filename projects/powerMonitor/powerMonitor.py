@@ -232,7 +232,7 @@ class PowerMonitor:
         
                  busvoltage2 = ina3221.getBusVoltage_V(SOLAR_CELL_CHANNEL)
                  shuntvoltage2 = ina3221.getShuntVoltage_mV(SOLAR_CELL_CHANNEL)
-                 current_mA2 = -ina3221.getCurrent_mA(SOLAR_CELL_CHANNEL)
+                 current_mA2 = ina3221.getCurrent_mA(SOLAR_CELL_CHANNEL)
                  loadvoltage2 = busvoltage2 + (shuntvoltage2 / 1000)
                  power2 = loadvoltage2 * current_mA2          
                  
