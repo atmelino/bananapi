@@ -13,14 +13,15 @@ GPIO.setup(12, GPIO.IN)
 # Output to pin 11
 print "pin 11 = GPIO 0"
 
-while True:
+#while True:
+for i in range(1,3):
 
     GPIO.output(11, GPIO.HIGH)
     print "on"
-    time.sleep(2)
+    time.sleep(4)
     GPIO.output(11, GPIO.LOW)
     print "off"
-    time.sleep(2)
+    time.sleep(4)
 
 # Input from pin 12
 #input_value = GPIO.input(12)
