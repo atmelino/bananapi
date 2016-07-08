@@ -13,7 +13,7 @@ GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 print "pin 11 = GPIO 0"
 
 #while True:
-for i in range(1,30):
+for i in range(1,100):
 
     #input_value = GPIO.input(11)
     #print "on"
