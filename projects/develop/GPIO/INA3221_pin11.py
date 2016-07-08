@@ -106,7 +106,7 @@ print "pin 11 = GPIO 0"
 
 
 
-for i in range(1,10):
+for i in range(1,10000):
 	
   	print (i)
   	#print GPIO.input(11)
