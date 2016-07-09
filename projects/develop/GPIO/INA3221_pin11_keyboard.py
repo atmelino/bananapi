@@ -18,25 +18,25 @@ class KBHit:
     def __init__(self):
         '''Creates a KBHit object that you can call to do various keyboard things.
         '''
-            # use P1 header pin numbering convention
-            GPIO.setmode(GPIO.BOARD)
+        # use P1 header pin numbering convention
+        GPIO.setmode(GPIO.BOARD)
  
-            # Set up the GPIO channel
-            #GPIO.setup(11, GPIO.IN)
-            GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        # Set up the GPIO channel
+        #GPIO.setup(11, GPIO.IN)
+        GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-            # Save the terminal settings
-            self.fd = sys.stdin.fileno()
-            self.new_term = termios.tcgetattr(self.fd)
-            self.old_term = termios.tcgetattr(self.fd)
+        # Save the terminal settings
+        self.fd = sys.stdin.fileno()
+        self.new_term = termios.tcgetattr(self.fd)
+        self.old_term = termios.tcgetattr(self.fd)
 
-            # New terminal setting unbuffered
-            self.new_term[3] = (self.new_term[3] & ~termios.ICANON & ~termios.ECHO)
-            termios.tcsetattr(self.fd, termios.TCSAFLUSH, self.new_term)
+        # New terminal setting unbuffered
+        self.new_term[3] = (self.new_term[3] & ~termios.ICANON & ~termios.ECHO)
+        termios.tcsetattr(self.fd, termios.TCSAFLUSH, self.new_term)
 
-            # Support normal-terminal reset at exit
-            atexit.register(self.set_normal_term)
+        # Support normal-terminal reset at exit
+        atexit.register(self.set_normal_term)
 
 
     def set_normal_term(self):
@@ -96,7 +96,7 @@ class KBHit:
             return dr != []
 
 
-    def getINAValues()	:
+    def getINAValues(self)	:
         # the three channels of the INA3221 named for SunAirPlus Solar Power Controller channels (www.switchdoc.com)
         LIPO_BATTERY_CHANNEL = 1
         SOLAR_CELL_CHANNEL   = 2
@@ -163,11 +163,11 @@ class KBHit:
 if __name__ == "__main__":
 
     kb = KBHit()
-
+    i=1
     print('Hit any key, or ESC to exit')
 
     while True:
-
+        i=i+1
         print (i)
         input_value = GPIO.input(11)
 
@@ -175,7 +175,7 @@ if __name__ == "__main__":
             print "LED on"
         else:
             print "LED off"
-            getINAValues()
+            kb.getINAValues()
 
         if kb.kbhit():
             c = kb.getch()
