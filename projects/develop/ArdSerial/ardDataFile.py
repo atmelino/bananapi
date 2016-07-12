@@ -6,9 +6,9 @@ import sys
 import termios
 import atexit
 from select import select
-import datetime
+from datetime import datetime
 import serial
-
+import traceback
 
 
 ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)
@@ -63,13 +63,24 @@ class KBHit:
     def getArduinoData(self)	:
         try:
 	        response = ser.readline()
-	        curdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-	        fh = open("ardData.txt", "a")
-	        output="%s %s " %(curdate,response)
-	        fh.write(output)
-	        fh.close
-	        print response
+                #for character in response.rstrip():
+                   #print character, character.encode('hex')
 
+                #if response != '\x0D' and response != '\x0A':
+
+                #if response[0]=='\x0a':
+                    #print "oh-a"
+
+                if response:
+                    curdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    fh = open("ardData.txt", "a")
+                    output="%s %s \n" %(curdate,response.rstrip())
+                    fh.write(output)
+                    fh.close
+                    print response
+        except Exception:
+                print(traceback.format_exc())
+                print "exception"
 
 
 # Test    
@@ -83,7 +94,7 @@ if __name__ == "__main__":
         i=i+1
         print (i)
 
-        kb.getINAValues()
+        kb.getArduinoData()
 
         if kb.kbhit():
             c = kb.getch()
