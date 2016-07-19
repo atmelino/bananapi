@@ -11,7 +11,8 @@ import serial
 import traceback
 
 
-ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)
+#ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)
+ser = serial.Serial("/dev/ttyAMA0", 9600, timeout=1)
 
 
 
@@ -76,7 +77,7 @@ class KBHit:
                     curdatetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     fileName=("ardData%s.txt" %curdate)
                     #fh = open("ardData.txt", "a")
-                    fh = open(filename, "a")
+                    fh = open(fileName, "a")
                     output="%s %s \n" %(curdatetime,response.rstrip())
                     fh.write(output)
                     fh.close
