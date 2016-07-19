@@ -72,9 +72,12 @@ class KBHit:
                     #print "oh-a"
 
                 if response:
-                    curdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    fh = open("ardData.txt", "a")
-                    output="%s %s \n" %(curdate,response.rstrip())
+                    curdate = datetime.now().strftime("%Y-%m-%d")
+                    curdatetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    fileName=("ardData%s.txt" %curdate)
+                    #fh = open("ardData.txt", "a")
+                    fh = open(filename, "a")
+                    output="%s %s \n" %(curdatetime,response.rstrip())
                     fh.write(output)
                     fh.close
                     print response
