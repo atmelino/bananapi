@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-cd ~/public_html/bananapi/projects/develop/ArdSerial
+cd /home/pi/public_html/bananapi/projects/develop/ArdSerial
+
 python ardDataFile.py
 
 
