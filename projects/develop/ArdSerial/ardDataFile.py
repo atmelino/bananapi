@@ -16,6 +16,15 @@ ser = serial.Serial("/dev/ttyAMA0", 9600, timeout=1)
 
 
 
+if os.isatty(sys.stdin.fileno()):
+    print "started from command line"
+    # Debug mode.
+    pass
+else:
+    # Cron mode.
+    print "started from cron"
+    pass
+
 class KBHit:
 
     def __init__(self):

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "ardDataFile.py", line 93, in <module>
+    kb = KBHit()
+  File "ardDataFile.py", line 28, in __init__
+    self.new_term = termios.tcgetattr(self.fd)
+termios.error: (25, 'Inappropriate ioctl for device')
+press enter
+Traceback (most recent call last):
+  File "ardDataFile.py", line 93, in <module>
+    kb = KBHit()
+  File "ardDataFile.py", line 28, in __init__
+    self.new_term = termios.tcgetattr(self.fd)
+termios.error: (25, 'Inappropriate ioctl for device')
+press enter
