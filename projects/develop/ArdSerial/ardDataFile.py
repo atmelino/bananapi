@@ -14,60 +14,55 @@ import traceback
 #ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)
 ser = serial.Serial("/dev/ttyAMA0", 9600, timeout=1)
 
+global termTrueFalse
 
-
+#background or interactive mode?
 if os.isatty(sys.stdin.fileno()):
+    # command line mode.
     print "started from command line"
-    # Debug mode.
+    termTrueFalse=True
     pass
 else:
     # Cron mode.
     print "started from cron"
+    termTrueFalse=False
     pass
 
-class KBHit:
+class ArdDataFile:
 
     def __init__(self):
-        '''Creates a KBHit object that you can call to do various keyboard things.
-        '''
+        # constructor
 
+        if termTrueFalse==True:
+            # Save the terminal settings
+            self.fd = sys.stdin.fileno()
+            self.new_term = termios.tcgetattr(self.fd)
+            self.old_term = termios.tcgetattr(self.fd)
 
-        # Save the terminal settings
-        self.fd = sys.stdin.fileno()
-        self.new_term = termios.tcgetattr(self.fd)
-        self.old_term = termios.tcgetattr(self.fd)
+            # New terminal setting unbuffered
+            self.new_term[3] = (self.new_term[3] & ~termios.ICANON & ~termios.ECHO)
+            termios.tcsetattr(self.fd, termios.TCSAFLUSH, self.new_term)
 
-        # New terminal setting unbuffered
-        self.new_term[3] = (self.new_term[3] & ~termios.ICANON & ~termios.ECHO)
-        termios.tcsetattr(self.fd, termios.TCSAFLUSH, self.new_term)
-
-        # Support normal-terminal reset at exit
-        atexit.register(self.set_normal_term)
+            # Support normal-terminal reset at exit
+            atexit.register(self.set_normal_term)
 
 
     def set_normal_term(self):
-        ''' Resets to normal terminal.  On Windows this is a no-op.
-        '''
+        # Resets to normal terminal.  On Windows this is a no-op.
         termios.tcsetattr(self.fd, termios.TCSAFLUSH, self.old_term)
 
 
     def getch(self):
-        ''' Returns a keyboard character after kbhit() has been called.
-            Should not be called in the same program as getarrow().
-        '''
+        #Returns a keyboard character after kbhit() has been called.
+        #Should not be called in the same program as getarrow().
         s = ''
         return sys.stdin.read(1)
 
 
     def kbhit(self):
-        ''' Returns True if keyboard character was hit, False otherwise.
-        '''
-        if os.name == 'nt':
-            return msvcrt.kbhit()
-
-        else:
-            dr,dw,de = select([sys.stdin], [], [], 0)
-            return dr != []
+        #Returns True if keyboard character was hit, False otherwise.
+        dr,dw,de = select([sys.stdin], [], [], 0)
+        return dr != []
 
 
     def getArduinoData(self)	:
@@ -99,7 +94,7 @@ class KBHit:
 # Test    
 if __name__ == "__main__":
 
-    kb = KBHit()
+    kb = ArdDataFile()
     i=1
     print('Hit any key, or ESC to exit')
 
@@ -109,15 +104,19 @@ if __name__ == "__main__":
 
         kb.getArduinoData()
 
-        if kb.kbhit():
-            c = kb.getch()
-            if ord(c) == 27: # ESC
-                break
-            print(c)
+        if termTrueFalse==True:
+            if kb.kbhit():
+                c = kb.getch()
+                if ord(c) == 27: # ESC
+                    break
+                print(c)
         time.sleep(1.5)
 
     # after break from while loop
-    kb.set_normal_term()
+    if termTrueFalse==True:
+        kb.set_normal_term()
+    
+    
     ser.close()
 
 
