@@ -1,0 +1,8 @@
+started from cron
+Traceback (most recent call last):
+  File "ardDataFile.py", line 102, in <module>
+    kb = KBHit()
+  File "ardDataFile.py", line 37, in __init__
+    self.new_term = termios.tcgetattr(self.fd)
+termios.error: (25, 'Inappropriate ioctl for device')
+press enter

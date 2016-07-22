@@ -67,7 +67,8 @@ class ArdDataFile:
 
     def getArduinoData(self)	:
         try:
-	        response = ser.readline()
+	        #response = ser.readline()
+	        response = self.readLastLine()
                 #for character in response.rstrip():
                    #print character, character.encode('hex')
 
@@ -85,10 +86,25 @@ class ArdDataFile:
                     output="%s %s \n" %(curdatetime,response.rstrip())
                     fh.write(output)
                     fh.close
-                    print response
+                    #print "stored:"
+                    print response,   # comma prints without extra newline
         except Exception:
                 print(traceback.format_exc())
                 print "exception"
+
+
+
+    def readLastLine(self):
+        last_data=''
+        while True:
+            data=ser.readline()
+            #print "skipped:"
+            #print data
+            if data!='':
+                last_data=data
+            else:
+                return last_data
+
 
 
 # Test    
@@ -100,7 +116,7 @@ if __name__ == "__main__":
 
     while True:
         i=i+1
-        print (i)
+        #print (i)
 
         kb.getArduinoData()
 
@@ -110,7 +126,7 @@ if __name__ == "__main__":
                 if ord(c) == 27: # ESC
                     break
                 print(c)
-        time.sleep(1.5)
+        time.sleep(10)
 
     # after break from while loop
     if termTrueFalse==True:
@@ -118,6 +134,4 @@ if __name__ == "__main__":
     
     
     ser.close()
-
-
 
